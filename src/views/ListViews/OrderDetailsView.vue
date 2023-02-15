@@ -43,13 +43,13 @@ export default {
         orderDetails: [],
         endpoint: 'http://localhost:8080/api/orderDetails',        
         headers: [
-            {text: "orderNumber", value: "orderNumber", width: '50px',  class:"blue lighten-5"},
-            {text: "orderLineNumber", value: "orderLineNumber", width: '50px',  class:"blue lighten-5"},
-            {text: "customerName", value: "customerName", width: '250px',  class:"blue lighten-5"},
-            {text: "productCode", value: "productCode", width: '50px',  class:"blue lighten-5"},
-            {text: "productName", value: "productName", width: '300px',  class:"blue lighten-5"},
-            {text: "quantityOrdered", value: "quantityOrdered", width: '50px',  class:"blue lighten-5"},
-            {text: "priceEach", value: "priceEach", width: '50px', align: 'right',  class:"blue lighten-5"},
+            {text: "OrderNumber", value: "orderNumber", width: '50px',  class:"blue lighten-5"},
+            {text: "OrderLine Number", value: "orderLineNumber", width: '50px',  class:"blue lighten-5"},
+            {text: "Customer Name", value: "customerName", width: '250px',  class:"blue lighten-5"},
+            {text: "Product Code", value: "productCode", width: '60px',  class:"blue lighten-5"},
+            {text: "Product Name", value: "productName", width: '300px',  class:"blue lighten-5"},
+            {text: "Quantity Ordered", value: "quantityOrdered", width: '50px',  class:"blue lighten-5"},
+            {text: "Price Each", value: "priceEach", width: '50px', align: 'right',  class:"blue lighten-5"},
             
         ],
       }

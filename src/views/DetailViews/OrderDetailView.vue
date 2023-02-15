@@ -18,7 +18,7 @@
         <v-card-text>
           <v-row >
               <v-col cols="4">                  
-                  <v-text-field label="orderNumber" v-model="orderDetail.orderNumber" dense class="font-weight-bold"
+                  <v-text-field label="Order Number" v-model="orderDetail.orderNumber" dense class="font-weight-bold"
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOrder"></v-text-field>
               </v-col>
               <v-col cols="4">
@@ -27,20 +27,20 @@
           </v-row>
           <v-row >
               <v-col cols="4">
-                  <v-text-field label="productCode" v-model="orderDetail.productCode" dense class="font-weight-bold" 
+                  <v-text-field label="ProductCode" v-model="orderDetail.productCode" dense class="font-weight-bold" 
                   prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct"></v-text-field>
               </v-col>
               <v-col cols="6">
-                  <v-text-field label="productName" v-model="orderDetail.productName" dense class="font-weight-bold" 
+                  <v-text-field label="Product Name" v-model="orderDetail.productName" dense class="font-weight-bold" 
                   prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct"></v-text-field>
               </v-col>
           </v-row>
           <v-row >
               <v-col cols="4">
-                  <v-text-field label="quantityOrdered" v-model="orderDetail.quantityOrdered" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Quantity Ordered" v-model="orderDetail.quantityOrdered" dense class="font-weight-bold"></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="priceEach" v-model="orderDetail.priceEach" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Price Each" v-model="orderDetail.priceEach" dense class="font-weight-bold"></v-text-field>
               </v-col>
             </v-row>
         </v-card-text>

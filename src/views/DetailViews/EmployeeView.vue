@@ -17,40 +17,40 @@
         <v-card-text>
             <v-row >                
                 <v-col cols="4">
-                    <v-text-field label="lastName" v-model="employee.lastName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Last Name" v-model="employee.lastName" dense class="font-weight-bold"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="firstName" v-model="employee.firstName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="First Name" v-model="employee.firstName" dense class="font-weight-bold"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="jobTitle" v-model="employee.jobTitle" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Job Title" v-model="employee.jobTitle" dense class="font-weight-bold"></v-text-field>
                 </v-col>
 
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="officeCode" v-model="getOffice" dense
+                    <v-text-field label="Office Code" v-model="getOffice" dense
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOffice"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="reportsTo" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense>
+                    <v-text-field label="Reports To" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense>
                     </v-text-field>
-                    <v-text-field label="reportsTo" v-else v-model="getReportsTo" dense
+                    <v-text-field label="Reports To" v-else v-model="getReportsTo" dense
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickReportsTo"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="employeeNumber" v-model="employee.employeeNumber" dense></v-text-field>
+                    <v-text-field label="Employee Number" v-model="employee.employeeNumber" dense></v-text-field>
                 </v-col>
 
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="extension" v-model="employee.extension" dense></v-text-field>
+                    <v-text-field label="Extension" v-model="employee.extension" dense></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="email" v-model="employee.email" dense></v-text-field>
+                    <v-text-field label="Email" v-model="employee.email" dense></v-text-field>
                 </v-col>
             </v-row>
 
@@ -126,32 +126,32 @@ export default {
         selectedTab: null,  
         customers: [],
         customersHeaders: [
-                {text: "customer Number", value: "customerNumber", width: '50px',  class:"blue lighten-5"},
-                {text: "customer Name", value: "customerName", width: '150px',  class:"blue lighten-5"},
-                {text: "contact LastName", value: "contactLastName", width: '5px',  class:"blue lighten-5"},
-                {text: "contact FirstName", value: "contactFirstName", width: '5px',  class:"blue lighten-5"},
-                {text: "phone", value: "phone", width: '150px',  class:"blue lighten-5"},
-                {text: "address Line1", value: "addressLine1", width: '150px',  class:"blue lighten-5"},
-                {text: "address Line2", value: "addressLine2", width: '5px',  class:"blue lighten-5"},
-                {text: "city", value: "city", width: '5px',  class:"blue lighten-5"},
-                {text: "state", value: "state", width: '5px',  class:"blue lighten-5"},
-                {text: "postal Code", value: "postalCode", width: '5px',  class:"blue lighten-5"},
-                {text: "country", value: "country", width: '5px',  class:"blue lighten-5"},
-                {text: "salesRep EmployeeNumber", value: "salesRepEmployeeNumber", width: '5px',  class:"blue lighten-5"},
-                {text: "credit Limit", value: "creditLimit", width: '5px', align: 'right',  class:"blue lighten-5"},
+                {text: "Customer Number", value: "customerNumber", width: '50px',  class:"blue lighten-5"},
+                {text: "Customer Name", value: "customerName", width: '150px',  class:"blue lighten-5"},
+                {text: "Contact Last Name", value: "contactLastName", width: '5px',  class:"blue lighten-5"},
+                {text: "Contact First Name", value: "contactFirstName", width: '5px',  class:"blue lighten-5"},
+                {text: "Phone", value: "phone", width: '150px',  class:"blue lighten-5"},
+                {text: "Address Line1", value: "addressLine1", width: '150px',  class:"blue lighten-5"},
+                {text: "Address Line2", value: "addressLine2", width: '5px',  class:"blue lighten-5"},
+                {text: "City", value: "city", width: '5px',  class:"blue lighten-5"},
+                {text: "State", value: "state", width: '5px',  class:"blue lighten-5"},
+                {text: "Postal Code", value: "postalCode", width: '5px',  class:"blue lighten-5"},
+                {text: "Country", value: "country", width: '5px',  class:"blue lighten-5"},
+                //{text: "salesRep EmployeeNumber", value: "salesRepEmployeeNumber", width: '5px',  class:"blue lighten-5"},
+                {text: "Credit Limit", value: "creditLimit", width: '5px', align: 'right',  class:"blue lighten-5"},
           ],
 
         employees: [],
         routeToEmployee: null ,
         employeeHeaders: [
-                {text: "employeeNumber", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
-                {text: "lastName", value: "lastName", width: '50px',  class:"blue lighten-5"},
-                {text: "firstName", value: "firstName", width: '50px',  class:"blue lighten-5"},
-                {text: "jobTitle", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
-                {text: "extension", value: "extension", width: '50px',  class:"blue lighten-5"},
-                {text: "email", value: "email", width: '50px',  class:"blue lighten-5"},                
-                {text: "reportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
-                {text: "city", value: "city", width: '50px',  class:"blue lighten-5"},                
+                {text: "Employee Number", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
+                {text: "Last Name", value: "lastName", width: '50px',  class:"blue lighten-5"},
+                {text: "First Name", value: "firstName", width: '50px',  class:"blue lighten-5"},
+                {text: "Job Title", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
+                {text: "Extension", value: "extension", width: '50px',  class:"blue lighten-5"},
+                {text: "Email", value: "email", width: '50px',  class:"blue lighten-5"},                
+                //{text: "reportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
+                {text: "City", value: "city", width: '50px',  class:"blue lighten-5"},                
           ],
 
       }

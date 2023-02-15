@@ -16,25 +16,25 @@
             <v-card-text>
                 <v-row >
                     <v-col cols="2">
-                        <v-text-field label="orderDate" v-model = "getOrderDate" dense></v-text-field>
+                        <v-text-field label="Order Date" v-model = "getOrderDate" dense></v-text-field>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field label="customerName" v-model="getCustomerName" dense class="font-weight-bold"
+                        <v-text-field label="Customer Name" v-model="getCustomerName" dense class="font-weight-bold"
                             prepend-icon="mdi-open-in-app"  @click:prepend="handleClickCustomer"></v-text-field>
                     </v-col>
                 </v-row>
 
                 <v-row >
                     <v-col cols="2">
-                        <v-text-field label="requiredDate" v-model="getRequiredDate" dense></v-text-field>
+                        <v-text-field label="Required Date" v-model="getRequiredDate" dense></v-text-field>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field label="status" v-model="order.status" dense class="font-weight-bold"></v-text-field>
+                        <v-text-field label="Status" v-model="order.status" dense class="font-weight-bold"></v-text-field>
                     </v-col>
                 </v-row>                
                 <v-row>            
                     <v-col cols="2">
-                        <v-text-field label="shippedDate" v-model="getShippedDate" dense></v-text-field>
+                        <v-text-field label="Shipped Date" v-model="getShippedDate" dense></v-text-field>
                     </v-col>
                     <v-col cols="8">
                         <v-textarea rows="1" auto-grow label="comments" v-model="order.comments" dense></v-textarea>
@@ -49,7 +49,7 @@
 
             <v-card-title class="grey darken-1 ">
                 <v-row class="ma-0">
-                    <span class="text-5 white--text" >OrderDetails</span>                        
+                    <span class="text-5 white--text" >Order Details</span>                        
                 </v-row>
             </v-card-title>
 
@@ -85,13 +85,13 @@ export default {
         order: null,
         endpoint: 'http://localhost:8080/api/orders/',      
         orderDetails: [],
-        sortBy: 'orderLineNumber',
+        //sortBy: 'orderLineNumber',
         orderDetailHeaders: [
-            {text: "orderLineNumber", value: "orderLineNumber", width: '10px', class:"blue lighten-5"},            
-            {text: "productCode", value: "productCode", width: '40px',  class:"blue lighten-5"},
-            {text: "productName", value: "productName", width: '200px',  class:"blue lighten-5"},
-            {text: "quantityOrdered", value: "quantityOrdered", width: '20px', align: 'right',  class:"blue lighten-5"},
-            {text: "priceEach", value: "priceEach", width: '20px', align: 'right',  class:"blue lighten-5"},
+            {text: "Order LineNumber", value: "orderLineNumber", width: '10px', class:"blue lighten-5"},            
+            {text: "Product Code", value: "productCode", width: '40px',  class:"blue lighten-5"},
+            {text: "Product Name", value: "productName", width: '200px',  class:"blue lighten-5"},
+            {text: "Quantity Ordered", value: "quantityOrdered", width: '20px', align: 'right',  class:"blue lighten-5"},
+            {text: "Price Each", value: "priceEach", width: '20px', align: 'right',  class:"blue lighten-5"},
         ],
 
       }

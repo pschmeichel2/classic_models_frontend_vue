@@ -17,19 +17,19 @@
         <v-card-text>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="customerNumber" v-model="payment.customerNumber" dense  class="font-weight-bold" readonly
+                    <v-text-field label="Customer Number" v-model="payment.customerNumber" dense  class="font-weight-bold" readonly
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickCustomer">></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="checkNumber" v-model="payment.checkNumber" dense  class="font-weight-bold" readonly></v-text-field>
+                    <v-text-field label="Check Number" v-model="payment.checkNumber" dense  class="font-weight-bold" readonly></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="paymentDate" v-model="getPaymentDate" dense readonly></v-text-field>
+                    <v-text-field label="Payment Date" v-model="getPaymentDate" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="amount" v-model="payment.amount" dense readonly></v-text-field>
+                    <v-text-field label="Amount" v-model="payment.amount" dense readonly></v-text-field>
                 </v-col>
             </v-row>
         </v-card-text>

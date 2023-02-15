@@ -4,7 +4,7 @@
 
         <v-card-title class="blue darken-2 ">
           <v-row class="ma-1">
-              <span class="text-h5 white--text" >ProductLine {{ $route.params.productLine }}</span>                        
+              <span class="text-h5 white--text" >Product Line {{ $route.params.productLine }}</span>                        
               <v-spacer></v-spacer>
               <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
               <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
@@ -17,20 +17,20 @@
         <v-card-text>
           <v-row >
               <v-col cols="4">
-                  <v-text-field label="productLine" v-model="productLineData.productLine" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Product Line" v-model="productLineData.productLine" dense class="font-weight-bold"></v-text-field>
               </v-col>
           </v-row>
           <v-row >
               <v-col cols="12">
-                  <v-textarea rows="1" auto-grow label="textDescription" v-model="productLineData.textDescription" dense></v-textarea>
+                  <v-textarea rows="1" auto-grow label="TextDescription" v-model="productLineData.textDescription" dense></v-textarea>
               </v-col>
           </v-row>
           <v-row>
               <v-col cols="4">
-                  <v-text-field label="htmlDescription" v-model="productLineData.htmlDescription" dense></v-text-field>
+                  <v-text-field label="HTMLDescription" v-model="productLineData.htmlDescription" dense></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="image" v-model="productLineData.image" dense></v-text-field>
+                  <v-text-field label="Image" v-model="productLineData.image" dense></v-text-field>
               </v-col>
           </v-row>
 
@@ -80,14 +80,14 @@ export default {
         endpoint: 'http://localhost:8080/api/productLines/',      
         products: [],
         productHeaders: [
-            {text: "productCode", value: "productCode", width: '5px',  class:"blue lighten-5"},
-            {text: "productName", value: "productName", width: '50px',  class:"blue lighten-5"},
-            {text: "productLine", value: "productLine", width: '5px',  class:"blue lighten-5"},
-            {text: "productScale", value: "productScale", width: '5px',  class:"blue lighten-5"},
-            {text: "productVendor", value: "productVendor", width: '50px',  class:"blue lighten-5"},
-            {text: "productDescription", value: "productDescription", width: '500px',  class:"blue lighten-5"},
-            {text: "quantityInStock", value: "quantityInStock", width: '5px',  class:"blue lighten-5"},
-            {text: "buyPrice", value: "buyPrice", width: '5px', align: 'right', class:"blue lighten-5"},
+            {text: "Product Code", value: "productCode", width: '5px',  class:"blue lighten-5"},
+            {text: "Product Name", value: "productName", width: '50px',  class:"blue lighten-5"},
+            //{text: "Product Line", value: "productLine", width: '5px',  class:"blue lighten-5"},
+            {text: "Product Scale", value: "productScale", width: '5px',  class:"blue lighten-5"},
+            {text: "Product Vendor", value: "productVendor", width: '50px',  class:"blue lighten-5"},
+            {text: "Product Description", value: "productDescription", width: '500px',  class:"blue lighten-5"},
+            {text: "Quantity in Stock", value: "quantityInStock", width: '5px',  class:"blue lighten-5"},
+            {text: "Buy Price", value: "buyPrice", width: '5px', align: 'right', class:"blue lighten-5"},
             {text: "MSRP", value: "msrp", width: '5px', align: 'right',  class:"blue lighten-5"},
           ],
 

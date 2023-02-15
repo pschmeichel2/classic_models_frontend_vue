@@ -16,55 +16,55 @@
         <v-card-text>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="customerName" v-model="customer.customerName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Customer Name" v-model="customer.customerName" dense class="font-weight-bold"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="customerNumber" v-model="customer.customerNumber" dense></v-text-field>
-                </v-col>
-            </v-row>
-            <v-row >
-                <v-col cols="4">
-                    <v-text-field label="contactLastName" v-model="customer.contactLastName" dense class="font-weight-bold"></v-text-field>
-                </v-col>
-                <v-col cols="4">
-                    <v-text-field label="contactFirstName" v-model="customer.contactFirstName" dense class="font-weight-bold"></v-text-field>
-                </v-col>
-                <v-col cols="4">
-                    <v-text-field label="phone" v-model="customer.phone" dense></v-text-field>
+                    <v-text-field label="Customer Number" v-model="customer.customerNumber" dense></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="addressLine1" v-model="customer.addressLine1" dense></v-text-field>
+                    <v-text-field label="Contact Last Name" v-model="customer.contactLastName" dense class="font-weight-bold"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="addressLine2" v-model="customer.addressLine2" dense></v-text-field>
+                    <v-text-field label="Contact First Name" v-model="customer.contactFirstName" dense class="font-weight-bold"></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                    <v-text-field label="Phone" v-model="customer.phone" dense></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="city" v-model="customer.city" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="AddressLine 1" v-model="customer.addressLine1" dense></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="country" v-model="customer.country" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="AddressLine 2" v-model="customer.addressLine2" dense></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row >
+                <v-col cols="4">
+                    <v-text-field label="City" v-model="customer.city" dense class="font-weight-bold"></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                    <v-text-field label="Country" v-model="customer.country" dense class="font-weight-bold"></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="state" v-model="customer.state" dense></v-text-field>
+                    <v-text-field label="State" v-model="customer.state" dense></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="postalCode" v-model="customer.postalCode" dense></v-text-field>
+                    <v-text-field label="Postal Code" v-model="customer.postalCode" dense></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                <v-text-field label="salesRep" v-if="this.customer.salesRepEmployeeName === null" v-model="getSalesRep" dense></v-text-field>
-                <v-text-field label="salesRep" v-else v-model="getSalesRep" dense
+                <v-text-field label="SalesRep" v-if="this.customer.salesRepEmployeeName === null" v-model="getSalesRep" dense></v-text-field>
+                <v-text-field label="SalesRep" v-else v-model="getSalesRep" dense
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickSalesRep"></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="creditLimit" v-model="customer.creditLimit" dense></v-text-field>
+                    <v-text-field label="Credit Limit" v-model="customer.creditLimit" dense></v-text-field>
                 </v-col>
             </v-row>
         </v-card-text>
@@ -147,20 +147,20 @@ export default {
         payments: [],
 
         orderHeaders: [
-            {text: "orderNumber", value: "orderNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "orderDate", value: "orderDate", width: '5px', align: 'right',  class:"blue lighten-5"},
-            {text: "requiredDate", value: "requiredDate", width: '5px', align: 'right',  class:"blue lighten-5"},
-            {text: "shippedDate", value: "shippedDate", width: '5px', align: 'right',  class:"blue lighten-5"},
-            {text: "status", value: "status", width: '5px',  class:"blue lighten-5"},
-            {text: "comments", value: "comments", width: '500px',  class:"blue lighten-5"},
-            {text: "customerNumber", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Order Number", value: "orderNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Order Date", value: "orderDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Required Date", value: "requiredDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Shipped Date", value: "shippedDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Status", value: "status", width: '5px',  class:"blue lighten-5"},
+            {text: "Comments", value: "comments", width: '500px',  class:"blue lighten-5"},
+            //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
           ],
 
           paymentHeaders: [
-            {text: "customerNumber", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "checkNumber", value: "checkNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "paymentDate", value: "paymentDate", width: '5px', align: 'right',  class:"blue lighten-5"},
-            {text: "amount", value: "amount", width: '5px', align: 'right',  class:"blue lighten-5"},
+            //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Check Number", value: "checkNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Payment Date", value: "paymentDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Amount", value: "amount", width: '5px', align: 'right',  class:"blue lighten-5"},
         ],
 
       }

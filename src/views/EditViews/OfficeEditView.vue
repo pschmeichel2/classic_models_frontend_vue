@@ -19,45 +19,45 @@
         <v-card-text>
             <v-row >                
                 <v-col cols="4">
-                    <v-text-field label="city" v-model="city" dense class="font-weight-bold"  @keyup.enter="handleClickSave" 
+                    <v-text-field label="City" v-model="city" dense class="font-weight-bold"  @keyup.enter="handleClickSave" 
                     maxlength="50" :rules="[rules.required, rules.cityCounter]" counter ref="cityRef" ></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="phone" v-model="phone" dense  @keyup.enter="handleClickSave" 
+                    <v-text-field label="Phone" v-model="phone" dense  @keyup.enter="handleClickSave" 
                     required maxlength="50"  :rules="[rules.required, rules.phoneCounter]" counter></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="officeCode" v-model="officeCodeLocal" dense disabled
+                    <v-text-field label="Office Code" v-model="officeCodeLocal" dense disabled
                     hint="system-generated" persistent-hint></v-text-field>
                 </v-col>
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="country" v-model="country" dense class="font-weight-bold"  @keyup.enter="handleClickSave" 
+                    <v-text-field label="Country" v-model="country" dense class="font-weight-bold"  @keyup.enter="handleClickSave" 
                     required maxlength="50"  :rules="[rules.required, rules.countryCounter]" counter></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="state" v-model="state" dense  
+                    <v-text-field label="State" v-model="state" dense  
                     maxlength="50"  :rules="[rules.stateCounter]" counter></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="postalCode" v-model="postalCode" dense  @keyup.enter="handleClickSave" 
+                    <v-text-field label="Postal Code" v-model="postalCode" dense  @keyup.enter="handleClickSave" 
                     required maxlength="15"  :rules="[rules.required, rules.postalCodeCounter]" counter></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="territory" v-model="territory" dense  @keyup.enter="handleClickSave" 
+                    <v-text-field label="Territory" v-model="territory" dense  @keyup.enter="handleClickSave" 
                     required maxlength="10"  :rules="[rules.required, rules.territoryCounter]" counter></v-text-field>
                 </v-col>
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="addressLine1" v-model="addressLine1" dense  @keyup.enter="handleClickSave" 
+                    <v-text-field label="Address Line1" v-model="addressLine1" dense  @keyup.enter="handleClickSave" 
                     required maxlength="50"  :rules="[rules.required, rules.addressLine1Counter]" counter></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="addressLine2" v-model="addressLine2" dense @keyup.enter="handleClickSave" 
+                    <v-text-field label="Address Line2" v-model="addressLine2" dense @keyup.enter="handleClickSave" 
                     maxlength="50"  :rules="[rules.addressLine2Counter]" counter></v-text-field>
                 </v-col>
             </v-row>

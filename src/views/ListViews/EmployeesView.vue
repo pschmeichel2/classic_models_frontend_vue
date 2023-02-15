@@ -48,14 +48,14 @@ export default {
         employees: [],
         endpoint: 'http://localhost:8080/api/employees',        
         headers: [
-                {text: "employeeNumber", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
-                {text: "lastName", value: "lastName", width: '50px',  class:"blue lighten-5"},
-                {text: "firstName", value: "firstName", width: '50px',  class:"blue lighten-5"},
-                {text: "jobTitle", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
-                {text: "officeCode", value: "city", width: '50px',  class:"blue lighten-5"},
-                {text: "extension", value: "extension", width: '50px',  class:"blue lighten-5"},
-                {text: "email", value: "email", width: '50px',  class:"blue lighten-5"},                
-                {text: "reportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
+                {text: "EmployeeNumber", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
+                {text: "LastName", value: "lastName", width: '50px',  class:"blue lighten-5"},
+                {text: "FirstName", value: "firstName", width: '50px',  class:"blue lighten-5"},
+                {text: "JobTitle", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
+                {text: "OfficeCode", value: "city", width: '50px',  class:"blue lighten-5"},
+                {text: "Extension", value: "extension", width: '50px',  class:"blue lighten-5"},
+                {text: "Email", value: "email", width: '50px',  class:"blue lighten-5"},                
+                {text: "ReportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
                 
           ],
 

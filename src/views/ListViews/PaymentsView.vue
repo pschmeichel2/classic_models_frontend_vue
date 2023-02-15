@@ -46,10 +46,10 @@ export default {
         payments: [],
         endpoint: 'http://localhost:8080/api/payments',        
         headers: [
-            {text: "customerNumber", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "checkNumber", value: "checkNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "paymentDate", value: "paymentDate", width: '5px', align: 'right',  class:"blue lighten-5"},
-            {text: "amount", value: "amount", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Check Number", value: "checkNumber", width: '5px',  class:"blue lighten-5"},
+            {text: "Payment Date", value: "paymentDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Amount", value: "amount", width: '5px', align: 'right',  class:"blue lighten-5"},
         ],
       }
     },

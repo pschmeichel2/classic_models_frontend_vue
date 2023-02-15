@@ -5,7 +5,11 @@
 
       <v-sheet color="grey lighten-4" class="pa-4">
         <v-avatar class="mb-4" color="grey darken-1" size="64">
-          <v-icon dark>mdi-account-circle</v-icon>
+          <v-img                  
+              alt="Avatar"
+              :src="require('@/assets/Leslie_Thomson.jpg')"
+                ></v-img>
+          <!--<v-icon dark>mdi-account-circle</v-icon>-->
         </v-avatar>
         <div>Leslie Thompson</div>
       </v-sheet>
@@ -69,9 +73,9 @@ nav {
         ['/employees', 'Employees', 'mdi-account-tie'],    
         ['/customers', 'Customers', 'mdi-account'],
         ['/orders', 'Orders', 'mdi-cart-outline'],                               
-        ['/orderDetails', 'OrderDetails', 'mdi-send'],                        
+        ['/orderDetails', 'Order Details', 'mdi-send'],                        
         ['/payments', 'Payments', 'mdi-credit-card-multiple-outline'],                
-        ['/productLines', 'ProductLines', 'mdi-multicast'],        
+        ['/productLines', 'Product Lines', 'mdi-multicast'],        
         ['/products', 'Products', 'mdi-taxi'],        
         
       ],

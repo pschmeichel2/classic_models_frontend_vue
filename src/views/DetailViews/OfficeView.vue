@@ -18,37 +18,37 @@
         <v-card-text>
             <v-row >                
                 <v-col cols="4">
-                    <v-text-field label="city" v-model="office.city" dense class="font-weight-bold" readonly></v-text-field>
+                    <v-text-field label="City" v-model="office.city" dense class="font-weight-bold" readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="phone" v-model="office.phone" dense readonly></v-text-field>
+                    <v-text-field label="Phone" v-model="office.phone" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="officeCode" v-model="office.officeCode" dense readonly></v-text-field>
+                    <v-text-field label="Office Code" v-model="office.officeCode" dense readonly></v-text-field>
                 </v-col>
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="country" v-model="office.country" dense class="font-weight-bold" readonly></v-text-field>
+                    <v-text-field label="Country" v-model="office.country" dense class="font-weight-bold" readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="state" v-model="office.state" dense readonly></v-text-field>
+                    <v-text-field label="State" v-model="office.state" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="postalCode" v-model="office.postalCode" dense readonly></v-text-field>
+                    <v-text-field label="PostalCode" v-model="office.postalCode" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="territory" v-model="office.territory" dense readonly></v-text-field>
+                    <v-text-field label="Territory" v-model="office.territory" dense readonly></v-text-field>
                 </v-col>
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="addressLine1" v-model="office.addressLine1" dense readonly></v-text-field>
+                    <v-text-field label="AddressLine 1" v-model="office.addressLine1" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="addressLine2" v-model="office.addressLine2" dense readonly></v-text-field>
+                    <v-text-field label="AddressLine2" v-model="office.addressLine2" dense readonly></v-text-field>
                 </v-col>
             </v-row>
 
@@ -99,14 +99,14 @@ export default {
         endpoint: 'http://localhost:8080/api/offices/',      
         employees: [],
         employeeHeaders: [
-                {text: "employee Number", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
-                {text: "lastName", value: "lastName", width: '50px',  class:"blue lighten-5"},
-                {text: "firstName", value: "firstName", width: '50px',  class:"blue lighten-5"},
-                {text: "jobTitle", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
-                {text: "extension", value: "extension", width: '50px',  class:"blue lighten-5"},
-                {text: "email", value: "email", width: '50px',  class:"blue lighten-5"},                
-                {text: "reportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
-                {text: "city", value: "city", width: '50px',  class:"blue lighten-5"},
+                {text: "Employee Number", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
+                {text: "Last Name", value: "lastName", width: '50px',  class:"blue lighten-5"},
+                {text: "First Name", value: "firstName", width: '50px',  class:"blue lighten-5"},
+                {text: "Job Title", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
+                {text: "Extension", value: "extension", width: '50px',  class:"blue lighten-5"},
+                {text: "Email", value: "email", width: '50px',  class:"blue lighten-5"},                
+                {text: "Reports To", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
+                //{text: "City", value: "city", width: '50px',  class:"blue lighten-5"},
                 
           ],
 

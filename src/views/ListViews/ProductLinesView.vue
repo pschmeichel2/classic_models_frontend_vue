@@ -41,10 +41,10 @@ export default {
         productLines: [],
         endpoint: 'http://localhost:8080/api/productLines',        
         headers: [
-            {text: "productLine", value: "productLine", width: '5px',  class:"blue lighten-5"},
-            {text: "textDescription", value: "textDescription", width: '500px',  class:"blue lighten-5"},
-            {text: "htmlDescription", value: "htmlDescription", width: '5px',  class:"blue lighten-5"},
-            {text: "image", value: "image", width: '5px',  class:"blue lighten-5"},
+            {text: "Product Line", value: "productLine", width: '5px',  class:"blue lighten-5"},
+            {text: "Text Description", value: "textDescription", width: '500px',  class:"blue lighten-5"},
+            {text: "HTML Description", value: "htmlDescription", width: '5px',  class:"blue lighten-5"},
+            {text: "Image", value: "image", width: '5px',  class:"blue lighten-5"},
         ],
       }
     },
