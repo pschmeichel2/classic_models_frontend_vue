@@ -43,14 +43,14 @@ export default {
         offices: [],
         endpoint: 'http://localhost:8080/api/offices',        
         headers: [
-                {text: "OfficeCode", value: "officeCode", width: '5px',  class:"blue lighten-5"},
+                {text: "Office Code", value: "officeCode", width: '5px',  class:"blue lighten-5"},
                 {text: "City", value: "city", width: '5px',  class:"blue lighten-5"},
                 {text: "Phone", value: "phone", width: '150px',  class:"blue lighten-5"},
-                {text: "AddressLine1", value: "addressLine1", width: '150px',  class:"blue lighten-5"},
-                {text: "AddressLine2", value: "addressLine2", width: '100px',  class:"blue lighten-5"},
+                {text: "Address Line1", value: "addressLine1", width: '150px',  class:"blue lighten-5"},
+                {text: "Address Line2", value: "addressLine2", width: '100px',  class:"blue lighten-5"},
                 {text: "State", value: "state", width: '5px',  class:"blue lighten-5"},
                 {text: "Country", value: "country", width: '5px',  class:"blue lighten-5"},
-                {text: "PostalCode", value: "postalCode", width: '5px',  class:"blue lighten-5"},
+                {text: "Postal Code", value: "postalCode", width: '5px',  class:"blue lighten-5"},
                 {text: "Territory", value: "territory", width: '5px',  class:"blue lighten-5"},
           ],
       }

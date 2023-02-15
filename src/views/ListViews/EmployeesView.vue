@@ -48,14 +48,14 @@ export default {
         employees: [],
         endpoint: 'http://localhost:8080/api/employees',        
         headers: [
-                {text: "EmployeeNumber", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
-                {text: "LastName", value: "lastName", width: '50px',  class:"blue lighten-5"},
-                {text: "FirstName", value: "firstName", width: '50px',  class:"blue lighten-5"},
-                {text: "JobTitle", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
-                {text: "OfficeCode", value: "city", width: '50px',  class:"blue lighten-5"},
+                {text: "Employee Number", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
+                {text: "Last Name", value: "lastName", width: '50px',  class:"blue lighten-5"},
+                {text: "First Name", value: "firstName", width: '50px',  class:"blue lighten-5"},
+                {text: "Job Title", value: "jobTitle", width: '150px',  class:"blue lighten-5"},
+                {text: "Office", value: "city", width: '50px',  class:"blue lighten-5"},
                 {text: "Extension", value: "extension", width: '50px',  class:"blue lighten-5"},
                 {text: "Email", value: "email", width: '50px',  class:"blue lighten-5"},                
-                {text: "ReportsTo", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
+                {text: "Reports To", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
                 
           ],
 
