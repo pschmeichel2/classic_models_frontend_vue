@@ -4,7 +4,7 @@
       <v-card max-width="1200px"  >
         <v-card-title class="blue darken-2 ">
         <v-row class="ma-1">
-            <span class="text-h5 white--text" >OrderDetails</span>    
+            <span class="text-h5 white--text" >Order Details</span>    
             <v-text-field v-model="search" label="Search" class="white--text ml-5" dense hide-details="auto"></v-text-field>
             <v-spacer></v-spacer>
             <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>        
@@ -43,7 +43,7 @@ export default {
         orderDetails: [],
         endpoint: 'http://localhost:8080/api/orderDetails',        
         headers: [
-            {text: "OrderNumber", value: "orderNumber", width: '50px',  class:"blue lighten-5"},
+            {text: "Order Number", value: "orderNumber", width: '50px',  class:"blue lighten-5"},
             {text: "OrderLine Number", value: "orderLineNumber", width: '50px',  class:"blue lighten-5"},
             {text: "Customer Name", value: "customerName", width: '250px',  class:"blue lighten-5"},
             {text: "Product Code", value: "productCode", width: '60px',  class:"blue lighten-5"},

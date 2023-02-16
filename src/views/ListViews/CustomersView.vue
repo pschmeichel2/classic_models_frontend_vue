@@ -64,7 +64,7 @@ export default {
                 {text: "State", value: "state", width: '5px',  class:"blue lighten-5"},
                 {text: "Postal Code", value: "postalCode", width: '5px',  class:"blue lighten-5"},
                 {text: "Country", value: "country", width: '5px',  class:"blue lighten-5"},
-                {text: "SalesRep", value: "salesRepEmployeeName", width: '5px',  class:"blue lighten-5"},
+                {text: "Sales Rep", value: "salesRepEmployeeName", width: '5px',  class:"blue lighten-5"},
                 {text: "Credit Limit", value: "creditLimit", width: '5px', align: 'right',  class:"blue lighten-5"},
           ],
       }

@@ -5,7 +5,7 @@
 
         <v-card-title class="blue darken-2 ">
         <v-row class="ma-1">
-            <span class="text-h5 white--text" >ProductLines</span>    
+            <span class="text-h5 white--text" >Product Lines</span>    
             <v-text-field v-model="search" label="Search" class="white--text ml-5" dense hide-details="auto"></v-text-field>
             <v-spacer></v-spacer>
             <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>        
