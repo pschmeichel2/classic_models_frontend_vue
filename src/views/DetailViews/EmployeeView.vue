@@ -30,13 +30,13 @@
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="Office Code" v-model="getOffice" dense
+                    <v-text-field label="Office" v-model="getOffice" dense
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOffice"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Reports To" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense>
+                    <v-text-field label="Manager" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense>
                     </v-text-field>
-                    <v-text-field label="Reports To" v-else v-model="getReportsTo" dense
+                    <v-text-field label="Manager" v-else v-model="getReportsTo" dense
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickReportsTo"></v-text-field>
                 </v-col>
                 <v-col cols="4">

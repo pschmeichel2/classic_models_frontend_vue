@@ -22,12 +22,12 @@
                     prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOrder"></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="orderLineNumber" v-model="orderDetail.orderLineNumber" dense></v-text-field>
+                  <v-text-field label="Order Line Number" v-model="orderDetail.orderLineNumber" dense></v-text-field>
               </v-col>
           </v-row>
           <v-row >
               <v-col cols="4">
-                  <v-text-field label="ProductCode" v-model="orderDetail.productCode" dense class="font-weight-bold" 
+                  <v-text-field label="Product Code" v-model="orderDetail.productCode" dense class="font-weight-bold" 
                   prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct"></v-text-field>
               </v-col>
               <v-col cols="6">

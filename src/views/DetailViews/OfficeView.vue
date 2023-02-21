@@ -36,7 +36,7 @@
                     <v-text-field label="State" v-model="office.state" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="PostalCode" v-model="office.postalCode" dense readonly></v-text-field>
+                    <v-text-field label="Postal Code" v-model="office.postalCode" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="2">
                     <v-text-field label="Territory" v-model="office.territory" dense readonly></v-text-field>
