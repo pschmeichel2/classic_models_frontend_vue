@@ -22,12 +22,12 @@
           </v-row>
           <v-row >
               <v-col cols="12">
-                  <v-textarea rows="1" auto-grow label="TextDescription" v-model="productLineData.textDescription" dense></v-textarea>
+                  <v-textarea rows="1" auto-grow label="Text Description" v-model="productLineData.textDescription" dense></v-textarea>
               </v-col>
           </v-row>
           <v-row>
               <v-col cols="4">
-                  <v-text-field label="HTMLDescription" v-model="productLineData.htmlDescription" dense></v-text-field>
+                  <v-text-field label="HTML Description" v-model="productLineData.htmlDescription" dense></v-text-field>
               </v-col>
               <v-col cols="4">
                   <v-text-field label="Image" v-model="productLineData.image" dense></v-text-field>
