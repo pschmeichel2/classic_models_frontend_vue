@@ -21,6 +21,12 @@
           <template v-slot:item.productLine="{ item }">
             <span class="font-weight-bold">{{ item.productLine }}</span>
           </template>
+          <template v-slot:item.buyPrice="{ item }">
+              <span >{{ getBuyPrice(item.buyPrice) }}</span>
+          </template>
+          <template v-slot:item.msrp="{ item }">
+              <span >{{ getMSRP(item.msrp) }}</span>
+          </template>
 
           <template v-slot:footer.prepend>
             <v-btn plain @click="handleClickRefresh">Refresh</v-btn>             
@@ -51,7 +57,7 @@ export default {
             {text: "Product Scale", value: "productScale", width: '5px',  class:"blue lighten-5"},
             {text: "Product Vendor", value: "productVendor", width: '50px',  class:"blue lighten-5"},
             {text: "Product Description", value: "productDescription", width: '500px',  class:"blue lighten-5"},
-            {text: "Quantity in Stock", value: "quantityInStock", width: '5px',  class:"blue lighten-5"},
+            {text: "Quantity in Stock", value: "quantityInStock", width: '5px', align: 'right',  class:"blue lighten-5"},
             {text: "Buy Price", value: "buyPrice", width: '5px', align: 'right', class:"blue lighten-5"},
             {text: "MSRP", value: "msrp", width: '5px', align: 'right',  class:"blue lighten-5"},
           ],
@@ -92,6 +98,16 @@ export default {
     handleClickAdd() {
       console.log('handleClickAdd')
     },
+
+    getBuyPrice(num) {
+        return (Math.round(num * 100) / 100).toFixed(2);
+    },
+
+
+    getMSRP(num) {
+        return (Math.round(num * 100) / 100).toFixed(2);
+    },
+
 
   },
 }

@@ -40,7 +40,7 @@
                   <v-text-field label="Quantity Ordered" v-model="orderDetail.quantityOrdered" dense class="font-weight-bold"></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="Price Each" v-model="orderDetail.priceEach" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Price Each" v-model="getPriceEach" dense class="font-weight-bold"></v-text-field>
               </v-col>
             </v-row>
         </v-card-text>
@@ -74,6 +74,17 @@ export default {
     this.getOrderDetail(this.orderNumber, this.productCode);
   },
 
+  computed: {
+    getPriceEach() {
+          if( this.orderDetail === null ) {
+              return '';
+          }          
+          return this.getAmount(this.orderDetail.priceEach);
+
+      },
+
+  },
+
   methods: {    
     getOrderDetail(orderNumber, productCode) {
         axios(this.endpoint + orderNumber + '/'+productCode)
@@ -104,6 +115,10 @@ export default {
       handleClickDelete() {
         console.log('handleClickDelete');
       },
+
+      getAmount(num) {
+            return (Math.round(num * 100) / 100).toFixed(2);
+        },
 
     },
 

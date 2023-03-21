@@ -20,6 +20,9 @@
           <template v-slot:item.productName="{ item }">
             <span class="font-weight-bold">{{ item.productName }}</span>
           </template>
+          <template v-slot:item.priceEach="{ item }">
+                    <span >{{ getPriceEach(item.priceEach) }}</span>
+          </template>
 
           <template v-slot:footer.prepend>
             <v-btn plain @click="handleClickRefresh">Refresh</v-btn>             
@@ -49,7 +52,7 @@ export default {
             {text: "Customer Name", value: "customerName", width: '250px',  class:"blue lighten-5"},
             {text: "Product Code", value: "productCode", width: '60px',  class:"blue lighten-5"},
             {text: "Product Name", value: "productName", width: '300px',  class:"blue lighten-5"},
-            {text: "Quantity Ordered", value: "quantityOrdered", width: '50px',  class:"blue lighten-5"},
+            {text: "Quantity Ordered", value: "quantityOrdered", width: '50px', align: 'right', class:"blue lighten-5"},
             {text: "Price Each", value: "priceEach", width: '50px', align: 'right',  class:"blue lighten-5"},
             
         ],
@@ -89,6 +92,10 @@ export default {
 
     handleClickAdd() {
       console.log('handleClickAdd')
+    },
+
+    getPriceEach(num) {
+            return (Math.round(num * 100) / 100).toFixed(2);
     },
 
   },

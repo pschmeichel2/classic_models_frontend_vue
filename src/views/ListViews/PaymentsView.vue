@@ -23,6 +23,9 @@
         <template v-slot:item.paymentDate="{ item }">
             <span>{{ formatDate(item.paymentDate) }}</span>
         </template>
+        <template v-slot:item.amount="{ item }">
+            <span >{{ getAmount(item.amount) }}</span>
+        </template>
 
         <template v-slot:footer.prepend>
             <v-btn plain @click="handleClickRefresh">Refresh</v-btn>             
@@ -90,6 +93,10 @@ export default {
     handleClickAdd() {
       console.log('handleClickAdd')
     },
+
+    getAmount(num) {
+            return (Math.round(num * 100) / 100).toFixed(2);
+        },
 
     formatDate(date) {
       var d = new Date(date),

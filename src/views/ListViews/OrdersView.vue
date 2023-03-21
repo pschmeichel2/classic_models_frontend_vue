@@ -57,7 +57,7 @@ export default {
             {text: "Status", value: "status", width: '20px',  class:"blue lighten-5"},
             {text: "Comments", value: "comments", width: '400px',  class:"blue lighten-5"},            
             {text: "Customer Name", value: "customerName", width: '200px',  class:"blue lighten-5"},
-            {text: "CustomerNumber", value: "customerNumber", width: '20px',  class:"blue lighten-5"},
+            //{text: "CustomerNumber", value: "customerNumber", width: '20px',  class:"blue lighten-5"},
           ],
       }
     },

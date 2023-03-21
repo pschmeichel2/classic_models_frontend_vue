@@ -29,7 +29,7 @@
                     <v-text-field label="Payment Date" v-model="getPaymentDate" dense readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Amount" v-model="payment.amount" dense readonly></v-text-field>
+                    <v-text-field label="Amount" v-model="getAmount" dense readonly></v-text-field>
                 </v-col>
             </v-row>
         </v-card-text>
@@ -70,6 +70,14 @@ export default {
           return this.formatDate(this.payment.paymentDate);
       },
 
+      getAmount() {
+          if( this.payment === null ) {
+              return '';
+          }          
+          return this.getFormattedAmount(this.payment.amount);
+
+      },
+
   },
 
   methods: {    
@@ -88,7 +96,7 @@ export default {
             router.push({path: `/customers/${this.payment.customerNumber}`});
         },
 
-        handleClickAdd() {
+      handleClickAdd() {
         console.log('handleClickAdd');
       },
 
@@ -98,6 +106,10 @@ export default {
 
       handleClickDelete() {
         console.log('handleClickDelete');
+      },
+
+      getFormattedAmount(num) {
+        return (Math.round(num * 100) / 100).toFixed(2);
       },
 
       formatDate(date) {
