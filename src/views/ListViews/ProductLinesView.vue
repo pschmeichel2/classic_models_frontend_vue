@@ -35,6 +35,7 @@ import router from '@/router';
 
 export default {
     name: 'ProductLinesView',
+    title: 'Classic Models - Product Lines',
     data() {
       return {        
         search: '',
@@ -80,6 +81,9 @@ export default {
       this.getProductLines();
     },
 
+    handleClickAdd() {
+      console.log('handleClickAdd')
+    },
 
   },
 }

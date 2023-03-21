@@ -37,6 +37,7 @@ import router from '@/router';
 
 export default {
     name: 'OrderDetailsView',
+    title: 'Classic Models - Order Details',
     data() {
       return {        
         search: '',
@@ -84,6 +85,10 @@ export default {
 
     handleClickRefresh() {
       this.getOffices();
+    },
+
+    handleClickAdd() {
+      console.log('handleClickAdd')
     },
 
   },

@@ -43,6 +43,7 @@ import router from '@/router';
 
 export default {
     name: 'OrdersView',
+    title: 'Classic Models - Orders',
     data() {
       return {        
         search: '',
@@ -74,24 +75,27 @@ export default {
   methods: {    
 
     getOrders() {
-        axios(this.endpoint)
-        .then(response => {
-            this.orders = response.data
-        })
-        .catch( error => {
-            console.log(error)
-        })
-      },
+      axios(this.endpoint)
+      .then(response => {
+          this.orders = response.data
+      })
+      .catch( error => {
+          console.log(error)
+      })
+    },
 
     handleClick(row) {
       console.log(row)
       router.push({path: `/orders/${row.orderNumber}`})
     },
 
+    handleClickAdd() {
+        router.push({path: `/orders/new`});
+    },
+
     handleClickRefresh() {
       this.getOrders();
     },
-
 
     formatDate(date) {
       var d = new Date(date),

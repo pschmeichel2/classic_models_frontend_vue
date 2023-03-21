@@ -124,7 +124,7 @@ export default {
         }
     },
 
-  created() {        
+    created() {        
         this.getOffice(this.officeCode);    
         this.$refs.cityRef.focus();
     },

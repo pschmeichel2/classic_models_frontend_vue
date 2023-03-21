@@ -46,7 +46,8 @@ import axios from 'axios';
 import router from '@/router';
 
 export default {
-    name: 'CustomersView',    
+    name: 'CustomersView', 
+    title: 'Classic Models - Customers',
     data() {
       return {        
         search: '',
@@ -99,6 +100,10 @@ export default {
 
     handleClickRefresh() {
       this.getCustomers();
+    },
+
+    handleClickAdd() {
+      console.log('handleClickAdd')
     },
 
   },

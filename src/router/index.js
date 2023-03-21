@@ -23,6 +23,7 @@ import ProductView from '../views/DetailViews/ProductView.vue';
 import ProductLineView from '../views/DetailViews/ProductLineView.vue';
 
 import OfficeEditView from '../views/EditViews/OfficeEditView.vue';
+import OrderEditView from '../views/EditViews/OrderEditView.vue';
 
 Vue.use(VueRouter)
 
@@ -31,21 +32,22 @@ const routes = [
   
   { path: '/customers', name: 'customers', component: CustomersView },
   { path: '/employees', name: 'employees', component: EmployeesView },  
-  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },
-  { path: '/orders', name: 'orders', component: OrdersView },
+  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },  
   { path: '/payments', name: 'payments', component: PaymentsView },
   { path: '/products', name: 'products', component: ProductsView },
   { path: '/productLines', name: 'productLines', component: ProductLinesView },
 
   { path: '/customers/:customerNumber', name: 'customerView', component: CustomerView, props: true },
   { path: '/employees/:employeeNumber', name: 'employeeView', component: EmployeeView, props: true },  
-  { path: '/orderDetails/:orderNumber/:productCode', name: 'orderDetailView', component: OrderDetailView, props: true },
-  { path: '/orders/:orderNumber', name: 'orderView', component: OrderView, props: true },
+  { path: '/orderDetails/:orderNumber/:productCode', name: 'orderDetailView', component: OrderDetailView, props: true },  
   { path: '/payments/:customerNumber/:checkNumber', name: 'paymentView', component: PaymentView, props: true },
   { path: '/products/:productCode', name: 'productView', component: ProductView, props: true },
   { path: '/productLines/:productLine', name: 'productLineView', component: ProductLineView, props: true },
 
-  
+  { path: '/orders', name: 'orders', component: OrdersView },
+  { path: '/orders/new', name: 'ordersNewView', component: OrderEditView, props: true  },
+  { path: '/orders/:orderNumber', name: 'orderView', component: OrderView, props: true },
+
   { path: '/offices', name: 'offices', component: OfficesView },
   { path: '/offices/new', name: 'officeNewView', component: OfficeEditView, props: true },
   { path: '/offices/:officeCode(\\d+)/edit', name: 'officeEditView', component: OfficeEditView, props: true },

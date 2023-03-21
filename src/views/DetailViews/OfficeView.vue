@@ -86,6 +86,7 @@
 import axios from 'axios';
 import router from '@/router';
 import OfficeDeleteDialog from '../EditViews/OfficeDeleteDialog.vue';
+import Office from '@/models/Office';
 
 export default {
     name: 'OfficeView',
@@ -95,7 +96,7 @@ export default {
     },
     data() {
       return {
-        office: null,
+        office: new Office(),
         endpoint: 'http://localhost:8080/api/offices/',      
         employees: [],
         employeeHeaders: [
@@ -120,10 +121,10 @@ export default {
         }
     },
 
-  created() {
-    this.getOffice(this.officeCode);
-    this.getEmployees(this.officeCode);
-  },
+    created() {
+        this.getOffice(this.officeCode);
+        this.getEmployees(this.officeCode);
+    },
 
   methods: {    
 
@@ -154,8 +155,7 @@ export default {
 
       handleClickAdd() {
         console.log({path: '/offices/new'});
-        router.push({path: '/offices/new'});
-        
+        router.push({path: '/offices/new'});        
       },
 
       handleClickEdit() {

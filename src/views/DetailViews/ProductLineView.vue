@@ -8,7 +8,7 @@
               <v-spacer></v-spacer>
               <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
               <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
-              <v-btn dark icon><v-icon >mdi-delete</v-icon></v-btn>                
+              <v-btn dark icon  @click="handleClickDelete"><v-icon >mdi-delete</v-icon></v-btn>                
           </v-row>
         </v-card-title>
 
@@ -70,13 +70,14 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import ProductLine from '@/models/ProductLine';
 
 export default {
     name: 'ProductLineView',
     props: ['productLine'],
     data() {
       return {
-        productLineData: null,
+        productLineData: new ProductLine(),
         endpoint: 'http://localhost:8080/api/productLines/',      
         products: [],
         productHeaders: [
@@ -125,13 +126,25 @@ export default {
             })
             .catch( error => {
                 console.log(error)
-            })
+            });
         },
 
         handleClickProduct(row) {
             console.log(row)
             router.push({path: `/products/${row.productCode}`})
         },
+
+        handleClickAdd() {
+        console.log('handleClickAdd');
+      },
+
+      handleClickEdit() {
+        console.log('handleClickEdit');
+      },
+
+      handleClickDelete() {
+        console.log('handleClickDelete');
+      },
 
     },
 

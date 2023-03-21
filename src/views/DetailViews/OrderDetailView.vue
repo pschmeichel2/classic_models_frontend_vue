@@ -9,7 +9,7 @@
                     <v-spacer></v-spacer>
                     <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
-                    <v-btn dark icon><v-icon >mdi-delete</v-icon></v-btn>                
+                    <v-btn dark icon  @click="handleClickDelete"><v-icon >mdi-delete</v-icon></v-btn>                
                 </v-row>
         </v-card-title>
 
@@ -52,14 +52,14 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
-
+import OrderDetail from '@/models/OrderDetail';
 
 export default {
     name: 'OrderDetailView',
     props: ['orderNumber','productCode'],
     data() {
       return {
-        orderDetail: null,
+        orderDetail: new OrderDetail(),
         endpoint: 'http://localhost:8080/api/orderDetails/',      
       }
     },
@@ -91,6 +91,18 @@ export default {
 
       handleClickProduct() {        
         router.push({path: `/products/${this.productCode}`});
+      },
+
+      handleClickAdd() {
+        console.log('handleClickAdd');
+      },
+
+      handleClickEdit() {
+        console.log('handleClickEdit');
+      },
+
+      handleClickDelete() {
+        console.log('handleClickDelete');
       },
 
     },

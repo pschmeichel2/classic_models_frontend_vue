@@ -27,10 +27,11 @@ import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
   name: 'HomeView',
+  title: 'Classic Models - Home',
 
   created () {
-      document.title = 'Classic Models';
-    }
+    document.title = 'Classic Models';
+  },
   
 }
 </script>

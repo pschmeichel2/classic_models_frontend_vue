@@ -37,9 +37,11 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import Payment from '@/models/Payment';
 
 export default {
     name: 'PaymentsView',
+    title: 'Classic Models - Payments',
     data() {
       return {        
         search: '',
@@ -55,9 +57,9 @@ export default {
     },
 
     watch: {
-        '$route'() {
-            this.getPayments();
-        }
+      '$route'() {
+        this.getPayments();
+      }
     },
 
   created() {
@@ -67,14 +69,14 @@ export default {
   methods: {    
 
     getPayments() {
-        axios(this.endpoint)
-        .then(response => {
-            this.payments = response.data
-        })
-        .catch( error => {
-            console.log(error)
-        })
-      },
+      axios(this.endpoint)
+      .then(response => {
+          this.payments = response.data
+      })
+      .catch( error => {
+          console.log(error)
+      })
+    },
 
     handleClick(row) {
       console.log(row)
@@ -83,6 +85,10 @@ export default {
 
     handleClickRefresh() {
       this.getPayments();
+    },
+
+    handleClickAdd() {
+      console.log('handleClickAdd')
     },
 
     formatDate(date) {

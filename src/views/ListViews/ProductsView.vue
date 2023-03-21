@@ -38,6 +38,7 @@ import router from '@/router';
 
 export default {
     name: 'ProductsView',
+    title: 'Classic Models - Products',
     data() {
       return {    
         search: '',    
@@ -88,6 +89,9 @@ export default {
       this.getProducts();
     },
 
+    handleClickAdd() {
+      console.log('handleClickAdd')
+    },
 
   },
 }

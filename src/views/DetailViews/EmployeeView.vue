@@ -8,7 +8,7 @@
                     <v-spacer></v-spacer>
                     <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
-                    <v-btn dark icon><v-icon >mdi-delete</v-icon></v-btn>                
+                    <v-btn dark icon  @click="handleClickDelete"><v-icon >mdi-delete</v-icon></v-btn>                
                 </v-row>
             </v-card-title>
             <p></p>
@@ -115,13 +115,14 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import Employee from '@/models/Employee';
 
 export default {
     name: 'EmployeeView',
     props: ['employeeNumber'],
     data() {
       return {
-        employee: {firstName:'', lastName:''},        
+        employee: new Employee(),
         endpoint: 'http://localhost:8080/api/employees/',    
         selectedTab: null,  
         customers: [],
@@ -206,20 +207,22 @@ export default {
     getCustomers(employeeNumber) {
         axios(this.endpoint + employeeNumber + '/customers')
         .then(response => {
-            this.customers = response.data
+            this.customers = response.data;
         })
         .catch( error => {
-            console.log(error)
+            console.log(error);
+            this.customers = [];
         })
     },
 
     getEmployees(employeeNumber) {
         axios(this.endpoint + employeeNumber + '/employees')
         .then(response => {
-            this.employees = response.data
+            this.employees = response.data;
         })
         .catch( error => {
-            console.log(error)
+            console.log(error);
+            this.employees = [];
         })
       },
 
@@ -242,6 +245,17 @@ export default {
         router.push({path: `/customers/${row.customerNumber}`});
     },
 
+    handleClickAdd() {
+        console.log('handleClickAdd');
+      },
+
+      handleClickEdit() {
+        console.log('handleClickEdit');
+      },
+
+      handleClickDelete() {
+        console.log('handleClickDelete');
+      },
 
     },
 

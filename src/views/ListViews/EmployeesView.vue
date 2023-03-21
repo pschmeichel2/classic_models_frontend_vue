@@ -42,6 +42,7 @@ import router from '@/router';
 
 export default {
     name: 'EmployeesView',
+    title: 'Classic Models - Employees',
     data() {
       return {        
         search: '',
@@ -92,6 +93,11 @@ export default {
     handleClickRefresh() {
       this.getEmployees();
     },
+
+    handleClickAdd() {
+      console.log('handleClickAdd')
+    },
+
 
   },
 }

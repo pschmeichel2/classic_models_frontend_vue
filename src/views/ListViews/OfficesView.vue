@@ -37,6 +37,7 @@ import router from '@/router';
 
 export default {
     name: 'OfficesView',
+    title: 'Classic Models - Offices',
     data() {
       return {        
         search: '',

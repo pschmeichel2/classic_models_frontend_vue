@@ -8,9 +8,9 @@
                     <v-spacer></v-spacer>
                     <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
-                    <v-btn dark icon><v-icon >mdi-delete</v-icon></v-btn>                
+                    <v-btn dark icon  @click="handleClickDelete"><v-icon >mdi-delete</v-icon></v-btn>                
                 </v-row>
-        </v-card-title>
+            </v-card-title>
 
             <p></p>
             <v-card-text>
@@ -55,7 +55,7 @@
 
             <v-data-table :items="orderDetails" :headers="orderDetailHeaders" item-key="productCode" dense class="elevation-3"
                 :items-per-page="15" @click:row="handleClickOrderDetail" 
-                :sort-by.sync="sortBy" >
+                >
 
                 <template v-slot:item.productCode="{ item }">
                     <span class="font-weight-bold">{{ item.productCode }}</span>
@@ -76,13 +76,14 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import Order from '@/models/Order';
 
 export default {
     name: 'OrderView',
     props: ['orderNumber'],
     data() {
       return {
-        order: null,
+        order: new Order(),
         endpoint: 'http://localhost:8080/api/orders/',      
         orderDetails: [],
         //sortBy: 'orderLineNumber',
@@ -112,6 +113,9 @@ export default {
     computed: {
 
         getCustomerName() {
+            if( this.order === null ) {
+                return '';
+            }
             return `${this.order.customerName} (${this.order.customerNumber})`;
         },
 
@@ -171,6 +175,18 @@ export default {
 
         handleClickCustomer () {
             router.push({path: `/customers/${this.order.customerNumber}`});
+        },
+
+        handleClickAdd() {
+            router.push({path: '/orders/new'});        
+        },
+
+        handleClickEdit() {            
+            router.push({path: '/orders/new'});     
+        },
+
+        handleClickDelete() {
+            console.log('handleClickDelete');
         },
 
         formatDate(date) {
