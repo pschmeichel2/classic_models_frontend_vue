@@ -135,13 +135,14 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
+import Customer from '@/models/Customer';
 
 export default {
     name: 'CustomerView',
     props: ['customerNumber'],
     data() {
       return {
-        customer: null,
+        customer: new Customer(),
         endpoint: 'http://localhost:8080/api/customers/',      
         orders: [],
         payments: [],

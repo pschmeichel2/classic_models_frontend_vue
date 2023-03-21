@@ -205,9 +205,13 @@ export default {
       },
 
     getCustomers(employeeNumber) {
+        this.customers = [];
         axios(this.endpoint + employeeNumber + '/customers')
         .then(response => {
             this.customers = response.data;
+            if( this.customers === '') {
+                this.customers = [];
+            }
         })
         .catch( error => {
             console.log(error);
@@ -216,9 +220,13 @@ export default {
     },
 
     getEmployees(employeeNumber) {
+        this.employees = [];
         axios(this.endpoint + employeeNumber + '/employees')
         .then(response => {
             this.employees = response.data;
+            if( this.employees === '') {
+                this.employees = [];
+            }
         })
         .catch( error => {
             console.log(error);
