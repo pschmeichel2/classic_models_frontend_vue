@@ -15,8 +15,9 @@
             <v-card-text>
                 <v-row >
                     <v-col cols="2">
-                        <v-text-field label="Product Code" dense
-                        v-model="orderDetail.productCode" />
+                        <v-text-field label="Product Code" dense :readonly="true"
+                        v-model="orderDetail.productCode" ref="productCodeRef"
+                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"/>
                     </v-col>
                     <v-col cols="1">
                         <v-btn  color="primary" @click="handleClickFindProduct"><v-icon>mdi-car-search</v-icon>Find Product</v-btn>                                    
@@ -24,15 +25,17 @@
                 </v-row>
                 <v-row >
                     <v-col cols="6">
-                        <v-text-field label="Product Name" dense 
-                        v-model="orderDetail.productName"/>
+                        <v-text-field label="Product Name" dense :readonly="true"
+                        v-model="orderDetail.productName" class="font-weight-bold"
+                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"/>
                     </v-col>
                 </v-row>
                 <v-row >
                     <v-col cols="3">
                         <v-text-field label="Quantity ordered" dense  reverse
                         v-model="orderDetail.quantityOrdered"
-                        required maxlength="10"  :rules="[rules.isInteger]" />
+                        required maxlength="10"  :rules="[rules.isInteger]" 
+                        ref="quantityOrderedRef"/>
                     </v-col>
                     <v-col cols="3">
                         <v-text-field label="Price each" dense  reverse
@@ -88,25 +91,36 @@ export default {
         eventBus.$on("product-selected", (data) => {
             this.orderDetail.productCode = data.productCode;   
             this.orderDetail.productName = data.productName;  
+            setTimeout(() => {
+              this.$refs.quantityOrderedRef.$refs.input.select();
+            });
+
         });
     },
 
     methods: {
 
         open: function () {
+            console.log('open');
             this.show = true;
             this.orderDetail.productCode = '';   
             this.orderDetail.productName = '';  
             this.orderDetail.quantityOrdered = 1;   
             this.orderDetail.priceEach = 0.0;  
-            console.log('open');
+            setTimeout(() => {
+              this.$refs.quantityOrderedRef.$refs.input.select();
+            });
+
+
         },
 
         close: function () {            
             this.show = false;
         }, 
 
-        submit: function () {            
+        submit: function () { 
+            console.log('submit');
+            eventBus.$emit("orderDetail-created", this.orderDetail);                
             this.show = false;
         }, 
 

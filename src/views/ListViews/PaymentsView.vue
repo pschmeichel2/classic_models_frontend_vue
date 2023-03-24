@@ -53,7 +53,7 @@ export default {
         headers: [
             {text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
             {text: "Check Number", value: "checkNumber", width: '5px',  class:"blue lighten-5"},
-            {text: "Payment Date", value: "paymentDate", width: '5px', align: 'right',  class:"blue lighten-5"},
+            {text: "Payment Date", value: "paymentDate", width: '5px', class:"blue lighten-5"},
             {text: "Amount", value: "amount", width: '5px', align: 'right',  class:"blue lighten-5"},
         ],
       }
@@ -95,8 +95,8 @@ export default {
     },
 
     getAmount(num) {
-            return (Math.round(num * 100) / 100).toFixed(2);
-        },
+      return (Math.round(num * 100) / 100).toFixed(2);
+    },
 
     formatDate(date) {
       var d = new Date(date),

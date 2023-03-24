@@ -13,6 +13,13 @@ export default class OrderDetail {
         this.quantityOrdered = quantityOrdered;
         this.priceEach = priceEach;
     }
+
+    static from(oldOrderDetail) {
+        return new OrderDetail(oldOrderDetail.productCode,
+            oldOrderDetail.productName,
+            oldOrderDetail.quantityOrdered,
+            oldOrderDetail.priceEach);
+    }
 }
 
 

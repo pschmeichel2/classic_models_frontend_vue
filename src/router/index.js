@@ -25,6 +25,8 @@ import ProductLineView from '../views/DetailViews/ProductLineView.vue';
 import OfficeEditView from '../views/EditViews/OfficeEditView.vue';
 import OrderEditView from '../views/EditViews/OrderEditView.vue';
 
+import AlertBox from '../components/AlertBox.vue';
+
 Vue.use(VueRouter)
 
 const routes = [

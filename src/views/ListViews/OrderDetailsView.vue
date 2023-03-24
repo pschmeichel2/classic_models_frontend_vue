@@ -21,7 +21,7 @@
             <span class="font-weight-bold">{{ item.productName }}</span>
           </template>
           <template v-slot:item.priceEach="{ item }">
-                    <span >{{ getPriceEach(item.priceEach) }}</span>
+            <span >{{ getPriceEach(item.priceEach) }}</span>
           </template>
 
           <template v-slot:footer.prepend>
@@ -95,7 +95,7 @@ export default {
     },
 
     getPriceEach(num) {
-            return (Math.round(num * 100) / 100).toFixed(2);
+      return (Math.round(num * 100) / 100).toFixed(2);
     },
 
   },

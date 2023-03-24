@@ -60,6 +60,12 @@
           <template v-slot:item.productVendor="{ item }">
             <span class="font-weight-bold">{{ item.productVendor }}</span>
           </template>
+          <template v-slot:item.buyPrice="{ item }">
+            <span >{{ getAmount(item.buyPrice) }}</span>
+        </template>
+        <template v-slot:item.msrp="{ item }">
+            <span >{{ getAmount(item.msrp) }}</span>
+        </template>
 
         </v-data-table>
       </v-card>
@@ -87,7 +93,7 @@ export default {
             {text: "Product Scale", value: "productScale", width: '5px',  class:"blue lighten-5"},
             {text: "Product Vendor", value: "productVendor", width: '50px',  class:"blue lighten-5"},
             {text: "Product Description", value: "productDescription", width: '500px',  class:"blue lighten-5"},
-            {text: "Quantity in Stock", value: "quantityInStock", width: '5px',  class:"blue lighten-5"},
+            {text: "Quantity in Stock", value: "quantityInStock", width: '5px',  align: 'right', class:"blue lighten-5"},
             {text: "Buy Price", value: "buyPrice", width: '5px', align: 'right', class:"blue lighten-5"},
             {text: "MSRP", value: "msrp", width: '5px', align: 'right',  class:"blue lighten-5"},
           ],
@@ -110,43 +116,47 @@ export default {
   methods: {    
 
     getProductLine(productLine) {
-        axios(this.endpoint + productLine)
-        .then(response => {
-            this.productLineData = response.data
-        })
-        .catch( error => {
-            console.log(error)
-        })
-      },
-
-      getProducts(productLine) {
-            axios(this.endpoint + productLine + '/products')
-            .then(response => {
-                this.products = response.data
-            })
-            .catch( error => {
-                console.log(error)
-            });
-        },
-
-        handleClickProduct(row) {
-            console.log(row)
-            router.push({path: `/products/${row.productCode}`})
-        },
-
-        handleClickAdd() {
-        console.log('handleClickAdd');
-      },
-
-      handleClickEdit() {
-        console.log('handleClickEdit');
-      },
-
-      handleClickDelete() {
-        console.log('handleClickDelete');
-      },
-
+      axios(this.endpoint + productLine)
+      .then(response => {
+          this.productLineData = response.data
+      })
+      .catch( error => {
+          console.log(error)
+      })
     },
+
+    getProducts(productLine) {
+      axios(this.endpoint + productLine + '/products')
+      .then(response => {
+          this.products = response.data
+      })
+      .catch( error => {
+          console.log(error)
+      });
+    },
+
+    handleClickProduct(row) {
+      console.log(row)
+      router.push({path: `/products/${row.productCode}`})
+    },
+
+    handleClickAdd() {
+      console.log('handleClickAdd');
+    },
+
+    handleClickEdit() {
+      console.log('handleClickEdit');
+    },
+
+    handleClickDelete() {
+      console.log('handleClickDelete');
+    },
+
+    getAmount(num) {
+      return (Math.round(num * 100) / 100).toFixed(2);
+    },
+
+  },
 
 }
 </script>

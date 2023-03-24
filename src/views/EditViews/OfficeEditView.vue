@@ -43,7 +43,9 @@
                 </v-col>
                 <v-col cols="2">
                     <v-text-field label="Postal Code" v-model="postalCode" dense  @keyup.enter="handleClickSave" 
-                    required maxlength="15"  :rules="[rules.required, rules.postalCodeCounter]" counter></v-text-field>
+                        required maxlength="15"  :rules="[rules.required, rules.postalCodeCounter]" counter
+                        hint="https://en.wikipedia.org/wiki/List_of_postal_codes" >
+                    </v-text-field>
                 </v-col>
                 <v-col cols="2">
                     <v-text-field label="Territory" v-model="territory" dense  @keyup.enter="handleClickSave" 
@@ -74,6 +76,7 @@
 import axios from 'axios';
 import router from '@/router';
 import AlertBox from '@/components/AlertBox.vue';
+import Office from '@/models/Office';
 
 export default {
     name: 'OfficeEditView',
@@ -81,7 +84,7 @@ export default {
 
     data() {
       return {
-        office: null,
+        office: new Office(),
 
         officeCodeLocal: '',
         city: '',
@@ -126,7 +129,9 @@ export default {
 
     created() {        
         this.getOffice(this.officeCode);    
-        this.$refs.cityRef.focus();
+        setTimeout(() => {
+            this.$refs.cityRef.focus();
+        });
     },
 
     mounted() {        
@@ -179,8 +184,7 @@ export default {
       },
 
       saveEditAndClose() {
-        console.log('saveEditAndClose');
-        var vm = this;        
+        console.log('saveEditAndClose');             
         const request = this.endpoint + '/' + this.officeCode;
         const obj = {
             officeCode: this.officeCode, 
@@ -204,7 +208,7 @@ export default {
             .catch(error => {                
                 console.error('There was an error!', error);
                 this.showAlert = true;
-                vm.$refs.theAlertBox.open( error.response.data.message, error.response.data.errors );
+                this.$refs.theAlertBox.open( error.response.data.message, error.response.data.errors );
             })})();
       },
 

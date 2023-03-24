@@ -24,7 +24,7 @@
                             <v-col cols="3">
                                 <v-text-field label="Product Name" dense v-model="productName"
                                 maxlength="70" :rules="[rules.productNameCounter]" counter
-                                @keyup.enter="find()"/>
+                                @keyup.enter="find()" />
                             </v-col>
                         </v-row><v-row >
                             <v-col cols="2">

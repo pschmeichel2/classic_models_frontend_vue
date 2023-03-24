@@ -4,9 +4,10 @@ import vuetify from './plugins/vuetify'
 import router from './router'
 import titleMixin from './mixins/titleMixin'
 
-Vue.mixin(titleMixin)
 
-Vue.config.productionTip = false
+Vue.mixin(titleMixin);
+
+Vue.config.productionTip = false;
 
 export const eventBus = new Vue();
 
