@@ -43,4 +43,4 @@ This frontend uses:
 ## Pictures
 
 ![Office detail view](classic_models_offices.png)
-![Product Search from Order Entry](Product Search from Order Entry.png)
+![Product Search from Order Entry](Product_Search_from_Order_Entry.png)
