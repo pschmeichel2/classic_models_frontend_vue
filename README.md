@@ -31,11 +31,15 @@ This frontend uses:
 * For development: run "npm run serve"
 * For production: run "npm run build"
 
+## News
+* First version of Order Entry
+
 ## Todos
 * Insert, Update, Delete is only implemented for Offices.
 * Recursive Navigation in Employees doesn't refresh details correctly.
 * Clean up code
 * Fix browser console errors ("null" errors for data, caused by event timing)
+
 ## Pictures
 
 ![Office detail view](classic_models_offices.png)
