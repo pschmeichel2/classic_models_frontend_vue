@@ -162,6 +162,7 @@ export default {
 
         getProducts() {
             console.log('getProducts()');
+            this.products = [];
             const request = this.endpoint
                 + '?productCode='+ (this.productCode === null ? '' : this.productCode.trim())
                 + '&productName=' + (this.productName === null ? '' : this.productName.trim())
@@ -182,6 +183,7 @@ export default {
 
         getProductLines() {
             console.log('getProductLines()');
+            this.productLineValues = [];
             const request = this.productLinesEndpoint;
             axios(request)
             .then(response => {
@@ -194,6 +196,7 @@ export default {
 
         getProductVendors() {
             console.log('getProductVendors()');
+            this.productVendorValues = [];
             const request = this.productVendorsEndpoint;
             axios(request)
             .then(response => {

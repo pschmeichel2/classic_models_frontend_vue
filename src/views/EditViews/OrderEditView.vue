@@ -267,7 +267,7 @@ export default {
         },
 
         getIsoDateFromString(theDate) {
-            if( theDate === null ) {
+            if( theDate === null || theDate === '') {
                 return null;
             }
             const date = new Date(Date.parse(theDate));
