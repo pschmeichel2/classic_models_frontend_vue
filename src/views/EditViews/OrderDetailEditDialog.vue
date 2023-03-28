@@ -5,7 +5,7 @@
 
             <v-card-title class="blue darken-2">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text" >Add Order Detail</span>                        
+                    <span class="text-h5 white--text" >{{getTitle}}</span>                        
                     <v-spacer></v-spacer>
                 </v-row>                
             </v-card-title>
@@ -17,17 +17,21 @@
                     <v-col cols="2">
                         <v-text-field label="Product Code" dense :readonly="true"
                         v-model="orderDetail.productCode" ref="productCodeRef"
-                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"/>
+                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"
+                        :disabled=isChangeMode />
                     </v-col>
                     <v-col cols="1">
-                        <v-btn  color="primary" @click="handleClickFindProduct"><v-icon>mdi-car-search</v-icon>Find Product</v-btn>                                    
+                        <v-btn  color="primary" @click="handleClickFindProduct"
+                        :disabled=isChangeMode >
+                        <v-icon>mdi-car-search</v-icon>Find Product</v-btn>                                    
                     </v-col>
                 </v-row>
                 <v-row >
                     <v-col cols="6">
                         <v-text-field label="Product Name" dense :readonly="true"
                         v-model="orderDetail.productName" class="font-weight-bold"
-                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"/>
+                        append-icon="mdi-car-search"  @click:append="handleClickFindProduct"
+                        :disabled=isChangeMode />
                     </v-col>
                 </v-row>
                 <v-row >
@@ -61,6 +65,7 @@ import axios from 'axios';
 import { eventBus } from "../../main";
 import ProductSearchDialog from '../EditViews/ProductSearchDialog.vue';
 import OrderDetail from '../../models/OrderDetail.js';
+import { tsImportEqualsDeclaration } from '@babel/types';
 
 export default {
     name: 'OrderDetailEditDialog',
@@ -72,7 +77,7 @@ export default {
             endpoint: 'http://localhost:8080/api/customers',
             show: false,
             orderDetail: new OrderDetail(),
-
+            orderLineNumber: undefined,
             rules: {
                 required: value => !!value || 'Required.',
                 isNumeric: value => !isNaN(value) || 'Must be numeric',
@@ -98,20 +103,42 @@ export default {
         });
     },
 
+    computed: {
+
+        getTitle() {
+            if( this.orderLineNumber === undefined || this.orderLineNumber === null ) {
+                return "Add Order Detail";
+            } else {
+                return "Edit Order Detail";
+            }
+        },
+
+        isChangeMode() {
+            return !(this.orderLineNumber === null);
+        },
+
+    }, 
+
     methods: {
 
-        open: function () {
+        open: function (orderDetail) {
             console.log('open');
             this.show = true;
-            this.orderDetail.productCode = '';   
-            this.orderDetail.productName = '';  
-            this.orderDetail.quantityOrdered = 1;   
-            this.orderDetail.priceEach = 0.0;  
+            if( orderDetail === undefined ) {
+                this.orderLineNumber = null;
+                this.orderDetail = new OrderDetail();
+                this.orderDetail.productCode = '';   
+                this.orderDetail.productName = '';  
+                this.orderDetail.quantityOrdered = 1;   
+                this.orderDetail.priceEach = 0.0;  
+            } else {
+                this.orderLineNumber = orderDetail.orderLineNumber;
+                this.orderDetail = OrderDetail.from(orderDetail);                
+                console.log('edit');
+            }
             setTimeout(() => {
               this.$refs.quantityOrderedRef.$refs.input.select();
             });
-
-
         },
 
         close: function () {            
@@ -119,8 +146,12 @@ export default {
         }, 
 
         submit: function () { 
-            console.log('submit');
-            eventBus.$emit("orderDetail-created", this.orderDetail);                
+            console.log('submit');            
+            if( this.orderLineNumber === null ) {
+                eventBus.$emit("orderDetail-created", this.orderDetail);                
+            } else {
+                eventBus.$emit("orderDetail-changed", this.orderDetail);                
+            }
             this.show = false;
         }, 
 

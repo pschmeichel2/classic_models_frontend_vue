@@ -85,8 +85,9 @@
 <script>
 import axios from 'axios';
 import router from '@/router';
-import OfficeDeleteDialog from '../EditViews/OfficeDeleteDialog.vue';
 import Office from '@/models/Office';
+import OfficeDeleteDialog from '../EditViews/OfficeDeleteDialog.vue';
+
 
 export default {
     name: 'OfficeView',

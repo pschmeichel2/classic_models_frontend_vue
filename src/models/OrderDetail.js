@@ -15,10 +15,14 @@ export default class OrderDetail {
     }
 
     static from(oldOrderDetail) {
-        return new OrderDetail(oldOrderDetail.productCode,
+        var orderDetail = new OrderDetail(
+            oldOrderDetail.productCode,
             oldOrderDetail.productName,
             oldOrderDetail.quantityOrdered,
             oldOrderDetail.priceEach);
+        orderDetail.productName = oldOrderDetail.productName;
+        orderDetail.orderLineNumber = oldOrderDetail.orderLineNumber;
+        return orderDetail;
     }
 }
 

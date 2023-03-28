@@ -47,8 +47,9 @@ const routes = [
   { path: '/productLines/:productLine', name: 'productLineView', component: ProductLineView, props: true },
 
   { path: '/orders', name: 'orders', component: OrdersView },
-  { path: '/orders/new', name: 'ordersNewView', component: OrderEditView, props: true  },
-  { path: '/orders/:orderNumber', name: 'orderView', component: OrderView, props: true },
+  { path: '/orders/new', name: 'orderNewView', component: OrderEditView, props: true  },
+  { path: '/orders/:orderNumber(\\d+)/edit', name: 'orderEditView', component: OrderEditView, props: true },
+  { path: '/orders/:orderNumber(\\d+)', name: 'orderView', component: OrderView, props: true },
 
   { path: '/offices', name: 'offices', component: OfficesView },
   { path: '/offices/new', name: 'officeNewView', component: OfficeEditView, props: true },

@@ -16,28 +16,34 @@
             <v-card-text>
                 <v-row >
                     <v-col cols="2">
-                        <v-text-field label="Order Date" v-model = "getOrderDate" dense></v-text-field>
+                        <v-text-field label="Order Date" v-model = "getOrderDate" dense
+                        :readonly="true"></v-text-field>
                     </v-col>
                     <v-col cols="4">
                         <v-text-field label="Customer Name" v-model="getCustomerName" dense class="font-weight-bold"
-                            prepend-icon="mdi-open-in-app"  @click:prepend="handleClickCustomer"></v-text-field>
+                            prepend-icon="mdi-open-in-app"  @click:prepend="handleClickCustomer"
+                            :readonly="true"></v-text-field>
                     </v-col>
                 </v-row>
 
                 <v-row >
                     <v-col cols="2">
-                        <v-text-field label="Required Date" v-model="getRequiredDate" dense></v-text-field>
+                        <v-text-field label="Required Date" v-model="getRequiredDate" dense
+                        :readonly="true"></v-text-field>
                     </v-col>
                     <v-col cols="4">
-                        <v-text-field label="Status" v-model="order.status" dense class="font-weight-bold"></v-text-field>
+                        <v-text-field label="Status" v-model="order.status" dense class="font-weight-bold"
+                        :readonly="true"></v-text-field>
                     </v-col>
                 </v-row>                
                 <v-row>            
                     <v-col cols="2">
-                        <v-text-field label="Shipped Date" v-model="getShippedDate" dense></v-text-field>
+                        <v-text-field label="Shipped Date" v-model="getShippedDate" dense
+                        :readonly="true"></v-text-field>
                     </v-col>
                     <v-col cols="8">
-                        <v-textarea rows="1" auto-grow label="comments" v-model="order.comments" dense></v-textarea>
+                        <v-textarea rows="1" auto-grow label="comments" v-model="order.comments" dense
+                        :readonly="true"></v-textarea>
                     </v-col>
                 </v-row>
             </v-card-text>
@@ -54,8 +60,7 @@
             </v-card-title>
 
             <v-data-table :items="orderDetails" :headers="orderDetailHeaders" item-key="productCode" dense class="elevation-3"
-                :items-per-page="15" @click:row="handleClickOrderDetail" 
-                >
+                :items-per-page="15" @click:row="handleClickOrderDetail" >
 
                 <template v-slot:item.productCode="{ item }">
                     <span class="font-weight-bold">{{ item.productCode }}</span>
@@ -68,6 +73,7 @@
                 </template>
 
             </v-data-table>
+            <OrderDeleteDialog ref="theOrderDeleteDialog" />
         </v-card>
 
     </div>
@@ -77,10 +83,14 @@
 import axios from 'axios';
 import router from '@/router';
 import Order from '@/models/Order';
+import OrderDeleteDialog from '../EditViews/OrderDeleteDialog.vue';
 
 export default {
     name: 'OrderView',
     props: ['orderNumber'],
+    components: {        
+        OrderDeleteDialog,
+    },
     data() {
       return {
         order: new Order(),
@@ -182,11 +192,12 @@ export default {
         },
 
         handleClickEdit() {            
-            router.push({path: '/orders/new'});     
+            console.log({path: `/orders/${this.orderNumber}/edit`});
+            router.push({path: `/orders/${this.orderNumber}/edit`});
         },
 
         handleClickDelete() {
-            console.log('handleClickDelete');
+            this.$refs.theOrderDeleteDialog.open(this.orderNumber);
         },
 
         formatDate(date) {
