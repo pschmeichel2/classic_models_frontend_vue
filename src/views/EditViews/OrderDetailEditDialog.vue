@@ -54,6 +54,14 @@
                 <v-btn color="primary" @click="submit"  type="submit">Ok</v-btn>
             </v-card-actions>
 
+            <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout"  light centered multi-line>
+                {{ snackbarText }}  
+                <template v-slot:action="{ attrs }">
+                    <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">Close</v-btn>
+                </template>
+            </v-snackbar>
+
+
         </v-card>
         <ProductSearchDialog ref="theProductSearchDialog" />
     </v-dialog>
@@ -78,6 +86,11 @@ export default {
             show: false,
             orderDetail: new OrderDetail(),
             orderLineNumber: undefined,
+
+            showSnackbar: false,
+            snackbarText: '',
+            snackbarTimeout: 2000,
+
             rules: {
                 required: value => !!value || 'Required.',
                 isNumeric: value => !isNaN(value) || 'Must be numeric',
@@ -93,13 +106,26 @@ export default {
     },
 
     created() {
+        this.showSnackbar = false;
+
         eventBus.$on("product-selected", (data) => {
+            this.showSnackbar = false;
             this.orderDetail.productCode = data.productCode;   
             this.orderDetail.productName = data.productName;  
             setTimeout(() => {
               this.$refs.quantityOrderedRef.$refs.input.select();
             });
+        });
 
+        eventBus.$on("product-already-selected", (data) => {
+            console.log('product-already-selected');
+            this.orderDetail.priceEach = data.priceEach;
+            this.orderDetail.quantityOrdered = data.quantityOrdered;
+            this.orderDetail.orderLineNumber = data.orderLineNumber;
+            this.orderLineNumber = data.orderLineNumber;
+            // TODO snackbar isn't displayed
+            this.snackbarText = 'Product '+data.productName + ' is already contained in Order Detail list';
+            this.showSnackbar = true;
         });
     },
 
@@ -132,8 +158,8 @@ export default {
                 this.orderDetail.quantityOrdered = 1;   
                 this.orderDetail.priceEach = 0.0;  
             } else {
-                this.orderLineNumber = orderDetail.orderLineNumber;
-                this.orderDetail = OrderDetail.from(orderDetail);                
+                this.orderLineNumber = orderDetail.orderLineNumber;                
+                this.orderDetail = OrderDetail.from(orderDetail);                                
                 console.log('edit');
             }
             setTimeout(() => {

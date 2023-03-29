@@ -148,7 +148,7 @@ export default {
         selected: [],
 
         showSnackbar: false,
-        snackbarText: 'Please select a customer.',
+        snackbarText: '',
         snackbarTimeout: 2000,
 
         //sortBy: 'orderLineNumber',
@@ -168,7 +168,8 @@ export default {
 
     created() {
         // https://stackoverflow.com/questions/48794066/vuejs-how-to-bind-a-datetime
-        console.log('created');    
+        console.log('created');   
+        this.orderDetails = []; 
         if (this.orderNumber === undefined) {
             this.orderDate = this.getDateNow();
             this.requiredDate = this.getDateIn7Days();
@@ -178,8 +179,7 @@ export default {
                 this.order.customerName = 'Baane Mini Imports';
                 this.order.customerNumber = 121;
                 const firstOrderDetail = new OrderDetail('S10_4698', 
-                    '2003 Harley-Davidson Eagle Drag Bike', 123, 91.02 );        
-                this.orderDetails = [];
+                    '2003 Harley-Davidson Eagle Drag Bike', 123, 91.02 );                        
                 this.orderDetails.push(firstOrderDetail);
             }
         } else {
@@ -213,14 +213,17 @@ export default {
 
         eventBus.$on("orderDetail-deleted", (data) => {
             const productCode = data.productCode;
-            var idx = 0;
-            this.orderDetails.forEach((orderDetail) => {
-                if( orderDetail.productCode === data.productCode) {
-                    this.orderDetails.splice(idx,1);
-                }
-                idx++;
-            });
+            this.orderDetails = this.orderDetails.filter(od => od.productCode !== productCode);
         });
+
+        eventBus.$on("product-selected", (data) => {
+            const productCode = data.productCode;
+            var orderDetailsWithProductCode = this.orderDetails.filter(od => od.productCode === productCode);
+            if( orderDetailsWithProductCode.length > 0 ) {
+                eventBus.$emit("product-already-selected", orderDetailsWithProductCode[0]);                
+            }            
+        });
+
 
         console.log('created');              
     },
@@ -301,6 +304,7 @@ export default {
                 this.snackbarText = 'Required Date can\'t be in the past';
                 return false;
             }
+            return true;
         },
 
         saveNewAndClose() {
