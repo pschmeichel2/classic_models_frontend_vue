@@ -42,17 +42,11 @@
                         <v-textarea rows="1" auto-grow label="comments" v-model="order.comments" dense></v-textarea>
                     </v-col>
                 </v-row>
-                <!--
-                <v-row>            
-                    <v-btn color="primary" @click="handleClickFindProduct"><v-icon>mdi-car-search</v-icon>Find Product</v-btn>
-                </v-row>           
-                -->
                 <p></p>
             </v-card-text>
             <v-card-actions>
                 <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                <v-btn color="primary" @click="handleClickSave"  
-                type="submit">Save</v-btn>
+                <v-btn color="primary" @click="handleClickSave" type="submit">Save</v-btn>
             </v-card-actions>
 
         </v-card>
@@ -92,6 +86,14 @@
             <v-card-text>               
             </v-card-text>
             <AlertBox ref="theAlertBox" v-show="showAlert"/>
+            
+            <v-snackbar v-model="snackbar" :timeout="snackbarTimeout" centered light>
+                {{ snackbarText }}  
+                <template v-slot:action="{ attrs }">
+                    <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
+                </template>
+            </v-snackbar>
+
         </v-card>
         <CustomerSearchDialog ref="theCustomerSearchDialog" />
         <ProductSearchDialog ref="theProductSearchDialog" />
@@ -144,6 +146,11 @@ export default {
         createTestData: false,
         orderDetails: [],
         selected: [],
+
+        snackbar: false,
+        snackbarText: 'Please select a customer.',
+        snackbarTimeout: 2000,
+
         //sortBy: 'orderLineNumber',
         orderDetailHeaders: [
             {text: "Order LineNumber", value: "orderLineNumber", width: '10px', class:"blue lighten-5"},            
@@ -249,11 +256,15 @@ export default {
         }, 
 
         handleClickSave: function () { 
-            console.log('handleClickSave');
-            if (this.orderNumber === undefined) {
-                this.saveNewAndClose();            
-            } else {
-                this.saveEditAndClose();            
+            if( this.order.customerNumber === 0 ) {
+                this.snackbar = true;
+            } else {         
+                console.log('handleClickSave');
+                if (this.orderNumber === undefined) {
+                    this.saveNewAndClose();            
+                } else {
+                    this.saveEditAndClose();            
+                }         
             }
         }, 
 
