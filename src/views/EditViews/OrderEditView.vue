@@ -87,10 +87,10 @@
             </v-card-text>
             <AlertBox ref="theAlertBox" v-show="showAlert"/>
             
-            <v-snackbar v-model="snackbar" :timeout="snackbarTimeout" centered light>
+            <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout"  light centered multi-line>
                 {{ snackbarText }}  
                 <template v-slot:action="{ attrs }">
-                    <v-btn color="blue" text v-bind="attrs" @click="snackbar = false">Close</v-btn>
+                    <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">Close</v-btn>
                 </template>
             </v-snackbar>
 
@@ -147,7 +147,7 @@ export default {
         orderDetails: [],
         selected: [],
 
-        snackbar: false,
+        showSnackbar: false,
         snackbarText: 'Please select a customer.',
         snackbarTimeout: 2000,
 
@@ -256,10 +256,11 @@ export default {
         }, 
 
         handleClickSave: function () { 
-            if( this.order.customerNumber === 0 ) {
-                this.snackbar = true;
-            } else {         
-                console.log('handleClickSave');
+            console.log('handleClickSave');
+            this.showSnackbar = false;
+            if( !this.validateOrder() ) {
+                this.showSnackbar = true;
+            } else {                         
                 if (this.orderNumber === undefined) {
                     this.saveNewAndClose();            
                 } else {
@@ -267,6 +268,30 @@ export default {
                 }         
             }
         }, 
+
+        validateOrder() {            
+            this.snackbarText = '';
+            if( this.order.customerNumber === 0 ) {
+                this.snackbarText = 'Please select a customer';
+                return false;
+            }
+            if( this.orderDetails.length === 0 ) {
+                this.snackbarText = 'Please add an Order Detail';
+                return false;
+            }            
+            const currentDate = new Date();
+
+            var orderDate = new Date(Date.parse(this.orderDate));            
+            if(orderDate > currentDate){
+                this.snackbarText = 'Order Date can\'t be in the future';
+                return false;
+            }
+            var requiredDate = new Date(Date.parse(this.requiredDate));            
+            if(currentDate > requiredDate){
+                this.snackbarText = 'Required Date can\'t be in the past';
+                return false;
+            }
+        },
 
         saveNewAndClose() {
             console.log('saveNewAndClose');
@@ -354,7 +379,12 @@ export default {
 
         handleClickEditOrderDetail() {               
             const row = this.selected[0];          
-            this.$refs.theOrderDetailEditDialog.open(row);      
+            if( row === undefined ) {
+                this.snackbarText = 'Please select an Order Detail';
+                this.showSnackbar = true;
+            } else {
+                this.$refs.theOrderDetailEditDialog.open(row);      
+            }
         },
 
         handleClickDeleteOrderDetail() {    
