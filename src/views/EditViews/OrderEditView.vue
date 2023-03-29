@@ -209,7 +209,17 @@ export default {
                     orderDetail.priceEach = data.priceEach;
                 }
             });
+        });
 
+        eventBus.$on("orderDetail-deleted", (data) => {
+            const productCode = data.productCode;
+            var idx = 0;
+            this.orderDetails.forEach((orderDetail) => {
+                if( orderDetail.productCode === data.productCode) {
+                    this.orderDetails.splice(idx,1);
+                }
+                idx++;
+            });
         });
 
         console.log('created');              
@@ -388,8 +398,13 @@ export default {
         },
 
         handleClickDeleteOrderDetail() {    
-            const row = this.selected[0];                    
-            this.$refs.theOrderDetailDeleteDialog.open(row);    
+            const row = this.selected[0];          
+            if( row === undefined ) {
+                this.snackbarText = 'Please select an Order Detail';
+                this.showSnackbar = true;
+            } else {
+                this.$refs.theOrderDetailDeleteDialog.open(row);    
+            }
         },
 
         handleDblClickOrderDetail(row) {

@@ -10,7 +10,7 @@
             <p></p>
             <v-card-text>
               <h3 class="font-weight-bold mb-3">Delete this Order Detail?</h3>              
-              <span class="font-weight-bold mb-2">{{orderNumber}} / {{orderLineNumber}}</span>
+              <span class="font-weight-bold mb-2">{{productName}}</span>
             </v-card-text>
             <v-card-actions>
               <v-btn color="secondary" text @click="show=false">Cancel</v-btn>
@@ -25,6 +25,8 @@
 import axios from 'axios';
 import AlertBox from '@/components/AlertBox.vue';
 import router from '@/router';
+import OrderDetail from '../../models/OrderDetail.js';
+import { eventBus } from "../../main";
 
 export default {
     name: 'OrderDetailDeleteDialog',
@@ -32,10 +34,10 @@ export default {
         return {      
             endpoint: 'http://localhost:8080/api/orderDetails',
             show: false,
+            orderDetail: new OrderDetail(),
             orderNumber: 0,
             orderLineNumber: 0,
-            city: '',
-            country: '',
+            productName: '',
             alertMessage: 'an alert',
             showAlert: false,
             success: undefined,
@@ -51,9 +53,10 @@ export default {
         open: function (orderDetail) {
             var vm = this;
             console.log('open', orderDetail.orderNumber);
+            this.orderDetail = orderDetail;
             this.orderNumber = orderDetail.orderNumber;
             this.orderLineNumber = orderDetail.orderLineNumber;
-            
+            this.productName = orderDetail.productName;            
             this.showAlert = false;
             this.alertMessage = '';            
             vm.show = true;
@@ -63,25 +66,11 @@ export default {
             })
         },
 
-       deleteAndClose: function (row) {
-            var vm = this;
-            this.showAlert = false;
-            console.log('deleteAndClose', row);
-            const request = this.endpoint + '/' + this.officeCode;            
-            console.log('request: ', request);            
-            this.success = true;
-            (async () => {await axios.delete(request)
-              .then(response => {
-                console.log('response', response);
-                vm.show = false;
-                router.push({path: `/offices`});
-              })
-              .catch(error => {                
-                console.error('There was an error!', error, error.response.data.message);
-                this.showAlert = true;
-                vm.$refs.theAlertBox.open( error.response.data.message, error.response.data.errors );
-                this.success = false;
-              })})();
+        deleteAndClose: function () {
+           console.log('deleteAndClose');
+           this.showAlert = false;
+           eventBus.$emit("orderDetail-deleted", this.orderDetail);                
+           this.show = false; 
         },
 
     },
