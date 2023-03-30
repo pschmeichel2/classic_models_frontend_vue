@@ -39,22 +39,25 @@
                         <v-text-field label="Quantity ordered" dense  reverse
                         v-model="orderDetail.quantityOrdered"
                         required maxlength="10"  :rules="[rules.isInteger]" 
-                        ref="quantityOrderedRef"/>
+                        @input="onlyNumbers"
+                        ref="quantityOrderedRef"
+                        type="number"/>
                     </v-col>
                     <v-col cols="3">
                         <v-text-field label="Price each" dense  reverse
                         v-model="orderDetail.priceEach"
-                        required maxlength="10"  :rules="[rules.isCurrency]"/>
+                        required maxlength="10"  :rules="[rules.isCurrency]"
+                        type="number"/>
                     </v-col>
                 </v-row>
             </v-card-text>
             <p></p>
             <v-card-actions>
                 <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                <v-btn color="primary" @click="submit"  type="submit">Ok</v-btn>
+                <v-btn color="primary" @click="submit" type="submit">Ok</v-btn>
             </v-card-actions>
 
-            <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout"  light centered multi-line>
+            <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout" light centered multi-line>
                 {{ snackbarText }}  
                 <template v-slot:action="{ attrs }">
                     <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">Close</v-btn>
@@ -95,8 +98,9 @@ export default {
                 required: value => !!value || 'Required.',
                 isNumeric: value => !isNaN(value) || 'Must be numeric',
                 isInteger: value => (!Number.isNaN(Number.parseFloat(value))
-                    && Number.parseInt(value, 10) > 0) 
-                    || 'Must be integer > 0',
+                    && Number.parseInt(value, 10) > 0
+                    && this.isNumeric(value)) 
+                    || 'Must be whole number > 0',
                 isCurrency: value => (!Number.isNaN(Number.parseFloat(value))
                     && Number.parseFloat(value) > 0) 
                     || 'Must be currency > 0',
@@ -124,7 +128,7 @@ export default {
             this.orderDetail.orderLineNumber = data.orderLineNumber;
             this.orderLineNumber = data.orderLineNumber;
             // TODO snackbar isn't displayed
-            this.snackbarText = 'Product '+data.productName + ' is already contained in Order Detail list';
+            this.snackbarText = 'Product '+ data.productName + ' is already contained in Order Detail list';
             this.showSnackbar = true;
         });
     },
@@ -149,6 +153,7 @@ export default {
 
         open: function (orderDetail) {
             console.log('open');
+            this.showSnackbar = false;
             this.show = true;
             if( orderDetail === undefined ) {
                 this.orderLineNumber = null;
@@ -172,14 +177,55 @@ export default {
         }, 
 
         submit: function () { 
-            console.log('submit');            
-            if( this.orderLineNumber === null ) {
-                eventBus.$emit("orderDetail-created", this.orderDetail);                
-            } else {
-                eventBus.$emit("orderDetail-changed", this.orderDetail);                
+            console.log('submit');  
+            this.showSnackbar = false;
+            if( !this.validateOrderDetail() ) {
+                this.showSnackbar = true;                
+            } else {                      
+                this.orderDetail.quantityOrdered =  Number.parseInt(this.orderDetail.quantityOrdered, 10);            
+                if( this.orderLineNumber === null ) {
+                    eventBus.$emit("orderDetail-created", this.orderDetail);                
+                } else {
+                    eventBus.$emit("orderDetail-changed", this.orderDetail);                
+                }
+                this.show = false;
             }
-            this.show = false;
         }, 
+
+        validateOrderDetail() {
+            this.snackbarText = '';
+            if( this.orderDetail.productCode === '') {
+                this.snackbarText = 'Please select a product';
+                return false;
+            }
+            if( isNaN(this.orderDetail.quantityOrdered)) {
+                this.snackbarText = 'Quantity ordered must be numeric';
+                return false;
+            }
+            if( Number.parseInt(this.orderDetail.quantityOrdered, 10) <= 0 ||
+                !this.isNumeric(this.orderDetail.quantityOrdered)) {
+                this.snackbarText = 'Quantity ordered must be whole number > 0';
+                return false;
+            }
+            if( isNaN(this.orderDetail.priceEach)) {
+                this.snackbarText = 'Price must be numeric';
+                return false;
+            }
+            if( Number.parseFloat(this.orderDetail.priceEach) <= 0 ) {
+                this.snackbarText = 'Price must be currency > 0';
+                return false;
+            }
+            return true;
+        },
+
+        isNumeric(value) {
+          return /^-?\d+$/.test(value);
+        },
+
+        onlyNumbers: function() {
+            console.log('onlyNumbers', this.orderDetail.quantityOrdered);  
+            this.orderDetail.quantityOrdered = this.orderDetail.quantityOrdered.replace(/[^0-9.]/g,'');
+        },
 
         handleClickFindProduct() {                        
             this.$refs.theProductSearchDialog.open();      

@@ -289,19 +289,19 @@ export default {
                 return false;
             }
             if( this.orderDetails.length === 0 ) {
-                this.snackbarText = 'Please add an Order Detail';
+                this.snackbarText = 'Please add an order detail';
                 return false;
             }            
             const currentDate = new Date();
 
             var orderDate = new Date(Date.parse(this.orderDate));            
             if(orderDate > currentDate){
-                this.snackbarText = 'Order Date can\'t be in the future';
+                this.snackbarText = 'Order date can\'t be in the future';
                 return false;
             }
             var requiredDate = new Date(Date.parse(this.requiredDate));            
             if(currentDate > requiredDate){
-                this.snackbarText = 'Required Date can\'t be in the past';
+                this.snackbarText = 'Required date can\'t be in the past';
                 return false;
             }
             return true;
