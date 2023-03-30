@@ -38,8 +38,7 @@
                     <v-col cols="3">
                         <v-text-field label="Quantity ordered" dense  reverse
                         v-model="orderDetail.quantityOrdered"
-                        required maxlength="10"  :rules="[rules.isInteger]" 
-                        @input="onlyNumbers"
+                        required maxlength="10"  :rules="[rules.isInteger]"                         
                         ref="quantityOrderedRef"
                         type="number"/>
                     </v-col>
@@ -77,6 +76,7 @@ import { eventBus } from "../../main";
 import ProductSearchDialog from '../EditViews/ProductSearchDialog.vue';
 import OrderDetail from '../../models/OrderDetail.js';
 import { tsImportEqualsDeclaration } from '@babel/types';
+import Product from '@/models/Product';
 
 export default {
     name: 'OrderDetailEditDialog',
@@ -86,8 +86,10 @@ export default {
     data() {
         return {      
             endpoint: 'http://localhost:8080/api/customers',
+            productsEndpoint: 'http://localhost:8080/api/products',
             show: false,
             orderDetail: new OrderDetail(),
+            product: new Product(),
             orderLineNumber: undefined,
 
             showSnackbar: false,
@@ -115,7 +117,8 @@ export default {
         eventBus.$on("product-selected", (data) => {
             this.showSnackbar = false;
             this.orderDetail.productCode = data.productCode;   
-            this.orderDetail.productName = data.productName;  
+            this.orderDetail.productName = data.productName;   
+            this.getProduct(data.productCode);           
             setTimeout(() => {
               this.$refs.quantityOrderedRef.$refs.input.select();
             });
@@ -155,6 +158,7 @@ export default {
             console.log('open');
             this.showSnackbar = false;
             this.show = true;
+            this.product = new Product();
             if( orderDetail === undefined ) {
                 this.orderLineNumber = null;
                 this.orderDetail = new OrderDetail();
@@ -164,7 +168,7 @@ export default {
                 this.orderDetail.priceEach = 0.0;  
             } else {
                 this.orderLineNumber = orderDetail.orderLineNumber;                
-                this.orderDetail = OrderDetail.from(orderDetail);                                
+                this.orderDetail = OrderDetail.from(orderDetail);                                                
                 console.log('edit');
             }
             setTimeout(() => {
@@ -183,6 +187,7 @@ export default {
                 this.showSnackbar = true;                
             } else {                      
                 this.orderDetail.quantityOrdered =  Number.parseInt(this.orderDetail.quantityOrdered, 10);            
+                this.orderDetail.priceEach =  Number.parseFloat(this.orderDetail.priceEach);            
                 if( this.orderLineNumber === null ) {
                     eventBus.$emit("orderDetail-created", this.orderDetail);                
                 } else {
@@ -229,6 +234,23 @@ export default {
 
         handleClickFindProduct() {                        
             this.$refs.theProductSearchDialog.open();      
+        },
+
+        getProduct(productCode) {
+            console.log('getProduct', productCode);  
+            axios(this.productsEndpoint + '/' + productCode)
+            .then(response => {
+                this.product = response.data;
+                console.log('MSRP=', this.product.msrp);  
+                this.orderDetail.priceEach = this.formatCurrency(this.product.msrp);
+            })
+            .catch( error => {
+                console.log(error)
+            })
+        },
+
+        formatCurrency (value) {
+            return (value).toFixed(2);
         },
 
 

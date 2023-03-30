@@ -413,7 +413,7 @@ export default {
 
         handleDblClickOrderDetail(row) {
             console.log('handleDblClickOrderDetail', row);   
-            this.$refs.theOrderDetailEditDialog.open();   
+            this.$refs.theOrderDetailEditDialog.open(row);   
         },
 
         getPriceEach(num) {
