@@ -83,8 +83,8 @@
 
             </v-data-table>
 
-            <v-card-text>               
-            </v-card-text>
+            <v-card-text></v-card-text>
+
             <AlertBox ref="theAlertBox" v-show="showAlert"/>
             
             <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout"  light centered multi-line>

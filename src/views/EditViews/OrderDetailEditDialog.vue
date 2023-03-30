@@ -187,7 +187,7 @@ export default {
                 this.showSnackbar = true;                
             } else {                      
                 this.orderDetail.quantityOrdered =  Number.parseInt(this.orderDetail.quantityOrdered, 10);            
-                this.orderDetail.priceEach =  Number.parseFloat(this.orderDetail.priceEach);            
+                this.orderDetail.priceEach =  Number.parseFloat(this.orderDetail.priceEach).toFixed(2);            
                 if( this.orderLineNumber === null ) {
                     eventBus.$emit("orderDetail-created", this.orderDetail);                
                 } else {

@@ -34,8 +34,7 @@
                             </v-col>
                         </v-row><v-row>
                             <v-col cols="5" class="ma-1">
-                                <v-select v-model="country" :items="countryValues" label="Country" dense clearable>
-                                   
+                                <v-select v-model="country" :items="countryValues" label="Country" dense clearable>                                   
                                 </v-select>                        
                             </v-col>
                         </v-row>
@@ -115,11 +114,11 @@ export default {
                 {text: "Postal Code", value: "postalCode", width: '5px',  class:"blue lighten-5", sortable: false},
                 {text: "Country", value: "country", width: '5px',  class:"blue lighten-5", sortable: false},
                 {text: "Credit Limit", value: "creditLimit", width: '5px', align: 'right',  class:"blue lighten-5", sortable: false},
-          ],          
-        rules: {            
-            customerNameCounter: value => value.length <= 50 || 'Max 50 characters',
-            contactLastNameCounter: value => value.length <= 50 || 'Max 50 characters',
-            contactFirstNameCounter: value => value.length <= 50 || 'Max 50 characters',
+            ],          
+            rules: {            
+                customerNameCounter: value => value.length <= 50 || 'Max 50 characters',
+                contactLastNameCounter: value => value.length <= 50 || 'Max 50 characters',
+                contactFirstNameCounter: value => value.length <= 50 || 'Max 50 characters',
             },
 
         }
@@ -194,7 +193,6 @@ export default {
                 console.log(error);
             });
         },
-
 
         handleClickCustomer(row) {
             console.log('handleClickCustomer');        
