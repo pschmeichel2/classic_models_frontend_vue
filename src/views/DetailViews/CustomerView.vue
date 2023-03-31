@@ -16,55 +16,69 @@
         <v-card-text>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="Customer Name" v-model="customer.customerName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Customer Name" v-model="customer.customerName" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Customer Number" v-model="customer.customerNumber" dense></v-text-field>
-                </v-col>
-            </v-row>
-            <v-row >
-                <v-col cols="4">
-                    <v-text-field label="Contact Last Name" v-model="customer.contactLastName" dense class="font-weight-bold"></v-text-field>
-                </v-col>
-                <v-col cols="4">
-                    <v-text-field label="Contact First Name" v-model="customer.contactFirstName" dense class="font-weight-bold"></v-text-field>
-                </v-col>
-                <v-col cols="4">
-                    <v-text-field label="Phone" v-model="customer.phone" dense></v-text-field>
+                    <v-text-field label="Customer Number" v-model="customer.customerNumber" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="AddressLine 1" v-model="customer.addressLine1" dense></v-text-field>
+                    <v-text-field label="Contact Last Name" v-model="customer.contactLastName" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="AddressLine 2" v-model="customer.addressLine2" dense></v-text-field>
+                    <v-text-field label="Contact First Name" v-model="customer.contactFirstName" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                    <v-text-field label="Phone" v-model="customer.phone" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="City" v-model="customer.city" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="AddressLine 1" v-model="customer.addressLine1" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Country" v-model="customer.country" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="AddressLine 2" v-model="customer.addressLine2" dense
+                    :readonly="true"></v-text-field>
+                </v-col>
+            </v-row>
+            <v-row >
+                <v-col cols="4">
+                    <v-text-field label="City" v-model="customer.city" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
+                </v-col>
+                <v-col cols="4">
+                    <v-text-field label="Country" v-model="customer.country" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="State" v-model="customer.state" dense></v-text-field>
+                    <v-text-field label="State" v-model="customer.state" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="2">
-                    <v-text-field label="Postal Code" v-model="customer.postalCode" dense></v-text-field>
+                    <v-text-field label="Postal Code" v-model="customer.postalCode" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                <v-text-field label="SalesRep" v-if="this.customer.salesRepEmployeeName === null" v-model="getSalesRep" dense></v-text-field>
+                <v-text-field label="SalesRep" v-if="this.customer.salesRepEmployeeName === null" v-model="getSalesRep" dense
+                :readonly="true"></v-text-field>
                 <v-text-field label="SalesRep" v-else v-model="getSalesRep" dense
-                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickSalesRep"></v-text-field>
+                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickSalesRep"
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="Credit Limit" v-model="customer.creditLimit" dense></v-text-field>
+                    <v-text-field label="Credit Limit" v-model="customer.creditLimit" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
         </v-card-text>

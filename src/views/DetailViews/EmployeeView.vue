@@ -17,13 +17,16 @@
         <v-card-text>
             <v-row >                
                 <v-col cols="4">
-                    <v-text-field label="Last Name" v-model="employee.lastName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Last Name" v-model="employee.lastName" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="First Name" v-model="employee.firstName" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="First Name" v-model="employee.firstName" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Job Title" v-model="employee.jobTitle" dense class="font-weight-bold"></v-text-field>
+                    <v-text-field label="Job Title" v-model="employee.jobTitle" dense class="font-weight-bold"
+                    :readonly="true"></v-text-field>
                 </v-col>
 
             </v-row>
@@ -31,26 +34,33 @@
             <v-row >
                 <v-col cols="4">
                     <v-text-field label="Office" v-model="getOffice" dense
-                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOffice"></v-text-field>
+                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOffice"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Manager" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense>
+                    <v-text-field label="Manager" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense
+                    :readonly="true">
                     </v-text-field>
                     <v-text-field label="Manager" v-else v-model="getReportsTo" dense
-                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickReportsTo"></v-text-field>
+                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickReportsTo"
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Employee Number" v-model="employee.employeeNumber" dense></v-text-field>
+                    <v-text-field label="Employee Number" v-model="employee.employeeNumber" dense
+                    :readonly="true">
+                    </v-text-field>
                 </v-col>
 
             </v-row>
 
             <v-row >
                 <v-col cols="4">
-                    <v-text-field label="Extension" v-model="employee.extension" dense></v-text-field>
+                    <v-text-field label="Extension" v-model="employee.extension" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
                 <v-col cols="4">
-                    <v-text-field label="Email" v-model="employee.email" dense></v-text-field>
+                    <v-text-field label="Email" v-model="employee.email" dense
+                    :readonly="true"></v-text-field>
                 </v-col>
             </v-row>
 

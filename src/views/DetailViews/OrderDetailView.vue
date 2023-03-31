@@ -5,7 +5,7 @@
 
         <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text" >OrderDetail {{ $route.params.orderNumber }}/{{ $route.params.productCode }}</span>                        
+                    <span class="text-h5 white--text" >Order Detail {{ $route.params.orderNumber }}/{{ $route.params.productCode }}</span>                        
                     <v-spacer></v-spacer>
                     <v-btn dark icon  @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon  @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
@@ -19,28 +19,32 @@
           <v-row >
               <v-col cols="4">                  
                   <v-text-field label="Order Number" v-model="orderDetail.orderNumber" dense class="font-weight-bold"
-                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOrder"></v-text-field>
+                    prepend-icon="mdi-open-in-app"  @click:prepend="handleClickOrder"
+                    :readonly="true"></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="Order Line Number" v-model="orderDetail.orderLineNumber" dense></v-text-field>
+                  <v-text-field label="Order Line Number" v-model="orderDetail.orderLineNumber" dense
+                  :readonly="true"></v-text-field>
               </v-col>
           </v-row>
           <v-row >
               <v-col cols="4">
                   <v-text-field label="Product Code" v-model="orderDetail.productCode" dense class="font-weight-bold" 
-                  prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct"></v-text-field>
+                  prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct" :readonly="true"></v-text-field>
               </v-col>
               <v-col cols="6">
                   <v-text-field label="Product Name" v-model="orderDetail.productName" dense class="font-weight-bold" 
-                  prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct"></v-text-field>
+                  prepend-icon="mdi-open-in-app"  @click:prepend="handleClickProduct" :readonly="true"></v-text-field>
               </v-col>
           </v-row>
           <v-row >
               <v-col cols="4">
-                  <v-text-field label="Quantity Ordered" v-model="orderDetail.quantityOrdered" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Quantity Ordered" v-model="orderDetail.quantityOrdered" dense class="font-weight-bold"
+                  :readonly="true"></v-text-field>
               </v-col>
               <v-col cols="4">
-                  <v-text-field label="Price Each" v-model="getPriceEach" dense class="font-weight-bold"></v-text-field>
+                  <v-text-field label="Price Each" v-model="getPriceEach" dense class="font-weight-bold"
+                  :readonly="true"></v-text-field>
               </v-col>
             </v-row>
         </v-card-text>
