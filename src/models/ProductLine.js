@@ -1,7 +1,7 @@
 export default class ProductLine {
-    productLine = ''; 
-    textDescription = ''; 
-    htmlDescription = ''; 
-    image = '';     
+    productLine = '';
+    textDescription = '';
+    htmlDescription = '';
+    image = '';
 }
 

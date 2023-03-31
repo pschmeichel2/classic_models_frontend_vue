@@ -1,11 +1,11 @@
 export default class Office {
     officeCode = '';
-    city = ''; 
-    phone = ''; 
+    city = '';
+    phone = '';
     addressLine1 = '';
     addressLine2 = '';
-    state = ''; 
-    country = ''; 
-    postalCode = ''; 
-    territory = ''; 
+    state = '';
+    country = '';
+    postalCode = '';
+    territory = '';
 }

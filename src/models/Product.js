@@ -1,13 +1,13 @@
 export default class Product {
-    productCode = ''; 
-    productName = ''; 
-    productLine = ''; 
+    productCode = '';
+    productName = '';
+    productLine = '';
     productScale = '';
-    productVendor = ''; 
+    productVendor = '';
     productDescription = '';
-    quantityInStock = 0; 
-    buyPrice = 0; 
-    MSRP = 0;         
+    quantityInStock = 0;
+    buyPrice = 0;
+    MSRP = 0;
 }
 
 

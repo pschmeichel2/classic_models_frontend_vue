@@ -1,9 +1,8 @@
 <template>
-  <div class="home">  
-    <v-card max-width="1000px"  >
+  <div class="home">
+    <v-card max-width="1000px">
       <v-row class="text-center">
-        <v-img alt="Vue logo" contain max-height="700" max-width="1000"      
-          style="opacity: 0.5;"
+        <v-img alt="Vue logo" contain max-height="700" max-width="1000" style="opacity: 0.5;"
           src="../assets/1950-Olds-88-Holiday-Coupe.jpg">
         </v-img>
       </v-row>
@@ -16,7 +15,7 @@
           </v-col>
         </v-row>
       </v-container>
-    </v-card>  
+    </v-card>
 
   </div>
 </template>
@@ -29,9 +28,9 @@ export default {
   name: 'HomeView',
   title: 'Classic Models - Home',
 
-  created () {
+  created() {
     document.title = 'Classic Models';
   },
-  
+
 }
 </script>

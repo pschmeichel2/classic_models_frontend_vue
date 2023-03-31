@@ -31,23 +31,23 @@ Vue.use(VueRouter)
 
 const routes = [
   { path: '/', name: 'home', component: HomeView },
-  
+
   { path: '/customers', name: 'customers', component: CustomersView },
-  { path: '/employees', name: 'employees', component: EmployeesView },  
-  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },  
+  { path: '/employees', name: 'employees', component: EmployeesView },
+  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },
   { path: '/payments', name: 'payments', component: PaymentsView },
   { path: '/products', name: 'products', component: ProductsView },
   { path: '/productLines', name: 'productLines', component: ProductLinesView },
 
   { path: '/customers/:customerNumber', name: 'customerView', component: CustomerView, props: true },
-  { path: '/employees/:employeeNumber', name: 'employeeView', component: EmployeeView, props: true },  
-  { path: '/orderDetails/:orderNumber/:productCode', name: 'orderDetailView', component: OrderDetailView, props: true },  
+  { path: '/employees/:employeeNumber', name: 'employeeView', component: EmployeeView, props: true },
+  { path: '/orderDetails/:orderNumber/:productCode', name: 'orderDetailView', component: OrderDetailView, props: true },
   { path: '/payments/:customerNumber/:checkNumber', name: 'paymentView', component: PaymentView, props: true },
   { path: '/products/:productCode', name: 'productView', component: ProductView, props: true },
   { path: '/productLines/:productLine', name: 'productLineView', component: ProductLineView, props: true },
 
   { path: '/orders', name: 'orders', component: OrdersView },
-  { path: '/orders/new', name: 'orderNewView', component: OrderEditView, props: true  },
+  { path: '/orders/new', name: 'orderNewView', component: OrderEditView, props: true },
   { path: '/orders/:orderNumber(\\d+)/edit', name: 'orderEditView', component: OrderEditView, props: true },
   { path: '/orders/:orderNumber(\\d+)', name: 'orderView', component: OrderView, props: true },
 

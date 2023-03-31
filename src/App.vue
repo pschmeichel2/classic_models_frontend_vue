@@ -1,42 +1,39 @@
 <template>
   <div id="app">
     <v-app>
-    <v-navigation-drawer v-model="drawer" app>
+      <v-navigation-drawer v-model="drawer" app>
 
-      <v-sheet color="grey lighten-4" class="pa-4">
-        <v-avatar class="mb-4" color="grey darken-1" size="64">
-          <v-img                  
-              alt="Avatar"
-              :src="require('@/assets/Leslie_Thomson.jpg')"
-                ></v-img>
-          <!--<v-icon dark>mdi-account-circle</v-icon>-->
-        </v-avatar>
-        <div>Leslie Thompson</div>
-      </v-sheet>
+        <v-sheet color="grey lighten-4" class="pa-4">
+          <v-avatar class="mb-4" color="grey darken-1" size="64">
+            <v-img alt="Avatar" :src="require('@/assets/Leslie_Thomson.jpg')"></v-img>
+            <!--<v-icon dark>mdi-account-circle</v-icon>-->
+          </v-avatar>
+          <div>Leslie Thompson</div>
+        </v-sheet>
 
-      <v-divider></v-divider>
-      <v-card class="mx-auto" max-width="500">
-      <v-list>
-        <v-list-item v-for="[to, text, icon] in links" :key="to" link  :to="to">
-          <v-list-item-icon>
-              <v-icon>{{icon}}</v-icon>
-          </v-list-item-icon> 
-          <v-list-item-content>{{ text }}</v-list-item-content>            
-        </v-list-item>
-      </v-list>
-      </v-card>
-    </v-navigation-drawer>
-    
-    <v-app-bar app>
-      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+        <v-divider></v-divider>
+        <v-card class="mx-auto" max-width="500">
+          <v-list>
+            <v-list-item v-for="[to, text, icon] in links" :key="to" link :to="to">
+              <v-list-item-icon>
+                <v-icon>{{ icon }}</v-icon>
+              </v-list-item-icon>
+              <v-list-item-content>{{ text }}</v-list-item-content>
+            </v-list-item>
+          </v-list>
+        </v-card>
+      </v-navigation-drawer>
 
-      <v-toolbar-title>Classic Models</v-toolbar-title>
-    </v-app-bar>
+      <v-app-bar app>
+        <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
 
-    <v-main>
-      <router-view/>
-    </v-main>
-    </v-app>    
+        <v-toolbar-title>Classic Models</v-toolbar-title>
+      </v-app-bar>
+
+      <v-main>
+        <router-view />
+      </v-main>
+    </v-app>
   </div>
 </template>
 
@@ -64,21 +61,21 @@ nav {
 </style>
 
 <script>
-  export default {
-    data: () => ({ 
-      drawer: null,
-      links: [
-        ['/', 'Home', 'mdi-home'],
-        ['/offices', 'Offices', 'mdi-office-building'],        
-        ['/employees', 'Employees', 'mdi-account-tie'],    
-        ['/customers', 'Customers', 'mdi-account'],
-        ['/orders', 'Orders', 'mdi-cart-outline'],                               
-        ['/orderDetails', 'Order Details', 'mdi-send'],                        
-        ['/payments', 'Payments', 'mdi-credit-card-multiple-outline'],                
-        ['/productLines', 'Product Lines', 'mdi-multicast'],        
-        ['/products', 'Products', 'mdi-taxi'],        
-        
-      ],
-     }),
-  }
+export default {
+  data: () => ({
+    drawer: null,
+    links: [
+      ['/', 'Home', 'mdi-home'],
+      ['/offices', 'Offices', 'mdi-office-building'],
+      ['/employees', 'Employees', 'mdi-account-tie'],
+      ['/customers', 'Customers', 'mdi-account'],
+      ['/orders', 'Orders', 'mdi-cart-outline'],
+      ['/orderDetails', 'Order Details', 'mdi-send'],
+      ['/payments', 'Payments', 'mdi-credit-card-multiple-outline'],
+      ['/productLines', 'Product Lines', 'mdi-multicast'],
+      ['/products', 'Products', 'mdi-taxi'],
+
+    ],
+  }),
+}
 </script>
