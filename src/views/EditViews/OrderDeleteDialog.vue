@@ -69,7 +69,7 @@ export default {
               .then(response => {
                 console.log('response', response);
                 vm.show = false;
-                router.push({path: `/offices`});
+                router.push({path: `/orders`});
               })
               .catch(error => {                
                 console.error('There was an error!', error, error.response.data.message);
