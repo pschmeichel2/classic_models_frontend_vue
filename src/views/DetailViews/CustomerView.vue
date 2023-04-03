@@ -112,6 +112,22 @@
                                 <span class="font-weight-bold">{{ item.status }}</span>
                             </template>
 
+                            <template v-slot:item.totalOrderPrice="{ item }">
+                                <span>{{ formatCurrency(item.totalOrderPrice) }}</span>
+                            </template>
+                            <template v-slot:item.recommendedOrderPrice="{ item }">
+                                <span>{{ formatCurrency(item.recommendedOrderPrice) }}</span>
+                            </template>
+                            <template v-slot:item.buyPrice="{ item }">
+                                <span>{{ formatCurrency(item.buyPrice) }}</span>
+                            </template>
+                            <template v-slot:item.discountPercent="{ item }">
+                                <span>{{ getDiscountPercent(item) }}</span>
+                            </template>
+                            <template v-slot:item.profitPercent="{ item }">
+                                <span>{{ getProfitPercent(item) }}</span>
+                            </template>
+
                         </v-data-table>
                     </v-card>
                 </v-tab-item>
@@ -130,9 +146,11 @@
                             <template v-slot:item.checkNumber="{ item }">
                                 <span class="font-weight-bold">{{ item.checkNumber }}</span>
                             </template>
-
                             <template v-slot:item.paymentDate="{ item }">
                                 <span>{{ formatDate(item.paymentDate) }}</span>
+                            </template>
+                            <template v-slot:item.amount="{ item }">
+                                <span>{{ formatCurrency(item.amount) }}</span>
                             </template>
 
                         </v-data-table>
@@ -176,9 +194,14 @@ export default {
                 { text: "Order Date", value: "orderDate", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Required Date", value: "requiredDate", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Shipped Date", value: "shippedDate", width: '5px', align: 'right', class: "blue lighten-5" },
-                { text: "Status", value: "status", width: '5px', class: "blue lighten-5" },
-                { text: "Comments", value: "comments", width: '500px', class: "blue lighten-5" },
+                { text: "Status", value: "status", width: '5px', class: "blue lighten-5" },                
                 //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
+                { text: "Sell Price", value: "totalOrderPrice", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Recommended Price", value: "recommendedOrderPrice", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Purchase Price", value: "buyPrice", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Discount %", value: "discountPercent", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Profit %", value: "profitPercent", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Comments", value: "comments", width: '500px', class: "blue lighten-5" },
             ],
 
             paymentHeaders: [
@@ -230,7 +253,7 @@ export default {
         },
 
         getOrders(customerNumber) {
-            axios(this.endpoint + customerNumber + '/orders')
+            axios(this.endpoint + customerNumber + '/ordertotals')
                 .then(response => {
                     this.orders = response.data;
                 })
@@ -280,6 +303,23 @@ export default {
             this.showSnackbar = true;
             this.snackbarText = 'not implemented';
         },
+
+        formatCurrency(value) {
+            return (value).toFixed(2);
+        },
+
+        getDiscountPercent(item) {
+            const discount = item.recommendedOrderPrice - item.totalOrderPrice;
+            const discountPercent = discount / item.recommendedOrderPrice * 100;
+            return this.formatCurrency(discountPercent);
+        },
+
+        getProfitPercent(item) {
+            const profit = item.totalOrderPrice - item.buyPrice;
+            const profitPercent = profit / item.buyPrice * 100;
+            return this.formatCurrency(profitPercent);
+        },
+
 
         formatDate(date) {
             var d = new Date(date),
