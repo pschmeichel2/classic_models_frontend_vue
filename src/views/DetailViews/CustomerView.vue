@@ -88,6 +88,7 @@
             <v-tabs>
                 <v-tab>Orders</v-tab>
                 <v-tab>Payments</v-tab>
+                <v-tab>Balance</v-tab>
 
                 <v-tab-item :key="0">
                     <v-card flat>
@@ -157,6 +158,39 @@
                     </v-card>
                 </v-tab-item>
 
+
+                <v-tab-item :key="2">
+                    <v-card flat>
+                        <v-card-title class="grey darken-1 ">
+                            <v-row class="ma-0">
+                                <span class="text-5 white--text">Balance</span>
+                            </v-row>
+                        </v-card-title>
+
+                        <v-data-table :items="balanceLines" :headers="balanceHeaders" item-key="id" dense
+                            class="elevation-3" :items-per-page="15">
+                            
+                            <template v-slot:item="i">
+                                <tr>
+                                    <td :class="'text-left'">{{formatDate(i.item.transactionDate)}}</td>
+
+                                    <td :class="{                                        
+                                        'text-left font-weight-regular green--text': i.item.status.trim() === 'Payment',                                        
+                                        'text-left font-weight-regular': i.item.status !== 'Payment' && i.item.status !== 'Cancelled' ,
+                                        'text-left font-italic font-weight-bold': i.item.status === 'Cancelled',
+                                        }">{{i.item.status}}</td>
+
+                                    <td :class="{
+                                        'text-right red--text': i.item.amount < 0,
+                                        'text-right green--text': i.item.amount > 0,
+                                        }">{{i.item.amount}}</td>
+                                </tr>
+                            </template>
+
+                        </v-data-table>
+                    </v-card>
+                </v-tab-item>
+
             </v-tabs>
 
             <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout" light centered multi-line>
@@ -184,6 +218,7 @@ export default {
             endpoint: 'http://localhost:8080/api/customers/',
             orders: [],
             payments: [],
+            balanceLines: [],
 
             showSnackbar: false,
             snackbarText: '',
@@ -194,11 +229,11 @@ export default {
                 { text: "Order Date", value: "orderDate", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Required Date", value: "requiredDate", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Shipped Date", value: "shippedDate", width: '5px', align: 'right', class: "blue lighten-5" },
-                { text: "Status", value: "status", width: '5px', class: "blue lighten-5" },                
+                { text: "Status", value: "status", width: '5px', class: "blue lighten-5" },
                 //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
-                { text: "Sell Price", value: "totalOrderPrice", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Order Total", value: "totalOrderPrice", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Recommended Price", value: "recommendedOrderPrice", width: '5px', align: 'right', class: "blue lighten-5" },
-                { text: "Purchase Price", value: "buyPrice", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Purchasing Price", value: "buyPrice", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Discount %", value: "discountPercent", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Profit %", value: "profitPercent", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Comments", value: "comments", width: '500px', class: "blue lighten-5" },
@@ -210,6 +245,14 @@ export default {
                 { text: "Payment Date", value: "paymentDate", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Amount", value: "amount", width: '5px', align: 'right', class: "blue lighten-5" },
             ],
+
+            balanceHeaders: [
+                //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
+                { text: "Transaction Date", value: "transactionDate", width: '5px', class: "blue lighten-5" },
+                { text: "Status/Type", value: "status", width: '5px', class: "blue lighten-5" },
+                { text: "Amount", value: "amount", width: '5px', align: 'right', class: "blue lighten-5" },
+            ],
+
         }
     },
 
@@ -227,6 +270,7 @@ export default {
         this.getCustomer(this.customerNumber);
         this.getOrders(this.customerNumber);
         this.getPayments(this.customerNumber);
+        this.getCustomerBalanceLines(this.customerNumber);
     },
 
     computed: {
@@ -266,6 +310,16 @@ export default {
             axios(this.endpoint + customerNumber + '/payments')
                 .then(response => {
                     this.payments = response.data;
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        },
+
+        getCustomerBalanceLines(customerNumber) {
+            axios(this.endpoint + customerNumber + '/balance')
+                .then(response => {
+                    this.balanceLines = response.data;
                 })
                 .catch(error => {
                     console.log(error);
