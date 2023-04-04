@@ -169,21 +169,28 @@
 
                         <v-data-table :items="balanceLines" :headers="balanceHeaders" item-key="id" dense
                             class="elevation-3" :items-per-page="15">
-                            
+
                             <template v-slot:item="i">
                                 <tr>
-                                    <td :class="'text-left'">{{formatDate(i.item.transactionDate)}}</td>
+                                    <td :class="'text-left'">{{ formatDate(i.item.transactionDate) }}</td>
 
-                                    <td :class="{                                        
-                                        'text-left font-weight-regular green--text': i.item.status.trim() === 'Payment',                                        
-                                        'text-left font-weight-regular': i.item.status !== 'Payment' && i.item.status !== 'Cancelled' ,
-                                        'text-left font-italic font-weight-bold': i.item.status === 'Cancelled',
-                                        }">{{i.item.status}}</td>
+                                    <td :class="{
+                                        'text-left font-weight-regular green--text': i.item.status.trim() === 'Payment',
+                                        'text-left font-italic font-weight-bold': i.item.status !== 'Payment' && i.item.status !== 'Shipped',
+                                        'text-left font-weight-regular': i.item.status === 'Shipped',
+                                    }">{{ i.item.status }}</td>
 
                                     <td :class="{
                                         'text-right red--text': i.item.amount < 0,
                                         'text-right green--text': i.item.amount > 0,
-                                        }">{{i.item.amount}}</td>
+                                        'text-right font-weight-regular': i.item.amount === 0,
+                                    }">{{ formatCurrency(i.item.amount) }}</td>
+
+                                    <td :class="{
+                                        'text-right red--text': i.item.balance < 0,
+                                        'text-right green--text': i.item.balance >= 0,                                        
+                                    }">{{ formatCurrency(i.item.balance) }}</td>
+
                                 </tr>
                             </template>
 
@@ -251,6 +258,7 @@ export default {
                 { text: "Transaction Date", value: "transactionDate", width: '5px', class: "blue lighten-5" },
                 { text: "Status/Type", value: "status", width: '5px', class: "blue lighten-5" },
                 { text: "Amount", value: "amount", width: '5px', align: 'right', class: "blue lighten-5" },
+                { text: "Balance", value: "balance", width: '5px', align: 'right', class: "blue lighten-5" },
             ],
 
         }
