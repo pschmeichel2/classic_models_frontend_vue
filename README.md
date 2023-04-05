@@ -44,3 +44,4 @@ This frontend uses:
 
 ![Office detail view](classic_models_offices.png)
 ![Product Search from Order Entry](Product_Search_from_Order_Entry.png)
+![Customer Balance](Customer_Balance.png)
