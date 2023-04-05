@@ -32,7 +32,8 @@ This frontend uses:
 * For production: run "npm run build"
 
 ## News
-* First version of Order Entry
+* Order Entry
+* Customer Balance
 
 ## Todos
 * Insert, Update, Delete is only implemented for Offices.
