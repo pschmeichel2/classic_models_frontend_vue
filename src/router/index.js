@@ -1,6 +1,6 @@
-import Vue from 'vue'
-import VueRouter from 'vue-router'
-
+import Vue from 'vue';
+import VueRouter from 'vue-router';
+import VueApexCharts from 'vue-apexcharts';
 
 import HomeView from '../views/HomeView.vue';
 

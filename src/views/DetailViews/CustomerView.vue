@@ -86,11 +86,89 @@
 
         <v-card max-width="1000px">
             <v-tabs>
+                <v-tab>Balance</v-tab>
+                <v-tab>Purchase Chart</v-tab>
+                <v-tab>Purchases</v-tab>
                 <v-tab>Orders</v-tab>
                 <v-tab>Payments</v-tab>
-                <v-tab>Balance</v-tab>
+
 
                 <v-tab-item :key="0">
+                    <v-card flat>
+                        <v-card-title class="grey darken-1 ">
+                            <v-row class="ma-0">
+                                <span class="text-5 white--text">Balance</span>
+                            </v-row>
+                        </v-card-title>
+
+                        <v-data-table :items="balanceLines" :headers="balanceHeaders" item-key="id" dense
+                            class="elevation-3" :items-per-page="15">
+
+                            <template v-slot:item="i">
+                                <tr>
+                                    <td :class="'text-left'">{{ formatDate(i.item.transactionDate) }}</td>
+
+                                    <td :class="{
+                                        'text-left font-weight-regular green--text': i.item.status.trim() === 'Payment',
+                                        'text-left font-italic font-weight-bold': i.item.status !== 'Payment' && i.item.status !== 'Shipped',
+                                        'text-left font-weight-regular': i.item.status === 'Shipped',
+                                    }">{{ i.item.status }}</td>
+
+                                    <td :class="{
+                                        'text-right red--text': i.item.amount < 0,
+                                        'text-right green--text': i.item.amount > 0,
+                                        'text-right font-weight-regular': i.item.amount === 0,
+                                    }">{{ formatCurrency(i.item.amount) }}</td>
+
+                                    <td :class="{
+                                        'text-right red--text': i.item.balance < 0,
+                                        'text-right green--text': i.item.balance >= 0,
+                                    }">{{ formatCurrency(i.item.balance) }}</td>
+
+                                </tr>
+                            </template>
+
+                        </v-data-table>
+                    </v-card>
+                </v-tab-item>
+
+                <v-tab-item :key="1">
+                    <v-card flat>
+                        <v-card-title class="grey darken-1 ">
+                            <v-row class="ma-0">
+                                <span class="text-5 white--text">Purchase Chart</span>
+                            </v-row>
+                        </v-card-title>
+                        <div id="chart">
+                            <apexchart type="treemap" height="500" :options="chartOptions" :series="series"></apexchart>
+                        </div>
+                    </v-card>
+                </v-tab-item>
+
+                <v-tab-item :key="2">
+                    <v-card flat>
+                        <v-card-title class="grey darken-1 ">
+                            <v-row class="ma-0">
+                                <span class="text-5 white--text">Purchases</span>
+                            </v-row>
+                        </v-card-title>
+
+                        <v-data-table :items="purchases" :headers="purchaseHeaders" item-key="id" dense class="elevation-3"
+                            :items-per-page="15">
+
+                            <template v-slot:item.total="{ item }">
+                                <span>{{ formatCurrency(item.total) }}</span>
+                            </template>
+                            <template v-slot:item.orderDate="{ item }">
+                                <span>{{ formatDate(item.orderDate) }}</span>
+                            </template>
+
+                        </v-data-table>
+                    </v-card>
+                </v-tab-item>
+
+
+                <v-tab-item :key="3">
                     <v-card flat>
                         <v-card-title class="grey darken-1 ">
                             <v-row class="ma-0">
@@ -133,7 +211,7 @@
                     </v-card>
                 </v-tab-item>
 
-                <v-tab-item :key="1">
+                <v-tab-item :key="4">
                     <v-card flat>
                         <v-card-title class="grey darken-1 ">
                             <v-row class="ma-0">
@@ -159,44 +237,6 @@
                 </v-tab-item>
 
 
-                <v-tab-item :key="2">
-                    <v-card flat>
-                        <v-card-title class="grey darken-1 ">
-                            <v-row class="ma-0">
-                                <span class="text-5 white--text">Balance</span>
-                            </v-row>
-                        </v-card-title>
-
-                        <v-data-table :items="balanceLines" :headers="balanceHeaders" item-key="id" dense
-                            class="elevation-3" :items-per-page="15">
-
-                            <template v-slot:item="i">
-                                <tr>
-                                    <td :class="'text-left'">{{ formatDate(i.item.transactionDate) }}</td>
-
-                                    <td :class="{
-                                        'text-left font-weight-regular green--text': i.item.status.trim() === 'Payment',
-                                        'text-left font-italic font-weight-bold': i.item.status !== 'Payment' && i.item.status !== 'Shipped',
-                                        'text-left font-weight-regular': i.item.status === 'Shipped',
-                                    }">{{ i.item.status }}</td>
-
-                                    <td :class="{
-                                        'text-right red--text': i.item.amount < 0,
-                                        'text-right green--text': i.item.amount > 0,
-                                        'text-right font-weight-regular': i.item.amount === 0,
-                                    }">{{ formatCurrency(i.item.amount) }}</td>
-
-                                    <td :class="{
-                                        'text-right red--text': i.item.balance < 0,
-                                        'text-right green--text': i.item.balance >= 0,                                        
-                                    }">{{ formatCurrency(i.item.balance) }}</td>
-
-                                </tr>
-                            </template>
-
-                        </v-data-table>
-                    </v-card>
-                </v-tab-item>
 
             </v-tabs>
 
@@ -215,10 +255,15 @@
 import axios from 'axios';
 import router from '@/router';
 import Customer from '@/models/Customer';
+import VueApexCharts from 'vue-apexcharts';
 
 export default {
     name: 'CustomerView',
     props: ['customerNumber'],
+    components: {
+        apexchart: VueApexCharts,
+    },
+
     data() {
         return {
             customer: new Customer(),
@@ -226,6 +271,8 @@ export default {
             orders: [],
             payments: [],
             balanceLines: [],
+            purchases: [],
+            purchaseAggregates: [],
 
             showSnackbar: false,
             snackbarText: '',
@@ -254,150 +301,220 @@ export default {
             ],
 
             balanceHeaders: [
-                //{text: "Customer Number", value: "customerNumber", width: '5px',  class:"blue lighten-5"},
                 { text: "Transaction Date", value: "transactionDate", width: '5px', class: "blue lighten-5" },
                 { text: "Status/Type", value: "status", width: '5px', class: "blue lighten-5" },
                 { text: "Amount", value: "amount", width: '5px', align: 'right', class: "blue lighten-5" },
                 { text: "Balance", value: "balance", width: '5px', align: 'right', class: "blue lighten-5" },
             ],
 
-        }
-    },
+            purchaseHeaders: [
+                //{ text: "Order/ProductCode", value: "id", width: '50px', class: "blue lighten-5" },
+                { text: "Order Date", value: "orderDate", width: '50px', class: "blue lighten-5" },
+                { text: "Product Line", value: "productLine", width: '100px', class: "blue lighten-5" },
+                { text: "Prooduct Code", value: "productCode", width: '50px', class: "blue lighten-5" },
+                { text: "Product Name", value: "productName", width: '250px', class: "blue lighten-5" },
+                { text: "Price", value: "total", width: '50px', align: 'right', class: "blue lighten-5" },                
+            ],
 
-    watch: {
-        '$route'() {
-            this.getCustomer(this.customerNumber);
-            this.getOrders(this.customerNumber);
-            this.getPayments(this.customerNumber);
-        }
-    },
 
-    created() {
-        this.showSnackbar = false;
-        this.snackbarText = '';
+            series: [],
+
+
+            chartOptions: {
+                legend: {
+                    show: true
+                },
+                chart: {
+                    height: 750,
+                    type: 'treemap'
+                },
+                title: {
+                    text: 'Purchases (Amount)',
+                    align: 'center'
+                }
+            },
+
+
+        }
+},
+
+watch: {
+    '$route'() {
         this.getCustomer(this.customerNumber);
         this.getOrders(this.customerNumber);
         this.getPayments(this.customerNumber);
         this.getCustomerBalanceLines(this.customerNumber);
+        this.getPurchases(this.customerNumber);
+    }
+},
+
+created() {
+    this.showSnackbar = false;
+    this.snackbarText = '';
+    this.getCustomer(this.customerNumber);
+    this.getOrders(this.customerNumber);
+    this.getPayments(this.customerNumber);
+    this.getCustomerBalanceLines(this.customerNumber);
+    this.getPurchases(this.customerNumber);
+    this.getPurchaseAggregates(this.customerNumber);
+},
+
+computed: {
+
+    getSalesRep() {
+        if (this.customer.salesRepEmployeeName === null) {
+            return "n/a";
+        }
+        return `${this.customer.salesRepEmployeeName} (${this.customer.salesRepEmployeeNumber})`;
     },
 
-    computed: {
+},
 
-        getSalesRep() {
-            if (this.customer.salesRepEmployeeName === null) {
-                return "n/a";
+methods: {
+
+    getCustomer(customerNumber) {
+        axios(this.endpoint + customerNumber)
+            .then(response => {
+                this.customer = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+    getOrders(customerNumber) {
+        axios(this.endpoint + customerNumber + '/ordertotals')
+            .then(response => {
+                this.orders = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+    getPayments(customerNumber) {
+        axios(this.endpoint + customerNumber + '/payments')
+            .then(response => {
+                this.payments = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+    getCustomerBalanceLines(customerNumber) {
+        axios(this.endpoint + customerNumber + '/balance')
+            .then(response => {
+                this.balanceLines = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+    getPurchases(customerNumber) {
+        axios(this.endpoint + customerNumber + '/purchases')
+            .then(response => {
+                this.purchases = response.data;
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+    getPurchaseAggregates(customerNumber) {
+        axios(this.endpoint + customerNumber + '/purchaseAggregates')
+            .then(response => {
+                this.purchaseAggregates = response.data;
+                //this.series = this.getPurchasesForTreemap();
+                this.getPurchasesForTreemap();
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    },
+
+
+    getPurchasesForTreemap() {
+        var productLines = [];
+        var series = [];
+        var productLine = {name:'', data:[]};
+        for( const purchase of this.purchaseAggregates ) {
+            if( productLines.indexOf(purchase.productLine) === -1 ) {
+                productLines.push(purchase.productLine);
+                productLine = {name: purchase.productLine, data: []};
+                series.push(productLine);                
             }
-            return `${this.customer.salesRepEmployeeName} (${this.customer.salesRepEmployeeNumber})`;
-        },
-
+            productLine.data.push({x:purchase.productName, y:purchase.total});
+        }        
+        console.log(series);
+        this.series = series;
     },
 
-    methods: {
-
-        getCustomer(customerNumber) {
-            axios(this.endpoint + customerNumber)
-                .then(response => {
-                    this.customer = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-
-        getOrders(customerNumber) {
-            axios(this.endpoint + customerNumber + '/ordertotals')
-                .then(response => {
-                    this.orders = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-
-        getPayments(customerNumber) {
-            axios(this.endpoint + customerNumber + '/payments')
-                .then(response => {
-                    this.payments = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-
-        getCustomerBalanceLines(customerNumber) {
-            axios(this.endpoint + customerNumber + '/balance')
-                .then(response => {
-                    this.balanceLines = response.data;
-                })
-                .catch(error => {
-                    console.log(error);
-                });
-        },
-
-        handleClickOrder(row) {
-            console.log(row);
-            router.push({ path: `/orders/${row.orderNumber}` });
-        },
-
-        handleClickPayment(row) {
-            console.log(row);
-            router.push({ path: `/payments/${row.customerNumber}/${row.checkNumber}` });
-        },
-
-        handleClickSalesRep() {
-            router.push({ path: `/employees/${this.customer.salesRepEmployeeNumber}` });
-        },
-
-        handleClickAdd() {
-            console.log('handleClickAdd');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
-        },
-
-        handleClickEdit() {
-            console.log('handleClickEdit');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
-        },
-
-        handleClickDelete() {
-            console.log('handleClickDelete');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
-        },
-
-        formatCurrency(value) {
-            return (value).toFixed(2);
-        },
-
-        getDiscountPercent(item) {
-            const discount = item.recommendedOrderPrice - item.totalOrderPrice;
-            const discountPercent = discount / item.recommendedOrderPrice * 100;
-            return this.formatCurrency(discountPercent);
-        },
-
-        getProfitPercent(item) {
-            const profit = item.totalOrderPrice - item.buyPrice;
-            const profitPercent = profit / item.buyPrice * 100;
-            return this.formatCurrency(profitPercent);
-        },
-
-
-        formatDate(date) {
-            var d = new Date(date),
-                month = '' + (d.getMonth() + 1),
-                day = '' + d.getDate(),
-                year = d.getFullYear();
-
-            if (month.length < 2)
-                month = '0' + month;
-            if (day.length < 2)
-                day = '0' + day;
-
-            return [day, month, year].join('.');
-        },
-
+    handleClickOrder(row) {
+        console.log(row);
+        router.push({ path: `/orders/${row.orderNumber}` });
     },
+
+    handleClickPayment(row) {
+        console.log(row);
+        router.push({ path: `/payments/${row.customerNumber}/${row.checkNumber}` });
+    },
+
+    handleClickSalesRep() {
+        router.push({ path: `/employees/${this.customer.salesRepEmployeeNumber}` });
+    },
+
+    handleClickAdd() {
+        console.log('handleClickAdd');
+        this.showSnackbar = true;
+        this.snackbarText = 'not implemented';
+    },
+
+    handleClickEdit() {
+        console.log('handleClickEdit');
+        this.showSnackbar = true;
+        this.snackbarText = 'not implemented';
+    },
+
+    handleClickDelete() {
+        console.log('handleClickDelete');
+        this.showSnackbar = true;
+        this.snackbarText = 'not implemented';
+    },
+
+    formatCurrency(value) {
+        return (value).toFixed(2);
+    },
+
+    getDiscountPercent(item) {
+        const discount = item.recommendedOrderPrice - item.totalOrderPrice;
+        const discountPercent = discount / item.recommendedOrderPrice * 100;
+        return this.formatCurrency(discountPercent);
+    },
+
+    getProfitPercent(item) {
+        const profit = item.totalOrderPrice - item.buyPrice;
+        const profitPercent = profit / item.buyPrice * 100;
+        return this.formatCurrency(profitPercent);
+    },
+
+
+    formatDate(date) {
+        var d = new Date(date),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2)
+            month = '0' + month;
+        if (day.length < 2)
+            day = '0' + day;
+
+        return [day, month, year].join('.');
+    },
+
+},
 
 }
 </script>
