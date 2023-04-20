@@ -44,7 +44,7 @@ This frontend uses:
 
 ## Pictures
 
-![Office detail view](classic_models_offices.png)
-![Product Search from Order Entry](Product_Search_from_Order_Entry.png)
-![Customer Balance](Customer_Balance.png)
-![Customer Purchases](Customer_Purchases_Treemap.png)
+![Office detail view](./doc/classic_models_offices.png)
+![Product Search from Order Entry](./doc/Product_Search_from_Order_Entry.png)
+![Customer Balance](./doc/Customer_Balance.png)
+![Customer Purchases](./doc/Customer_Purchases_Treemap.png)
