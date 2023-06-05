@@ -6,7 +6,9 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "__start": "vue-cli-service serve --mode production",
+    "start": "npm run build"
   },
   "dependencies": {
     "apexcharts": "^3.37.3",
