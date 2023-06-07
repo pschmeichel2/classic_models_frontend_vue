@@ -35,10 +35,12 @@ Instead of *just* describing the solution, I'll explain this step by step.
    * **Solution**: Copy the `package.json` into the 'dist'-directory manually.
 * **Problem**: By default, the server executes the command specified in the "start" script of the `package.json` file. 
    * **Solution**: Update the "start" script in the package.json file to `"start": "serve"`. This ensures that the server uses the serve command with the '/var/app/current' directory as the root when starting your app.
+* **Problem**: The server should execute `npm install` to install all your node packages. Sometimes it just doesn't.
+   * **Solution**: Execute `npm install` from your post deploy hook.
 * **Problem**: The server doesn't know the `serve` command. On your development computer, you would install Vue's `serve` with `npm install -g serve`. The beanstalk server doesn't know about Vue, so it doesn`t do that.  
    * **Solution**: Execute this command in your post deploy hook.
 * **Problem**: The server *still* doesn't know the `serve` command. On your local computer, the command  `npm install -g serve` would generate a powershell script in your path named "serve.ps1". On the server, the node packages get installed, but no script "serve" (this is maybe a permissions problem).
-   * **Solution**: call the `serve` package directly: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve`.
+   * **Solution**: call the `serve` package directly from your package.json start script: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve`.
 * **Problem**: The web server is now running. You can test this by executing this script in the ssh shell, opening a second shell, and execute `curl localhost`. This should return a web page. **But**: the web server isn't reachable from outside the server.   
    * **Solution**: nginx expects the webserver to serve on port 8080. So we'll have to change the `serve`: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve -l 8080`
 
