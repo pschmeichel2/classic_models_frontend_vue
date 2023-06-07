@@ -50,6 +50,7 @@ Instead of *just* describing the solution, I'll explain this step by step.
 
 ## Create the Environment
 * In the Elastic Beanstalk Console, click on "Create environment" and fill out the necessary forms.
+* TODO
 
 
 ## Testing and Troubleshooting
@@ -94,3 +95,5 @@ If you encounter any issues, here are some troubleshooting steps you can follow:
    - `service nginx status`: Print the status of the reverse proxy server [nginx](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/java-se-nginx.html).
    - `sudo -Hiu webapp env`: Print the environment variables seen by the user 'webapp'.
 
+## Conclusion
+In summary, the provided approach may not be considered highly professional or robust when dealing with system changes. However, it can still serve the purpose adequately without encountering significant issues.
