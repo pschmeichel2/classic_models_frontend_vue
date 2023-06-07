@@ -64,8 +64,18 @@ When working with a Vue app generated using Vue CLI, there are a few steps you n
 
 ## Create the Environment
 * In the Elastic Beanstalk Console, click on "Create environment" and fill out the necessary forms.
-* TODO
-
+* Application name: (enter something)
+* Platform: Node.js
+* Application code: Upload your code - Local File - Choose File
+   * select the file with your zipped dist-directory.
+* Next
+* VPC: select the same VPC your backend is running on
+* Instance subnets: eu-central-1a (Frankfurt)
+* Database: no
+* Choose database subnets: eu-central-1a (probably not necessary)
+* EC2 Security groups: default
+* Next
+* Submit
 
 ## Testing and Troubleshooting
 
