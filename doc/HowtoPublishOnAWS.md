@@ -36,7 +36,7 @@ To get started, create a free AWS account by visiting the [AWS Free Tier](https:
 
 #### **How to Make This Work with a Vue App Generated with Vue CLI?**
 
-When working with a Vue app generated using Vue CLI, there are a few steps you need to follow to ensure it works correctly with AWS Elastic Beanstalk. Here's a step-by-step guide:
+When working with a Vue app [generated using Vue CLI](https://cli.vuejs.org/guide/creating-a-project.html), there are a few steps you need to follow to ensure it works correctly with AWS Elastic Beanstalk. Here's a step-by-step guide:
 
 1. **Problem**: Vue CLI doesn't generate an `app.js`, `server.js`, or a `package.json` file in the `dist` directory.
    - **Solution**: Manually copy the `package.json` file into the `dist` directory. 
