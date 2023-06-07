@@ -34,7 +34,7 @@ Instead of *just* describing the solution, I'll explain this step by step.
 * **Problem**: [Vue CLI](https://cli.vuejs.org/guide/creating-a-project.html) doesn't generate an app.js, server.js, or a package.json in the 'dist'-directory.
    * **Solution**: Copy the `package.json` into the 'dist'-directory manually.
 * **Problem**: By default, the server executes the command specified in the "start" script of the `package.json` file. 
-   * **Solution**: Update the "start" script in the package.json file to `"start": "serve -s dist"`. This ensures that the server uses the serve command with the dist directory as the root when starting your app.
+   * **Solution**: Update the "start" script in the package.json file to `"start": "serve"`. This ensures that the server uses the serve command with the '/var/app/current' directory as the root when starting your app.
 * **Problem**: The server doesn't know the `serve` command. On your development computer, you would install Vue's `serve` with `npm install -g serve`. The beanstalk server doesn't know about Vue, so it doesn`t do that.  
    * **Solution**: Execute this command in your post deploy hook.
 * **Problem**: The server *still* doesn't know the `serve` command. On your local computer, the command  `npm install -g serve` would generate a powershell script in your path named "serve.ps1". On the server, the node packages get installed, but no script "serve" (this is maybe a permissions problem).
