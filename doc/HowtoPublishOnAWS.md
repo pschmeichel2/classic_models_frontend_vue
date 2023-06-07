@@ -103,6 +103,7 @@ If you encounter any issues, here are some troubleshooting steps you can follow:
    - Ensure that the "EB CLI" is installed by running the command `pip3 install awsebcli`.
    - Set up SSH keys by following the instructions provided in this [guide](https://bobcares.com/blog/connect-elastic-beanstalk-instance-via-ssh/).
    - Set up SSH access to your server using the command `eb ssh xxx-env --setup`.
+   - If you're getting an error "Botocore Error...unable to get local issuer certificate": Switch off ZScaler.
 
 #### Logging into the Server:
    - Once SSH access is set up, use the command `eb ssh xxx-env` to log in to your server.
