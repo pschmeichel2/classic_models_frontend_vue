@@ -35,6 +35,7 @@ This frontend uses:
 * Order Entry
 * Customer Balance
 * Customer Purchase Treemap (cute graphics)
+* [Readme for AWS Deployment](./doc/HowtoPublishOnAWS.md)
 
 ## Todos
 * Insert, Update, Delete is only implemented for Offices.
