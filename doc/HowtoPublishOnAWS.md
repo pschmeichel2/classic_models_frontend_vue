@@ -10,6 +10,10 @@ To get started, create a free AWS account by visiting the [AWS Free Tier](https:
 1. Access the [Elastic Beanstalk Console](https://console.aws.amazon.com/elasticbeanstalk/home) in your preferred region. For example, select "Frankfurt" as your region from the drop-down menu in the upper right corner.
 2. Note that selecting the region may cause the AWS Web frontend to return to the main screen. If this happens, reselect "Elastic Beanstalk Console" from the drop-down menu in the upper left corner.
 
+## Enable the frontend to access the backend
+* Use environment variables to configure the URL of the backend.
+   * Alter the Javascript to use the variables.
+   * Set the variables from the eb console.
 ## Prepare the distributable
 ### Execute the production build
 * Prepare the distributable files that you will upload to the server:
@@ -47,7 +51,7 @@ When working with a Vue app generated using Vue CLI, there are a few steps you n
    - **Solution**: Execute the `npm install -g serve` command in your post deploy hook. This will install the `serve` package locally on the server.
 
 5. **Problem**: The server still doesn't recognize the `serve` command, possibly due to permission issues or a different environment.
-   - **Solution**: Call the `serve` package directly from your `package.json` start script using the full path. For example: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve`.
+   - **Solution**: Call the `serve` package directly from your `package.json` start script using the full path. For example: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve`. You can test this from the ssh shell, and then open a second shell, to read the web page using `curl localhost`.
 
 6. **Problem**: The web server is running, but it's not reachable from outside the server.
    - **Solution**: Nginx expects the webserver to serve on port 8080. Configure the `serve` command to listen on port 8080. Update the `start` script in your `package.json` to: `/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve -l 8080`.
@@ -78,7 +82,7 @@ If you encounter any issues, here are some troubleshooting steps you can follow:
    - Download the log files from the EB console by navigating to your environment, accessing the "Logs" tab, and selecting "Request logs / full."
    - Unpack the logs and open the directory containing the unpacked logs using a tool like Microsoft Code.
 
-#### EB CLI (Elastic Beanstalk Command Line Interface)
+#### Using EB CLI (Elastic Beanstalk Command Line Interface)
    - The installation process can also be scripted using the [EB CLI](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/eb-cli3.html).
       - To use the EB CLI, you need to have Python installed on your machine.
       - Install the EB CLI by running the command `pip3 install awsebcli`.
