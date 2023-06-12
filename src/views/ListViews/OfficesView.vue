@@ -42,7 +42,7 @@ export default {
     return {
       search: '',
       offices: [],
-      endpoint: 'http://localhost:8080/api/offices',
+      endpoint: process.env.VUE_APP_BASE_URL+'/offices',
       headers: [
         { text: "Office Code", value: "officeCode", width: '5px', class: "blue lighten-5" },
         { text: "City", value: "city", width: '5px', class: "blue lighten-5" },

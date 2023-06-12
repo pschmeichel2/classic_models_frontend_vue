@@ -53,7 +53,7 @@ export default {
       snackbarText: '',
       snackbarTimeout: 2000,
 
-      endpoint: 'http://localhost:8080/api/productLines',
+      endpoint: process.env.VUE_APP_BASE_URL+'/productLines',
       headers: [
         { text: "Product Line", value: "productLine", width: '5px', class: "blue lighten-5" },
         { text: "Text Description", value: "textDescription", width: '500px', class: "blue lighten-5" },

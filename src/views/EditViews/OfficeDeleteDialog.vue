@@ -30,7 +30,7 @@ export default {
   name: 'OfficeDeleteDialog',
   data() {
     return {
-      endpoint: 'http://localhost:8080/api/offices',
+      endpoint: process.env.VUE_APP_BASE_URL+'/offices',
       show: false,
       officeCode: 0,
       city: '',

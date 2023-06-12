@@ -58,7 +58,7 @@ export default {
       snackbarText: '',
       snackbarTimeout: 2000,
 
-      endpoint: 'http://localhost:8080/api/orderDetails',
+      endpoint: process.env.VUE_APP_BASE_URL+'/orderDetails',
       headers: [
         { text: "Order Number", value: "orderNumber", width: '50px', class: "blue lighten-5" },
         { text: "OrderLine Number", value: "orderLineNumber", width: '50px', class: "blue lighten-5" },

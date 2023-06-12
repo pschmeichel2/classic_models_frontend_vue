@@ -71,8 +71,7 @@ export default {
   data() {
     return {
       orderDetail: new OrderDetail(),
-      endpoint: 'http://localhost:8080/api/orderDetails/',
-
+      endpoint: process.env.VUE_APP_BASE_URL+'/orderDetails/',
       showSnackbar: false,
       snackbarText: '',
       snackbarTimeout: 2000,

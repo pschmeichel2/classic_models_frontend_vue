@@ -57,7 +57,7 @@ export default {
     return {
       search: '',
       products: [],
-      endpoint: 'http://localhost:8080/api/products',
+      endpoint: process.env.VUE_APP_BASE_URL+'/products',
 
       showSnackbar: false,
       snackbarText: '',

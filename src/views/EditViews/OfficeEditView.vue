@@ -108,8 +108,8 @@ export default {
             addressLine1: '',
             addressLine2: '',
             countryValues: [],
-            endpoint: 'http://localhost:8080/api/offices',
-            countryEndpoint: 'http://localhost:8080/api/countries',
+            endpoint: process.env.VUE_APP_BASE_URL+'/offices',
+            countryEndpoint: process.env.VUE_APP_BASE_URL+'/countries',
             showAlert: false,
 
             showSnackbar: false,

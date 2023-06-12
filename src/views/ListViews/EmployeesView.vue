@@ -59,7 +59,7 @@ export default {
       snackbarText: '',
       snackbarTimeout: 2000,
 
-      endpoint: 'http://localhost:8080/api/employees',
+      endpoint: process.env.VUE_APP_BASE_URL+'/employees',
       headers: [
         { text: "Employee Number", value: "employeeNumber", width: '5px', class: "blue lighten-5" },
         { text: "Last Name", value: "lastName", width: '50px', class: "blue lighten-5" },

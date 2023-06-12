@@ -7,12 +7,15 @@
         </v-img>
       </v-row>
       <v-container>
-        <v-row class="text-center ">
+        <v-row class="text-center">
           <v-col class="mb-4">
             <h1 class="display-2 font-weight-bold mb-3">
               Welcome to Classic Models
             </h1>
           </v-col>
+        </v-row>
+        <v-row class="text-center">
+          <v-label>backend url={{this.base_url}}</v-label>
         </v-row>
       </v-container>
     </v-card>
@@ -27,9 +30,12 @@
 export default {
   name: 'HomeView',
   title: 'Classic Models - Home',
+  base_url: 'test',
 
   created() {
     document.title = 'Classic Models';
+    this.base_url = process.env.VUE_APP_BASE_URL;
+    //this.huhu = 'test2';
   },
 
 }

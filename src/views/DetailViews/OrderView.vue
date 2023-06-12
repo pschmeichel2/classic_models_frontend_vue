@@ -91,7 +91,7 @@ export default {
     data() {
         return {
             order: new Order(),
-            endpoint: 'http://localhost:8080/api/orders/',
+            endpoint: process.env.VUE_APP_BASE_URL+'/orders/',
             orderDetails: [],
             //sortBy: 'orderLineNumber',
             orderDetailHeaders: [

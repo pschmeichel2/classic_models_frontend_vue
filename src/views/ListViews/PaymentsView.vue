@@ -61,7 +61,7 @@ export default {
       snackbarText: '',
       snackbarTimeout: 2000,
 
-      endpoint: 'http://localhost:8080/api/payments',
+      endpoint: process.env.VUE_APP_BASE_URL+'/payments',
       headers: [
         { text: "Customer Number", value: "customerNumber", width: '5px', class: "blue lighten-5" },
         { text: "Check Number", value: "checkNumber", width: '5px', class: "blue lighten-5" },

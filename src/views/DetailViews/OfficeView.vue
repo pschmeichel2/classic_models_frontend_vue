@@ -98,7 +98,7 @@ export default {
     data() {
       return {
         office: new Office(),
-        endpoint: 'http://localhost:8080/api/offices/',      
+        endpoint: process.env.VUE_APP_BASE_URL+'/offices/',      
         employees: [],
         employeeHeaders: [
                 {text: "Employee Number", value: "employeeNumber", width: '5px',  class:"blue lighten-5"},
@@ -108,10 +108,8 @@ export default {
                 {text: "Extension", value: "extension", width: '50px',  class:"blue lighten-5"},
                 {text: "Email", value: "email", width: '50px',  class:"blue lighten-5"},                
                 {text: "Reports To", value: "reportsToName", width: '50px',  class:"blue lighten-5"},
-                //{text: "City", value: "city", width: '50px',  class:"blue lighten-5"},
-                
+                //{text: "City", value: "city", width: '50px',  class:"blue lighten-5"},                
           ],
-
       }
     },
 

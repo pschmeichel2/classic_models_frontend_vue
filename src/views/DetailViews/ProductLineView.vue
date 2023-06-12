@@ -95,7 +95,7 @@ export default {
   data() {
     return {
       productLineData: new ProductLine(),
-      endpoint: 'http://localhost:8080/api/productLines/',
+      endpoint: process.env.VUE_APP_BASE_URL+'/productLines/',
       products: [],
 
       showSnackbar: false,

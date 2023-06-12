@@ -75,8 +75,8 @@ export default {
     },
     data() {
         return {
-            endpoint: 'http://localhost:8080/api/customers',
-            productsEndpoint: 'http://localhost:8080/api/products',
+            endpoint: process.env.VUE_APP_BASE_URL+'/customers',
+            productsEndpoint: process.env.VUE_APP_BASE_URL+'/products',
             show: false,
             orderDetail: new OrderDetail(),
             product: new Product(),

@@ -32,7 +32,7 @@ export default {
   name: 'OrderDetailDeleteDialog',
   data() {
     return {
-      endpoint: 'http://localhost:8080/api/orderDetails',
+      endpoint: process.env.VUE_APP_BASE_URL+'/orderDetails',
       show: false,
       orderDetail: new OrderDetail(),
       orderNumber: 0,

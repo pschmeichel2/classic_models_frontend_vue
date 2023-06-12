@@ -113,9 +113,8 @@ export default {
     data() {
         return {
             product: new Product(),
-            endpoint: 'http://localhost:8080/api/products/',
+            endpoint: process.env.VUE_APP_BASE_URL+'/products/',
             orderDetails: [],
-
             showSnackbar: false,
             snackbarText: '',
             snackbarTimeout: 2000,

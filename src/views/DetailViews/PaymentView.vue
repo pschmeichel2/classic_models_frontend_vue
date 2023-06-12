@@ -57,8 +57,7 @@ export default {
   data() {
     return {
       payment: new Payment(),
-      endpoint: 'http://localhost:8080/api/payments/',
-
+      endpoint: process.env.VUE_APP_BASE_URL+'/payments/',
       showSnackbar: false,
       snackbarText: '',
       snackbarTimeout: 2000,

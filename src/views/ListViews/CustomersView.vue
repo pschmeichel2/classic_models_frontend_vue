@@ -65,7 +65,7 @@ export default {
       snackbarText: '',
       snackbarTimeout: 2000,
 
-      endpoint: 'http://localhost:8080/api/customers',
+      endpoint: process.env.VUE_APP_BASE_URL+'/customers',
       headers: [
         { text: "Customer Number", value: "customerNumber", width: '50px', class: "blue lighten-5" },
         { text: "Customer Name", value: "customerName", width: '150px', class: "blue lighten-5" },

@@ -88,8 +88,8 @@ export default {
     name: 'CustomerSearchDialog',
     data() {
         return {
-            endpoint: 'http://localhost:8080/api/customers',
-            countryEndpoint: 'http://localhost:8080/api/countries',
+            endpoint: process.env.VUE_APP_BASE_URL+'/customers',
+            countryEndpoint: process.env.VUE_APP_BASE_URL+'/countries',
             show: false,
             country: '',
             customerName: '',

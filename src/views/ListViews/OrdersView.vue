@@ -48,7 +48,7 @@ export default {
     return {
       search: '',
       orders: [],
-      endpoint: 'http://localhost:8080/api/orders',
+      endpoint: process.env.VUE_APP_BASE_URL+'/orders',
       headers: [
         { text: "Order Number", value: "orderNumber", width: '30px', class: "blue lighten-5" },
         { text: "Order Date", value: "orderDate", width: '30px', align: 'right', class: "blue lighten-5" },

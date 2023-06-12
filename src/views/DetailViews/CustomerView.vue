@@ -267,7 +267,7 @@ export default {
     data() {
         return {
             customer: new Customer(),
-            endpoint: 'http://localhost:8080/api/customers/',
+            endpoint: process.env.VUE_APP_BASE_URL+'/customers/',
             orders: [],
             payments: [],
             balanceLines: [],

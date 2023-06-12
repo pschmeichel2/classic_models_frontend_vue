@@ -137,7 +137,7 @@ export default {
     data() {
         return {
             employee: new Employee(),
-            endpoint: 'http://localhost:8080/api/employees/',
+            endpoint: process.env.VUE_APP_BASE_URL+'/employees/',
             selectedTab: null,
             customers: [],
 

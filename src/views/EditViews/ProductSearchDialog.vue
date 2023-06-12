@@ -87,9 +87,9 @@ export default {
     name: 'ProductSearchDialog',
     data() {
         return {
-            endpoint: 'http://localhost:8080/api/products',
-            productLinesEndpoint: 'http://localhost:8080/api/productLineNames',
-            productVendorsEndpoint: 'http://localhost:8080/api/productVendors',
+            endpoint: process.env.VUE_APP_BASE_URL+'/products',
+            productLinesEndpoint: process.env.VUE_APP_BASE_URL+'/productLineNames',
+            productVendorsEndpoint: process.env.VUE_APP_BASE_URL+'/productVendors',
             show: false,
             selected: [],
             productCode: '',
