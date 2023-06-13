@@ -12,8 +12,10 @@ To get started, create a free AWS account by visiting the [AWS Free Tier](https:
 
 ## Enable the frontend to access the backend
 * Use environment variables to configure the URL of the backend.
-   * Alter the Javascript to use the variables.
-   * Set the variables from the eb console.
+   * Alter the Javascript to use the variables (Done).
+   * Set the variables from the eb console. Like `VUE_APP_BASE_URL=http://classicmodels-backend-env...eu-central-1.elasticbeanstalk.com/api`.
+   * For local development, this environment variable can be set in the file `.env.development`.
+
 ## Prepare the distributable
 ### Execute the production build
 * Prepare the distributable files that you will upload to the server:
@@ -75,6 +77,7 @@ When working with a Vue app [generated using Vue CLI](https://cli.vuejs.org/guid
 * Choose database subnets: eu-central-1a (probably not necessary)
 * EC2 Security groups: default
 * Next
+* Environment variables: `VUE_APP_BASE_URL=http://classicmodels-backend-env...eu-central-1.elasticbeanstalk.com/api` (That`s the URL of the backend.)
 * Submit
 
 ## Testing and Troubleshooting
@@ -119,6 +122,10 @@ If you encounter any issues, here are some troubleshooting steps you can follow:
    - `which npm`: Print the path of the npm executable.
    - `service nginx status`: Print the status of the reverse proxy server [nginx](https://docs.aws.amazon.com/elasticbeanstalk/latest/dg/java-se-nginx.html).
    - `sudo -Hiu webapp env`: Print the environment variables seen by the user 'webapp'.
+   - `nano myfile`: Edit the file named myfile.
+   - `sudo systemctl restart nginx`: Restart nginx.
+   - `systemctl status nginx`: Print nginx status.
+   - `export VUE_APP_BASE_URL=http://classicmodels-backend-env...eu-central-1.elasticbeanstalk.com/api`: Set environment variable for backend URL
 
 ## Conclusion
 In summary, the provided approach may not be considered highly professional or robust when dealing with system changes. However, it can still serve the purpose adequately without encountering significant issues.

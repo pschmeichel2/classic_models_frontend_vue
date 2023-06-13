@@ -7,7 +7,7 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "__start": "vue-cli-service serve --mode production",
+    "__start": "/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve -l 8080",
     "start": "npm run build"
   },
   "dependencies": {
