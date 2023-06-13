@@ -13,8 +13,12 @@ To get started, create a free AWS account by visiting the [AWS Free Tier](https:
 ## Enable the frontend to access the backend
 * Use environment variables to configure the URL of the backend.
    * Alter the Javascript to use the variables (Done).
-   * Set the variables from the eb console. Like `VUE_APP_BASE_URL=http://classicmodels-backend-env...eu-central-1.elasticbeanstalk.com/api`.
-   * For local development, this environment variable can be set in the file `.env.development`.
+   * Set the variables from the Elastic Beanstalk Console. 
+      * Like `VUE_APP_BASE_URL=http://classicmodels-backend-env...eu-central-1.elasticbeanstalk.com/api`.
+      * Doesn't work???
+   * For local development, this variable can be set in the file `.env.development`.
+   * For deployment on AWS, it can be set in the file `.env.production`.
+      * Vue doesn't use "real" system environment variables, they need to be set in an ".env" file.
 
 ## Prepare the distributable
 ### Execute the production build
