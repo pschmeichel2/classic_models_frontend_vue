@@ -15,7 +15,10 @@
           </v-col>
         </v-row>
         <v-row class="text-center">
-          <v-label>backend url={{this.base_url}}</v-label>
+          <span>Backend URL: {{this.base_url}}</span>
+        </v-row>
+        <v-row class="text-center">
+          <span>Swagger: </span> <a :href="this.swagger_url"> {{this.swagger_url}} </a>
         </v-row>
       </v-container>
     </v-card>
@@ -30,11 +33,16 @@
 export default {
   name: 'HomeView',
   title: 'Classic Models - Home',
-  base_url: 'test',
+  base_url: 'undefined',
+  swagger_url: 'undefined',
 
   created() {
     document.title = 'Classic Models';
     this.base_url = process.env.VUE_APP_BASE_URL;
+    this.swagger_url = process.env.VUE_APP_BASE_URL;
+    if( typeof this.swagger_url === 'string' && this.swagger_url.length > 0 && this.swagger_url.toLowerCase().endsWith("/api")) {
+      this.swagger_url = this.swagger_url.replace(/\/api$/, "/swagger-ui/index.html");
+    }
     //this.huhu = 'test2';
   },
 

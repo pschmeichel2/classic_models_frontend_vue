@@ -174,18 +174,22 @@ export default {
                 + '&country=' + (this.country === null ? '' : this.country.trim());
             axios(request)
                 .then(response => {
-                    this.customers = response.data;
-                    if (this.customers.length > 0) {
-                        const firstCustomer = this.customers[0];
-                        this.selected = [firstCustomer];
-
-                        /* doesn't work, table rows can't be keyboard selected with v-data-table
-                        setTimeout(() => {
-                          this.$refs.customerTableRef.$el.__vue__.$children[0].focus();
-                        });
-                        */
+                    if( response.data === "") {
+                        this.customers = [];
                     }
+                    else {
+                        this.customers = response.data;
+                        if (this.customers.length > 0) {
+                            const firstCustomer = this.customers[0];
+                            this.selected = [firstCustomer];
 
+                            /* doesn't work, table rows can't be keyboard selected with v-data-table
+                            setTimeout(() => {
+                            this.$refs.customerTableRef.$el.__vue__.$children[0].focus();
+                            });
+                            */
+                        }
+                    }
                 })
                 .catch(error => {
                     console.log(error);

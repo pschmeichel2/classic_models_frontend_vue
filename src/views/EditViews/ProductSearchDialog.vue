@@ -166,10 +166,14 @@ export default {
                 + '&productVendor=' + (this.productVendor === null ? '' : this.productVendor.trim());
             axios(request)
                 .then(response => {
-                    this.products = response.data;
-                    if (this.products.length > 0) {
-                        const firstProduct = this.products[0];
-                        this.selected = [firstProduct];
+                    if( response.data === "") {
+                        this.products = [];
+                    } else {
+                        this.products = response.data;
+                        if (this.products.length > 0) {
+                            const firstProduct = this.products[0];
+                            this.selected = [firstProduct];
+                        }
                     }
                 })
                 .catch(error => {
