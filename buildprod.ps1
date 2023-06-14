@@ -16,4 +16,7 @@ cd dist
 7z a -r dist.zip *.*
 cd ..
 
+echo "deploying..."
+eb deploy Vue8-env
+
 echo "done"

@@ -107,8 +107,10 @@ If you encounter any issues, here are some troubleshooting steps you can follow:
 
 #### Accessing the Server via SSH:
    - To access your server via SSH, use the command `eb ssh`.
+      - Alternatively, go to the EC2 Console, select your instance, and click `Connect`.
    - Ensure that the "EB CLI" is installed by running the command `pip3 install awsebcli`.
    - Set up SSH keys by following the instructions provided in this [guide](https://bobcares.com/blog/connect-elastic-beanstalk-instance-via-ssh/).
+      - Check if you have a `EC2 key pair` configured at Elastic Beanstalk Console - Environments - (your Environment) - Configuration - Service access.
    - Set up SSH access to your server using the command `eb ssh xxx-env --setup`.
    - If you're getting an error "Botocore Error...unable to get local issuer certificate": Switch off ZScaler.
 
