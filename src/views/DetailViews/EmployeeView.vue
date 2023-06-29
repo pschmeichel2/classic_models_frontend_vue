@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">Employee {{ $route.params.employeeNumber }} ({{ employee.firstName }}
+                    <span class="text-h5 white--text" id="header">Employee {{ $route.params.employeeNumber }} ({{ employee.firstName }}
                         {{ employee.lastName }})</span>
                     <v-spacer></v-spacer>
                     <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
@@ -34,7 +34,7 @@
 
                 <v-row>
                     <v-col cols="4">
-                        <v-text-field label="Office" v-model="getOffice" dense prepend-icon="mdi-open-in-app"
+                        <v-text-field label="Office" id="office" v-model="getOffice" dense prepend-icon="mdi-open-in-app"
                             @click:prepend="handleClickOffice" :readonly="true"></v-text-field>
                     </v-col>
                     <v-col cols="4">
@@ -75,7 +75,7 @@
                 <v-card flat>
                     <v-card-title class="grey darken-1 ">
                         <v-row class="ma-0">
-                            <span class="text-5 white--text">Customers</span>
+                            <span class="text-5 white--text" id="subheader">Customers</span>
                         </v-row>
                     </v-card-title>
 

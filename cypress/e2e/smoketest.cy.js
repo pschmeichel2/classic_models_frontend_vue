@@ -1,63 +1,72 @@
 describe('template spec', () => {
 
   it('displays the home page', () => {
+    // Arrange
     const baseurl = Cypress.env('baseurlApp');
+    // Act, Assert
     cy.visit(baseurl);
   })
 
   it('displays offices', () => {
-    const baseurlService = Cypress.env('baseurl')+'/offices';
-    const baseurlApp = Cypress.env('baseurlApp')+'/offices';
-    cy.intercept('GET', baseurlService, { fixture: 'offices.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/offices';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-7 of 7');
   })
 
   it('displays employees', () => {
-    const baseurlService = Cypress.env('baseurl')+'/employees';
-    const baseurlApp = Cypress.env('baseurlApp')+'/employees';
-    cy.intercept('GET', baseurlService, { fixture: 'employees.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/employees';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-15');
   })
 
   it('displays customers', () => {
-    const baseurlService = Cypress.env('baseurl')+'/customers';
-    const baseurlApp = Cypress.env('baseurlApp')+'/customers';
-    cy.intercept('GET', baseurlService, { fixture: 'customers.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/customers';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-15');
   })
 
   it('displays orders', () => {
-    const baseurlService = Cypress.env('baseurl')+'/orders';
-    const baseurlApp = Cypress.env('baseurlApp')+'/orders';
-    cy.intercept('GET', baseurlService, { fixture: 'orders.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/orders';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-15');
   })
 
   it('displays orderDetails', () => {
-    const baseurlService = Cypress.env('baseurl')+'/orderDetails';
-    const baseurlApp = Cypress.env('baseurlApp')+'/orderDetails';
-    cy.intercept('GET', baseurlService, { fixture: 'orderDetails.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/orderDetails';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-15');
   })
 
   it('displays payments', () => {
-    const baseurlService = Cypress.env('baseurl')+'/payments';
-    const baseurlApp = Cypress.env('baseurlApp')+'/payments';
-    cy.intercept('GET', baseurlService, { fixture: 'payments.json' });        
+    // Arrange    
+    const baseurlApp = Cypress.env('baseurlApp')+'/payments';    
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-15');
   })
 
   it('displays productLines', () => {
-    const baseurlService = Cypress.env('baseurl')+'/productLines';
-    const baseurlApp = Cypress.env('baseurlApp')+'/productLines';
-    cy.intercept('GET', baseurlService, { fixture: 'productLines.json' });        
+    // Arrange  
+    const baseurlApp = Cypress.env('baseurlApp')+'/productLines';  
+    // Act
     cy.visit(baseurlApp);
+    // Assert
     cy.get('div .v-data-footer__pagination').contains('1-7');
   })
 
