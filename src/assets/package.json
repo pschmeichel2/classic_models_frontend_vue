@@ -7,7 +7,6 @@
     "build": "vue-cli-service build",
     "test:unit": "vue-cli-service test:unit",
     "lint": "vue-cli-service lint",
-    "__start": "/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve -l 8080",
     "start": "/opt/elasticbeanstalk/node-install/node-v18.16.0-linux-x64/bin/serve -l 8080"
   },
   "dependencies": {
@@ -31,7 +30,8 @@
     "@vue/vue2-jest": "^27.0.0-alpha.2",
     "babel-jest": "^27.0.6",
     "eslint": "^7.32.0",
-    "eslint-plugin-vue": "^8.0.3",
+    "eslint-plugin-cypress": "^2.13.3",
+    "eslint-plugin-vue": "^8.0.3",    
     "jest": "^27.0.5",
     "sass": "~1.32.0",
     "sass-loader": "^10.0.0",
@@ -42,14 +42,19 @@
   "eslintConfig": {
     "root": true,
     "env": {
-      "node": true
+      "node": true,
+      "cypress/globals": true
     },
     "extends": [
       "plugin:vue/essential",
-      "eslint:recommended"
+      "eslint:recommended",
+      "plugin:cypress/recommended"
     ],
     "parserOptions": {
       "parser": "@babel/eslint-parser"
+    },
+    "globals": {
+      "cy": true
     },
     "rules": {
       "vue/valid-v-slot": [
@@ -60,10 +65,13 @@
       ],
       "no-unused-vars": "off"
     },
+    "ignorePatterns": [
+      "*.cy.js"
+    ],
     "overrides": [
       {
         "files": [
-          "**/__tests__/*.{j,t}s?(x)",
+          "**/__tests__/*.{j,t}s?(x)",          
           "**/tests/unit/**/*.spec.{j,t}s?(x)"
         ],
         "env": {

@@ -1,0 +1,27 @@
+	
+[
+  {
+    "employeeNumber": 1286,
+    "lastName": "Tseng",
+    "firstName": "Foon Yue",
+    "extension": "x2248",
+    "email": "ftseng@classicmodelcars.com",
+    "officeCode": "3",
+    "reportsTo": 1143,
+    "jobTitle": "Sales Rep",
+    "city": "NYC",
+    "reportsToName": "Bow"
+  },
+  {
+    "employeeNumber": 1323,
+    "lastName": "Vanauf",
+    "firstName": "George",
+    "extension": "x4102",
+    "email": "gvanauf@classicmodelcars.com",
+    "officeCode": "3",
+    "reportsTo": 1143,
+    "jobTitle": "Sales Rep",
+    "city": "NYC",
+    "reportsToName": "Bow"
+  }
+]

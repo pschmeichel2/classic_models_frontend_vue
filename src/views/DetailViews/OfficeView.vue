@@ -5,7 +5,7 @@
 
         <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text" >Office {{ $route.params.officeCode }} ({{ office.city }})</span>                        
+                    <span class="text-h5 white--text" id="header">Office {{ officeCode }} ({{ office.city }})</span>                        
                     <v-spacer></v-spacer>
                     <v-btn dark icon @click="handleClickAdd"><v-icon >mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon @click="handleClickEdit"><v-icon >mdi-pencil</v-icon></v-btn>
@@ -18,7 +18,7 @@
         <v-card-text>
             <v-row >                
                 <v-col cols="4">
-                    <v-text-field label="City" v-model="office.city" dense class="font-weight-bold" readonly></v-text-field>
+                    <v-text-field label="City" id="city" v-model="office.city" dense class="font-weight-bold" readonly></v-text-field>
                 </v-col>
                 <v-col cols="4">
                     <v-text-field label="Phone" v-model="office.phone" dense readonly></v-text-field>
@@ -65,22 +65,22 @@
                 </v-row>
         </v-card-title>
 
-            <v-data-table :items="employees" :headers="employeeHeaders" item-key="employeeNumber" dense class="elevation-3"
-                :items-per-page="15" @click:row="handleClickEmployee">
+        <v-data-table :items="employees" :headers="employeeHeaders" item-key="employeeNumber" dense class="elevation-3"
+            id="employeeTable" :items-per-page="15" @click:row="handleClickEmployee">
 
-                <template v-slot:item.lastName="{ item }">
-                    <span class="font-weight-bold">{{ item.lastName }}</span>
-                </template>
-                <template v-slot:item.firstName="{ item }">
-                    <span class="font-weight-bold">{{ item.firstName }}</span>
-                </template>
+            <template v-slot:item.lastName="{ item }">
+                <span class="font-weight-bold">{{ item.lastName }}</span>
+            </template>
+            <template v-slot:item.firstName="{ item }">
+                <span class="font-weight-bold">{{ item.firstName }}</span>
+            </template>
 
-            </v-data-table>
-            <OfficeDeleteDialog ref="theOfficeDeleteDialog" />
-        </v-card>
+        </v-data-table>
+        <OfficeDeleteDialog ref="theOfficeDeleteDialog" />
+    </v-card>
 
-    </div>
-  </template>
+</div>
+</template>
   
 <script>
 import axios from 'axios';
@@ -140,7 +140,11 @@ export default {
       getEmployees(officeCode) {
         axios(this.endpoint + officeCode + '/employees')
         .then(response => {
-            this.employees = response.data;
+            if( response.data === "") {
+                this.employees = [];
+            } else {
+                this.employees = response.data;
+            }
         })
         .catch( error => {
             console.log(error);
