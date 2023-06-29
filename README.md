@@ -36,12 +36,11 @@ This frontend uses:
 * Customer Balance
 * Customer Purchase Treemap (cute graphics)
 * [Readme for AWS Deployment](./doc/HowtoPublishOnAWS.md)
+* Tests
 
 ## Todos
-* Insert, Update, Delete is only implemented for Offices.
+* Insert, Update, Delete is only implemented for Offices and Orders.
 * Recursive Navigation in Employees doesn't refresh details correctly.
-* Clean up code
-* Fix browser console errors ("null" errors for data, caused by event timing)
 
 ## Pictures
 
