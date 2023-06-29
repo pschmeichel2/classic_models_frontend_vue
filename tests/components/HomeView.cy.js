@@ -2,7 +2,8 @@ import HomeView from './../../src/views/HomeView.vue'
 
 describe('<HomeView />', () => {
   it('renders', () => {
-    // see: https://on.cypress.io/mounting-vue
+    
+    // Act
     cy.mount(HomeView)
   })
 })

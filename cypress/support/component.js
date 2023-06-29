@@ -24,10 +24,8 @@ import VApp from 'vuetify/lib/components/VApp';
 import router from '../../src/router/index';
 import App from '../../src/App';
 
-
 Vue.use(Vuetify);
 Vue.use(VueRouter);
-
 
 Cypress.Commands.add('mount', (component, options = {}) => {
   options.vuetify = new Vuetify();
@@ -36,6 +34,7 @@ Cypress.Commands.add('mount', (component, options = {}) => {
   options.extensions.components = options.extensions.components || {};
     
   options.extensions.components['App'] = App;    
+  //options.extensions.components['#app'] = App;  
   return mount({ render: (h) => h(VApp, [h(component, options)]) }, options);    
 })
 
