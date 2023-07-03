@@ -4,10 +4,10 @@
     <v-card max-width="1400px">
       <v-card-title class="blue darken-2 ">
         <v-row class="ma-1">
-          <span class="text-h5 white--text">Orders</span>
+          <span class="text-h5 white--text" id="header">Orders</span>
           <v-text-field v-model="search" label="Search" class="white--text ml-5" dense hide-details="auto"></v-text-field>
           <v-spacer></v-spacer>
-          <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
+          <v-btn dark icon id="newOrder" @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
         </v-row>
       </v-card-title>
 
@@ -48,7 +48,7 @@ export default {
     return {
       search: '',
       orders: [],
-      endpoint: process.env.VUE_APP_BASE_URL+'/orders',
+      endpoint: process.env.VUE_APP_BASE_URL + '/orders',
       headers: [
         { text: "Order Number", value: "orderNumber", width: '30px', class: "blue lighten-5" },
         { text: "Order Date", value: "orderDate", width: '30px', align: 'right', class: "blue lighten-5" },

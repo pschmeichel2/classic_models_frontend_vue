@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">Find Product</span>
+                    <span class="text-h5 white--text" id="header">Find Product</span>
                     <v-spacer></v-spacer>
                 </v-row>
             </v-card-title>
@@ -28,7 +28,7 @@
                         </v-row><v-row>
                             <v-col cols="2">
                                 <v-select label="Product Line" dense v-model="productLine" :items="productLineValues"
-                                    clearable @keyup.enter="find()"></v-select>
+                                    clearable @keyup.enter="find()" id="productLine"></v-select>
                             </v-col>
                             <v-col cols="3">
                                 <v-select label="Vendor" dense v-model="productVendor" :items="productVendorValues"
@@ -37,7 +37,7 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="primary" @click="find" type="submit">Find</v-btn>
+                        <v-btn color="primary" @click="find" type="submit" id="findproduct">Find</v-btn>
                     </v-card-actions>
                 </v-card>
 
@@ -48,7 +48,7 @@
                         <v-data-table :items="products" :headers="productHeaders" item-key="productCode" dense
                             class="elevation-3" :items-per-page="15" @click:row="handleClickProduct" height="350px"
                             v-model="selected" ref="productTableRef" :single-select="true" show-select
-                            @dblclick:row="($event, { item }) => handleDblClickProduct(item)">
+                            @dblclick:row="($event, { item }) => handleDblClickProduct(item)" id="productSearchTable">
 
                             <template v-slot:item.productCode="{ item }">
                                 <span class="font-weight-bold">{{ item.productCode }}</span>
@@ -70,7 +70,7 @@
 
                     <v-card-actions>
                         <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                        <v-btn color="primary" @click="submit" type="submit">Ok</v-btn>
+                        <v-btn color="primary" @click="submit" type="submit" id="okProductSearch">Ok</v-btn>
                     </v-card-actions>
 
                 </v-card>
@@ -87,9 +87,9 @@ export default {
     name: 'ProductSearchDialog',
     data() {
         return {
-            endpoint: process.env.VUE_APP_BASE_URL+'/products',
-            productLinesEndpoint: process.env.VUE_APP_BASE_URL+'/productLineNames',
-            productVendorsEndpoint: process.env.VUE_APP_BASE_URL+'/productVendors',
+            endpoint: process.env.VUE_APP_BASE_URL + '/products',
+            productLinesEndpoint: process.env.VUE_APP_BASE_URL + '/productLineNames',
+            productVendorsEndpoint: process.env.VUE_APP_BASE_URL + '/productVendors',
             show: false,
             selected: [],
             productCode: '',
@@ -166,7 +166,7 @@ export default {
                 + '&productVendor=' + (this.productVendor === null ? '' : this.productVendor.trim());
             axios(request)
                 .then(response => {
-                    if( response.data === "") {
+                    if (response.data === "") {
                         this.products = [];
                     } else {
                         this.products = response.data;

@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">Find Customer</span>
+                    <span class="text-h5 white--text" id="header">Find Customer</span>
                     <v-spacer></v-spacer>
                 </v-row>
             </v-card-title>
@@ -38,7 +38,7 @@
                         </v-row>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn color="primary" @click="find" type="submit">Find</v-btn>
+                        <v-btn color="primary" @click="find" type="submit" id="find">Find</v-btn>
                     </v-card-actions>
                 </v-card>
 
@@ -68,7 +68,7 @@
 
                     <v-card-actions>
                         <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                        <v-btn color="primary" @click="submit" type="submit">Ok</v-btn>
+                        <v-btn color="primary" @click="submit" type="submit" id="ok">Ok</v-btn>
                     </v-card-actions>
 
                 </v-card>

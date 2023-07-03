@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">{{ getTitle }}</span>
+                    <span class="text-h5 white--text" id="header">{{ getTitle }}</span>
                     <v-spacer></v-spacer>
                 </v-row>
             </v-card-title>
@@ -19,7 +19,7 @@
                             :disabled=isChangeMode />
                     </v-col>
                     <v-col cols="1">
-                        <v-btn color="primary" @click="handleClickFindProduct" :disabled=isChangeMode>
+                        <v-btn color="primary" @click="handleClickFindProduct" :disabled=isChangeMode id="findProductForOrderDetail" >
                             <v-icon>mdi-car-search</v-icon>Find Product</v-btn>
                     </v-col>
                 </v-row>
@@ -27,13 +27,13 @@
                     <v-col cols="6">
                         <v-text-field label="Product Name" dense :readonly="true" v-model="orderDetail.productName"
                             class="font-weight-bold" append-icon="mdi-car-search" @click:append="handleClickFindProduct"
-                            :disabled=isChangeMode />
+                            :disabled=isChangeMode id="productNameAddOrderDetail"/>
                     </v-col>
                 </v-row>
                 <v-row>
                     <v-col cols="3">
                         <v-text-field label="Quantity ordered" dense reverse v-model="orderDetail.quantityOrdered" required
-                            maxlength="10" :rules="[rules.isInteger]" ref="quantityOrderedRef" type="number" />
+                            maxlength="10" :rules="[rules.isInteger]" ref="quantityOrderedRef" type="number" id="quantityAddOrderDetail"/>
                     </v-col>
                     <v-col cols="3">
                         <v-text-field label="Price each" dense reverse v-model="orderDetail.priceEach" required
@@ -44,7 +44,7 @@
             <p></p>
             <v-card-actions>
                 <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                <v-btn color="primary" @click="submit" type="submit">Ok</v-btn>
+                <v-btn color="primary" @click="submit" type="submit" id="okAddOrderDetail">Ok</v-btn>
             </v-card-actions>
 
             <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout" light centered multi-line>

@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">Order {{ $route.params.orderNumber }}</span>
+                    <span class="text-h5 white--text" id="header">Order {{ $route.params.orderNumber }}</span>
                     <v-spacer></v-spacer>
                     <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon @click="handleClickEdit"><v-icon>mdi-pencil</v-icon></v-btn>
@@ -21,7 +21,7 @@
                     <v-col cols="4">
                         <v-text-field label="Customer Name" v-model="getCustomerName" dense class="font-weight-bold"
                             prepend-icon="mdi-open-in-app" @click:prepend="handleClickCustomer"
-                            :readonly="true"></v-text-field>
+                            :readonly="true" id="orderViewCustomerName"></v-text-field>
                     </v-col>
                 </v-row>
 
@@ -57,7 +57,7 @@
             </v-card-title>
 
             <v-data-table :items="orderDetails" :headers="orderDetailHeaders" item-key="productCode" dense
-                class="elevation-3" :items-per-page="15" @click:row="handleClickOrderDetail">
+                class="elevation-3" :items-per-page="15" @click:row="handleClickOrderDetail" id="orderViewDetails">
 
                 <template v-slot:item.productCode="{ item }">
                     <span class="font-weight-bold">{{ item.productCode }}</span>

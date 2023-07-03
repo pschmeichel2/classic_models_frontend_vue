@@ -5,7 +5,7 @@
 
             <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">Customer {{ $route.params.customerNumber }} ({{ customer.customerName
+                    <span class="text-h5 white--text" id="header">Customer {{ $route.params.customerNumber }} ({{ customer.customerName
                     }})</span>
                     <v-spacer></v-spacer>
                     <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>

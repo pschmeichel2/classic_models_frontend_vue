@@ -9,7 +9,7 @@ module.exports = defineConfig({
   },
 
   env: {
-    baseurl: "http://localhost:8080/api",
+    baseurl: "http://localhost:8080/api",    
     baseurlApp: "http://localhost:8080",
     officeCode: 3,
   },
@@ -18,5 +18,6 @@ module.exports = defineConfig({
     setupNodeEvents(on, config) {
       // implement node event listeners here
     },
+    baseUrl: "http://localhost:8080",
   },
 });

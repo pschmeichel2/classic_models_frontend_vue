@@ -1,73 +1,63 @@
-describe('template spec', () => {
+describe('smoketest - open list views via url, navigate to details', () => {
 
-  it('displays the home page', () => {
-    // Arrange
-    const baseurl = Cypress.env('baseurlApp');
-    // Act, Assert
-    cy.visit(baseurl);
+  it('displays the home page', () => {    
+    cy.visit('/');
+    cy.get("#header").contains('Welcome to Classic Models');
   })
 
-  it('displays offices', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/offices';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-7 of 7');
+  it('displays offices list and navigates to office detail screeen', () => {
+    cy.visit('/offices');    
+    cy.get("#header").contains('Offices');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Office ');
   })
 
-  it('displays employees', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/employees';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-15');
+  it('displays employees list and navigates to employee detail screeen', () => {        
+    cy.visit('/employees');    
+    cy.get("#header").contains('Employees');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('table').find('tr').contains('td', 'Sales Rep').first().parent('tr').click(); 
+    cy.get("#header").contains('Employee ');
   })
 
-  it('displays customers', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/customers';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-15');
+  it('displays customers list and navigates to customer detail screen', () => {        
+    cy.visit('/customers');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Customer ');
   })
 
-  it('displays orders', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/orders';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-15');
+  it('displays orders list and navigates to order detail screen', () => {        
+    cy.visit('/orders');    
+    cy.get("#header").contains('Orders');
+    cy.get('div .v-data-footer__pagination').contains('1-'); 
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Order ');
   })
 
-  it('displays orderDetails', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/orderDetails';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-15');
+  it('displays orderDetails list and navigates to order detail screen', () => {
+    cy.visit('/orderDetails');
+    cy.get("#header").contains('Order Details');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Order Detail ');    
   })
 
-  it('displays payments', () => {
-    // Arrange    
-    const baseurlApp = Cypress.env('baseurlApp')+'/payments';    
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-15');
+  it('displays payments list and navigates to payment detail screen', () => {      
+    cy.visit('/payments');
+    cy.get("#header").contains('Payments');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Payment ');        
   })
 
-  it('displays productLines', () => {
-    // Arrange  
-    const baseurlApp = Cypress.env('baseurlApp')+'/productLines';  
-    // Act
-    cy.visit(baseurlApp);
-    // Assert
-    cy.get('div .v-data-footer__pagination').contains('1-7');
+  it('displays productLines list and navigates to product line detail screen', () => {    
+    cy.visit('/productLines');
+    cy.get("#header").contains('Product Lines');
+    cy.get('div .v-data-footer__pagination').contains('1-');
+    cy.get('tbody > :nth-child(1)').click();
+    cy.get("#header").contains('Product Line ');
   })
 
 })

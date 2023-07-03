@@ -4,7 +4,7 @@
 
             <v-card-title class="blue darken-2">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text">{{ getTitle() }}</span>
+                    <span class="text-h5 white--text" id="header">{{ getTitle() }}</span>
                     <v-spacer></v-spacer>
                 </v-row>
             </v-card-title>
@@ -17,11 +17,12 @@
                     </v-col>
                     <v-col cols="4">
                         <v-text-field label="Customer Name" v-model="order.customerName" dense class="font-weight-bold"
-                            :readonly="true" append-icon="mdi-account-search" @click:append="handleClickFindCustomer"
-                            clearable></v-text-field>
+                            id="customername" :readonly="true" append-icon="mdi-account-search"
+                            @click:append="handleClickFindCustomer" clearable></v-text-field>
                     </v-col>
                     <v-col cols="1">
-                        <v-btn color="primary" @click="handleClickFindCustomer"><v-icon>mdi-account-search</v-icon>Find
+                        <v-btn color="primary" id="findCustomer"
+                            @click="handleClickFindCustomer"><v-icon>mdi-account-search</v-icon>Find
                             Customer</v-btn>
                     </v-col>
                 </v-row>
@@ -48,7 +49,7 @@
             </v-card-text>
             <v-card-actions>
                 <v-btn color="secondary" @click="close" text>Cancel</v-btn>
-                <v-btn color="primary" @click="handleClickSave" type="submit">Save</v-btn>
+                <v-btn color="primary" @click="handleClickSave" type="submit" id="saveOrder">Save</v-btn>
             </v-card-actions>
 
         </v-card>
@@ -59,7 +60,8 @@
                 <v-row class="ma-0">
                     <span class="text-5 white--text">Order Details</span>
                     <v-spacer></v-spacer>
-                    <v-btn dark icon @click="handleClickAddOrderDetail"><v-icon>mdi-plus-thick</v-icon></v-btn>
+                    <v-btn dark icon @click="handleClickAddOrderDetail"
+                        id="newOrderDetail"><v-icon>mdi-plus-thick</v-icon></v-btn>
                     <v-btn dark icon @click="handleClickEditOrderDetail"><v-icon>mdi-pencil</v-icon></v-btn>
                     <v-btn dark icon @click="handleClickDeleteOrderDetail"><v-icon>mdi-delete</v-icon></v-btn>
 
@@ -140,7 +142,7 @@ export default {
                 'On Hold',
                 'Disputed',
             ],
-            endpoint: process.env.VUE_APP_BASE_URL+'/orders',
+            endpoint: process.env.VUE_APP_BASE_URL + '/orders',
             showAlert: false,
             createTestData: false,
             orderDetails: [],

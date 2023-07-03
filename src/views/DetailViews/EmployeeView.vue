@@ -12,9 +12,9 @@
                     <v-btn dark icon @click="handleClickDelete"><v-icon>mdi-delete</v-icon></v-btn>
                 </v-row>
             </v-card-title>
+
             <p></p>
-            <!--<v-banner color="primary" class="title">Employee {{ $route.params.employeeNumber }} ({{ employee.firstName }} {{ employee.lastName }})</v-banner>
-        -->
+
             <v-card-text>
                 <v-row>
                     <v-col cols="4">
@@ -29,13 +29,15 @@
                         <v-text-field label="Job Title" v-model="employee.jobTitle" dense class="font-weight-bold"
                             :readonly="true"></v-text-field>
                     </v-col>
-
                 </v-row>
 
-                <v-row>
+                <v-row>                    
                     <v-col cols="4">
-                        <v-text-field label="Office" id="office" v-model="getOffice" dense prepend-icon="mdi-open-in-app"
-                            @click:prepend="handleClickOffice" :readonly="true"></v-text-field>
+                        <v-text-field label="Office" id="office" v-model="getOffice" dense  :readonly="true">
+                            <template slot="prepend">
+                                <v-icon @click="handleClickOffice" id="officelink">mdi-open-in-app</v-icon> 
+                            </template>
+                        </v-text-field>
                     </v-col>
                     <v-col cols="4">
                         <v-text-field label="Manager" v-if="this.employee.reportsTo === null" v-model="getReportsTo" dense
@@ -48,7 +50,6 @@
                         <v-text-field label="Employee Number" v-model="employee.employeeNumber" dense :readonly="true">
                         </v-text-field>
                     </v-col>
-
                 </v-row>
 
                 <v-row>

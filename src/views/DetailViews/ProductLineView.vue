@@ -4,7 +4,7 @@
 
       <v-card-title class="blue darken-2 ">
         <v-row class="ma-1">
-          <span class="text-h5 white--text">Product Line {{ $route.params.productLine }}</span>
+          <span class="text-h5 white--text" id="header">Product Line {{ $route.params.productLine }}</span>
           <v-spacer></v-spacer>
           <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
           <v-btn dark icon @click="handleClickEdit"><v-icon>mdi-pencil</v-icon></v-btn>
