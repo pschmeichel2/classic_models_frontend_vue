@@ -24,6 +24,7 @@ import ProductLineView from '../views/DetailViews/ProductLineView.vue';
 
 import OfficeEditView from '../views/EditViews/OfficeEditView.vue';
 import OrderEditView from '../views/EditViews/OrderEditView.vue';
+import EmployeeEditView from '../views/EditViews/EmployeeEditView.vue';
 
 import AlertBox from '../components/AlertBox.vue';
 
@@ -32,20 +33,32 @@ Vue.use(VueRouter)
 const routes = [
   { path: '/', name: 'home', component: HomeView },
 
-  { path: '/customers', name: 'customers', component: CustomersView },
-  { path: '/employees', name: 'employees', component: EmployeesView },
-  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },
-  { path: '/payments', name: 'payments', component: PaymentsView },
-  { path: '/products', name: 'products', component: ProductsView },
-  { path: '/productLines', name: 'productLines', component: ProductLinesView },
+  
+  
+  
+  
+  
 
+  { path: '/customers', name: 'customers', component: CustomersView },
   { path: '/customers/:customerNumber', name: 'customerView', component: CustomerView, props: true },
-  { path: '/employees/:employeeNumber', name: 'employeeView', component: EmployeeView, props: true },
+  
+  { path: '/orderDetails', name: 'orderDetails', component: OrderDetailsView },
   { path: '/orderDetails/:orderNumber/:productCode', name: 'orderDetailView', component: OrderDetailView, props: true },
+
+  { path: '/payments', name: 'payments', component: PaymentsView },
   { path: '/payments/:customerNumber/:checkNumber', name: 'paymentView', component: PaymentView, props: true },
+  
+  { path: '/products', name: 'products', component: ProductsView },
   { path: '/products/:productCode', name: 'productView', component: ProductView, props: true },
+  
+  { path: '/productLines', name: 'productLines', component: ProductLinesView },
   { path: '/productLines/:productLine', name: 'productLineView', component: ProductLineView, props: true },
 
+  { path: '/employees', name: 'employees', component: EmployeesView },
+  { path: '/employees/new', name: 'employeeNewView', component: EmployeeEditView, props: true },
+  { path: '/employees/:employeeNumber(\\d+)/edit', name: 'employeeEditView', component: EmployeeEditView, props: true },
+  { path: '/employees/:employeeNumber(\\d+)', name: 'employeeView', component: EmployeeView, props: true },
+  
   { path: '/orders', name: 'orders', component: OrdersView },
   { path: '/orders/new', name: 'orderNewView', component: OrderEditView, props: true },
   { path: '/orders/:orderNumber(\\d+)/edit', name: 'orderEditView', component: OrderEditView, props: true },

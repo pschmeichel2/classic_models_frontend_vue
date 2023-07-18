@@ -111,7 +111,6 @@ export default {
             endpoint: process.env.VUE_APP_BASE_URL+'/offices',
             countryEndpoint: process.env.VUE_APP_BASE_URL+'/countries',
             showAlert: false,
-
             showSnackbar: false,
             snackbarText: '',
             snackbarTimeout: 2000,
@@ -128,7 +127,7 @@ export default {
                 territoryCounter: value => value.length <= 10 || 'Max 10 characters',
                 email: value => {
                     const pattern = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
-                    return pattern.test(value) || 'Invalid e-mail.'
+                    return pattern.test(value) || 'Invalid e-mail'
                 },
             }
         }

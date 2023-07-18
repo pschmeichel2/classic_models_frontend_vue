@@ -107,9 +107,7 @@ export default {
     },
 
     handleClickAdd() {
-      console.log('handleClickAdd');
-      this.showSnackbar = true;
-      this.snackbarText = 'not implemented';
+      router.push({ path: `/employees/new` });
     },
 
   },

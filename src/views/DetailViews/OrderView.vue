@@ -154,20 +154,20 @@ export default {
         getOrder(orderNumber) {
             axios(this.endpoint + orderNumber)
                 .then(response => {
-                    this.order = response.data
+                    this.order = response.data;
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error);
                 })
         },
 
         getOrderDetails(orderNumber) {
             axios(this.endpoint + orderNumber + '/orderDetails')
                 .then(response => {
-                    this.orderDetails = response.data
+                    this.orderDetails = response.data;
                 })
                 .catch(error => {
-                    console.log(error)
+                    console.log(error);
                 })
         },
 
@@ -176,8 +176,8 @@ export default {
         },
 
         handleClickOrderDetail(row) {
-            console.log(row)
-            router.push({ path: `/orderDetails/${row.orderNumber}/${row.productCode}` })
+            console.log(row);
+            router.push({ path: `/orderDetails/${row.orderNumber}/${row.productCode}` });
         },
 
         handleClickCustomer() {

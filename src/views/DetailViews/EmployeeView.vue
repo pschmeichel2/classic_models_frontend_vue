@@ -4,7 +4,8 @@
 
             <v-card-title class="blue darken-2 ">
                 <v-row class="ma-1">
-                    <span class="text-h5 white--text" id="header">Employee {{ $route.params.employeeNumber }} ({{ employee.firstName }}
+                    <span class="text-h5 white--text" id="header">Employee {{ $route.params.employeeNumber }} ({{
+                        employee.firstName }}
                         {{ employee.lastName }})</span>
                     <v-spacer></v-spacer>
                     <v-btn dark icon @click="handleClickAdd"><v-icon>mdi-plus-thick</v-icon></v-btn>
@@ -31,11 +32,11 @@
                     </v-col>
                 </v-row>
 
-                <v-row>                    
+                <v-row>
                     <v-col cols="4">
-                        <v-text-field label="Office" id="office" v-model="getOffice" dense  :readonly="true">
+                        <v-text-field label="Office" id="office" v-model="getOffice" dense :readonly="true">
                             <template slot="prepend">
-                                <v-icon @click="handleClickOffice" id="officelink">mdi-open-in-app</v-icon> 
+                                <v-icon @click="handleClickOffice" id="officelink">mdi-open-in-app</v-icon>
                             </template>
                         </v-text-field>
                     </v-col>
@@ -69,8 +70,8 @@
         <p></p>
 
         <v-tabs v-model="selectedTab">
-            <v-tab>Customers</v-tab>
-            <v-tab>Subordinates</v-tab>
+            <v-tab id="1" name="customerTab">Customers</v-tab>
+            <v-tab id="2" name="subordinatesTab">Subordinates</v-tab>
 
             <v-tab-item :key="0">
                 <v-card flat>
@@ -113,17 +114,18 @@
                         </template>
 
                     </v-data-table>
+                    
                 </v-card>
             </v-tab-item>
         </v-tabs>
-
+        <EmployeeDeleteDialog ref="theEmployeeDeleteDialog" />
         <v-snackbar v-model="showSnackbar" :timeout="snackbarTimeout" light centered multi-line>
             {{ snackbarText }}
             <template v-slot:action="{ attrs }">
                 <v-btn color="blue" text v-bind="attrs" @click="showSnackbar = false">Close</v-btn>
             </template>
         </v-snackbar>
-
+        
     </div>
 </template>
   
@@ -131,14 +133,18 @@
 import axios from 'axios';
 import router from '@/router';
 import Employee from '@/models/Employee';
+import EmployeeDeleteDialog from '../EditViews/EmployeeDeleteDialog.vue';
 
 export default {
     name: 'EmployeeView',
     props: ['employeeNumber'],
+    components: {
+        EmployeeDeleteDialog,
+    },
     data() {
         return {
             employee: new Employee(),
-            endpoint: process.env.VUE_APP_BASE_URL+'/employees/',
+            endpoint: process.env.VUE_APP_BASE_URL + '/employees/',
             selectedTab: null,
             customers: [],
 
@@ -182,11 +188,11 @@ export default {
         '$route'() {
             console.log('watch');
             this.customers = [];
-            this.employees = [];
-            //this.selectedTab = 'first';
+            this.employees = [];            
             this.getEmployee(this.employeeNumber);
             this.getCustomers(this.employeeNumber);
             this.getEmployees(this.employeeNumber);
+            this.isManager = false;
         }
     },
 
@@ -194,6 +200,8 @@ export default {
         console.log('created');
         this.showSnackbar = false;
         this.snackbarText = '';
+        this.customers = [];
+        this.employees = [];
         this.getEmployee(this.employeeNumber);
         this.getCustomers(this.employeeNumber);
         this.getEmployees(this.employeeNumber);
@@ -249,6 +257,8 @@ export default {
                     if (this.employees === '') {
                         this.employees = [];
                     }
+                    this.isManager = (this.employees.length > 0);
+                    this.selectedTab = (this.isManager ? 1: 0);        
                 })
                 .catch(error => {
                     console.log(error);
@@ -277,20 +287,18 @@ export default {
 
         handleClickAdd() {
             console.log('handleClickAdd');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
+            router.push({ path: '/employees/new' });
         },
 
         handleClickEdit() {
             console.log('handleClickEdit');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
+            console.log({ path: `/employees/${this.employee.employeeNumber}/edit` });
+            router.push({ path: `/employees/${this.employee.employeeNumber}/edit` });
         },
 
         handleClickDelete() {
             console.log('handleClickDelete');
-            this.showSnackbar = true;
-            this.snackbarText = 'not implemented';
+            this.$refs.theEmployeeDeleteDialog.open(this.employeeNumber);
         },
 
     },
